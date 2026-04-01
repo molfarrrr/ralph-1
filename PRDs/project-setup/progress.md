@@ -21,7 +21,7 @@
 | TASK-017: Configure React Router routes in App.tsx | done | |
 | TASK-018: Verify design tokens render correctly | done | |
 | TASK-019: Production build check | done | |
-| TASK-020: Install and configure ESLint v9 | pending | |
+| TASK-020: Install and configure ESLint v9 | done | |
 | TASK-021: Configure ESLint TypeScript strict integration | pending | |
 | TASK-022: Install Vitest and React Testing Library | pending | |
 | TASK-023: Configure Vitest in vite.config.ts | pending | |
@@ -163,6 +163,14 @@
 - **Verification:** Playwright at localhost:5174 confirmed: fontFamily=Manrope, bgColor=rgb(244,242,233), textColor=rgb(31,31,31), wrapperBg=rgb(242,233,233), mutedColor=rgb(115,115,115), mainWidthRatio=0.85, noOverflow at 375px=true. All checks passed.
 - **Notes:** none
 ---
+---
+---
+### [TASK-020] Install and configure ESLint v9 — iteration 17
+- **Status:** done
+- **Files changed:** eslint.config.js, package.json, package-lock.json
+- **Key decisions:** `eslint-plugin-react` and `eslint-plugin-jsx-a11y` were missing from devDependencies; installed them. Updated eslint.config.js to v9 flat config with TypeScript parser, React 19 settings, jsx-a11y rules, and the three required rules (no-console: warn, no-unused-vars: error, react-hooks/exhaustive-deps: warn). Updated lint script from `eslint .` to `eslint src` and added `lint:fix`. Several node_modules files were corrupted during install (globals.json, axe.js, react-hooks dev bundle); fixed by installing cleanly in a temp dir and copying the clean files over.
+- **Verification:** `npm run lint` → exit 0, zero errors. Temp file with `const x = 1` → no-unused-vars error confirmed. Clean after removal → exit 0.
+- **Notes:** File corruption in node_modules is a recurring env issue (Alpine Linux + native binary postinstall failures). Mitigation: `--ignore-scripts` for install + copy clean files from temp dir.
 ---
 ### [TASK-019] Production build check — iteration 16
 - **Status:** done
