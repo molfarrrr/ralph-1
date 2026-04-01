@@ -2,10 +2,10 @@
 
 ## Stack
 - Vite (build tool)
-- React 18 (web)
+- React 19 (web)
 - TypeScript (strict)
 - Chakra UI 3 (styling & components)
-- React Router v6 (routing)
+- React Router v7 (routing)
 
 ## Design System Reference (Eonia Template)
 
@@ -60,7 +60,7 @@ All interactive elements: `0.3s ease-out`
 - Run `npm install @chakra-ui/react@^3 @emotion/react`
 - Acceptance: packages in `package.json`, no peer dependency warnings
 
-### TASK-005: Install React Router v6
+### TASK-005: Install React Router v7
 - Run `npm install react-router-dom`
 - Acceptance: package in `package.json`
 

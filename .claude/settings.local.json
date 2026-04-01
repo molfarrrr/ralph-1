@@ -6,7 +6,10 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:webflow.com)",
       "Bash(grep -E '\\\\.\\(json|ts|js|jsx|tsx|html|css\\)$')",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "Bash(npm show:*)",
+      "Bash(mv /Users/oleh/Projects/ralph-1/.claude/skills/react-dev/SKILL.md /Users/oleh/Projects/ralph-1/.claude/skills/react-developer/SKILL.md)",
+      "Bash(rm -r /Users/oleh/Projects/ralph-1/.claude/skills/react-dev)"
     ]
   }
 }
