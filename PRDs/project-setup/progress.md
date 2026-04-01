@@ -8,7 +8,7 @@
 | TASK-004: Install Chakra UI 3 | done | |
 | TASK-005: Install React Router v7 | done | |
 | TASK-006: Add Google Fonts to index.html | done | |
-| TASK-007: Create Chakra UI 3 custom theme | pending | |
+| TASK-007: Create Chakra UI 3 custom theme | done | |
 | TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx | pending | |
 | TASK-009: Create folder structure | pending | |
 | TASK-010: Create Navbar component | pending | |
@@ -63,6 +63,14 @@
 - **Key decisions:** Added preconnect for fonts.googleapis.com and fonts.gstatic.com (with crossorigin), plus stylesheet link for Manrope weights 200;300;400;500;600.
 - **Verification:** Playwright confirmed preconnect links in DOM, request to fonts.googleapis.com made, `document.fonts.check('16px Manrope')` returned true.
 - **Notes:** fonts.googleapis.com is accessible (not blocked by firewall).
+---
+---
+### [TASK-007] Create Chakra UI 3 custom theme — iteration 4
+- **Status:** done
+- **Files changed:** src/theme/index.ts
+- **Key decisions:** Used `createSystem` + `defaultConfig` + `defineConfig`. Defined brand (50, 100, 700) and neutral (0, 500, 900) color tokens, Manrope fonts for body/heading, ui-monospace for mono, and motion tokens (fast/standard/expressive durations and easings). Global body styles set bg to neutral.0 and color to neutral.900.
+- **Verification:** `npx tsc --noEmit` → zero errors; brand.50=#f2e9e9, brand.100=#e6ddd9, neutral.900=#1f1f1f confirmed; fonts.body contains Manrope confirmed.
+- **Notes:** none
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done
