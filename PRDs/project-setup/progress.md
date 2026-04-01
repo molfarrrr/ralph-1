@@ -15,7 +15,7 @@
 | TASK-011: Create Footer component | done | |
 | TASK-012: Create Layout component | done | |
 | TASK-013: Create HomePage | done | |
-| TASK-014: Create AboutPage (placeholder) | pending | |
+| TASK-014: Create AboutPage (placeholder) | done | |
 | TASK-015: Create WorkPage (placeholder) | pending | |
 | TASK-016: Create ContactPage (placeholder) | pending | |
 | TASK-017: Configure React Router routes in App.tsx | pending | |
@@ -117,6 +117,13 @@
 - **Verification:** `npx tsc --noEmit` → zero errors; `npm run dev` → server starts at localhost:5174; all required files exist (vite.config.ts, tsconfig.json, src/main.tsx, src/App.tsx)
 - **Notes:** App.css and index.css are already empty; App.tsx already has no boilerplate. Port 5173 may be in use in some runs; server falls back to 5174.
 ---
+---
+### [TASK-014] Create AboutPage (placeholder) — iteration 11
+- **Status:** done
+- **Files changed:** src/pages/AboutPage.tsx
+- **Key decisions:** Placeholder page with H1 "About" and a coming-soon paragraph. Follows component conventions (named export, explicit return type, theme tokens).
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright at /about confirmed H1 "About" visible (temporarily added route to App.tsx for verification, reverted after).
+- **Notes:** Routing will be properly wired in TASK-017.
 ---
 ### [TASK-013] Create HomePage — iteration 10
 - **Status:** done
