@@ -5,7 +5,7 @@
 | TASK-001: Initialize Vite + React + TypeScript project | done | Upgraded Vite 4→6 for Node 20 compat |
 | TASK-002: Configure .gitignore | done | |
 | TASK-003: Configure path aliases (@/ → src/) | done | |
-| TASK-004: Install Chakra UI 3 | pending | |
+| TASK-004: Install Chakra UI 3 | done | |
 | TASK-005: Install React Router v7 | pending | |
 | TASK-006: Add Google Fonts to index.html | pending | |
 | TASK-007: Create Chakra UI 3 custom theme | pending | |
@@ -27,6 +27,13 @@
 | TASK-023: Configure Vitest in vite.config.ts | pending | |
 | TASK-024: Write smoke test for App component | pending | |
 
+---
+### [TASK-004] Install Chakra UI 3 — iteration 1
+- **Status:** done
+- **Files changed:** package.json, package-lock.json
+- **Key decisions:** Installed `@chakra-ui/react@^3.34.0` and `@emotion/react`. No peer dependency warnings.
+- **Verification:** `package.json` confirms `^3.34.0`; `node -e "require('@chakra-ui/react')"` exits cleanly.
+- **Notes:** none
 ---
 ### [TASK-003] Configure path aliases (@/ → src/) — iteration 3
 - **Status:** done
