@@ -14,6 +14,7 @@ fi
 PRD="{{PRD_PATH}}"
 PROGRESS="{{PROGRESS_PATH}}"
 
+# Pre-flight: install required environment dependencies directly in the sandbox
 {{PREFLIGHT_BLOCK}}
 
 for ((i=1; i<=$1; i++)); do
