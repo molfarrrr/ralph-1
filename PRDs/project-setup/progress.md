@@ -19,7 +19,7 @@
 | TASK-015: Create WorkPage (placeholder) | done | |
 | TASK-016: Create ContactPage (placeholder) | done | |
 | TASK-017: Configure React Router routes in App.tsx | done | |
-| TASK-018: Verify design tokens render correctly | pending | |
+| TASK-018: Verify design tokens render correctly | done | |
 | TASK-019: Production build check | pending | |
 | TASK-020: Install and configure ESLint v9 | pending | |
 | TASK-021: Configure ESLint TypeScript strict integration | pending | |
@@ -154,4 +154,12 @@
 - **Key decisions:** Same pattern as AboutPage/WorkPage. Temporarily added /contact route to App.tsx for Playwright verification, then reverted.
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright at /contact confirmed H1 "Contact" visible.
 - **Notes:** Routing will be properly wired in TASK-017.
+---
+---
+### [TASK-018] Verify design tokens render correctly — iteration 15
+- **Status:** done
+- **Files changed:** PRDs/project-setup/progress.md only
+- **Key decisions:** Verification-only task — no source changes needed.
+- **Verification:** Playwright at localhost:5174 confirmed: fontFamily=Manrope, bgColor=rgb(244,242,233), textColor=rgb(31,31,31), wrapperBg=rgb(242,233,233), mutedColor=rgb(115,115,115), mainWidthRatio=0.85, noOverflow at 375px=true. All checks passed.
+- **Notes:** none
 ---
