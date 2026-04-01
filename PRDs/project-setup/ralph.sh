@@ -14,26 +14,22 @@ PRD="PRDs/project-setup/project-setup.PRD.md"
 PROGRESS="PRDs/project-setup/progress.md"
 LOG="PRDs/project-setup/ralph.log"
 
-log() {
-  echo "$1" | tee -a "$LOG"
-}
-
 echo "" > "$LOG"
-log "Ralph loop started at $(date)"
-log "Workspace: $WORKSPACE"
-log "Iterations: $1"
+echo "Ralph loop started at $(date)" | tee -a "$LOG"
+echo "Workspace: $WORKSPACE" | tee -a "$LOG"
+echo "Iterations: $1" | tee -a "$LOG"
 
 # Pre-flight: install Playwright Chromium
-log ""
-log "Pre-flight: installing Playwright Chromium..."
-docker sandbox run claude "$WORKSPACE" -- -p "Run this bash command and show the output: npx playwright install chromium --with-deps" | tee -a "$LOG"
-log "Pre-flight complete."
+echo "" | tee -a "$LOG"
+echo "Pre-flight: installing Playwright Chromium..." | tee -a "$LOG"
+docker sandbox run claude "$WORKSPACE" -- -p "Run this bash command and show the output: npx playwright install chromium --with-deps" 2>&1 | tee -a "$LOG"
+echo "Pre-flight complete." | tee -a "$LOG"
 
 for ((i=1; i<=$1; i++)); do
-  log ""
-  log "========================================"
-  log " Iteration $i of $1 — $(date)"
-  log "========================================"
+  echo "" | tee -a "$LOG"
+  echo "========================================" | tee -a "$LOG"
+  echo " Iteration $i of $1 — $(date)" | tee -a "$LOG"
+  echo "========================================" | tee -a "$LOG"
 
   PROMPT="Read the files $PRD and $PROGRESS before doing anything.
 
@@ -91,19 +87,20 @@ You are an AI agent executing a PRD task by task.
 ## If all tasks in $PROGRESS are \`done\`:
 Output exactly: <promise>COMPLETE</promise>"
 
-  result=$(docker sandbox run claude "$WORKSPACE" -- -p "$PROMPT" | tee -a "$LOG")
+  # Stream output live — no buffering
+  docker sandbox run claude "$WORKSPACE" -- -p "$PROMPT" 2>&1 | tee -a "$LOG"
 
-  log ""
-  log "--- Iteration $i complete ---"
-  log "Git log tail:"
-  git log --oneline -3 | tee -a "$LOG"
+  echo "" | tee -a "$LOG"
+  echo "--- Iteration $i complete — $(date) ---" | tee -a "$LOG"
+  echo "Recent commits:" | tee -a "$LOG"
+  git log --oneline -3 2>&1 | tee -a "$LOG"
 
-  if [[ "$result" == *"<promise>COMPLETE</promise>"* ]]; then
-    log ""
-    log "All tasks complete. PRD done."
+  if grep -q "<promise>COMPLETE</promise>" "$LOG"; then
+    echo "" | tee -a "$LOG"
+    echo "All tasks complete. PRD done." | tee -a "$LOG"
     exit 0
   fi
 done
 
-log ""
-log "Reached iteration limit ($1). Check $PROGRESS for remaining tasks."
+echo "" | tee -a "$LOG"
+echo "Reached iteration limit ($1). Check $PROGRESS for remaining tasks." | tee -a "$LOG"
