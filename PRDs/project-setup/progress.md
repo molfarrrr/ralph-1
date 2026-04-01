@@ -18,7 +18,7 @@
 | TASK-014: Create AboutPage (placeholder) | done | |
 | TASK-015: Create WorkPage (placeholder) | done | |
 | TASK-016: Create ContactPage (placeholder) | done | |
-| TASK-017: Configure React Router routes in App.tsx | pending | |
+| TASK-017: Configure React Router routes in App.tsx | done | |
 | TASK-018: Verify design tokens render correctly | pending | |
 | TASK-019: Production build check | pending | |
 | TASK-020: Install and configure ESLint v9 | pending | |
@@ -139,6 +139,14 @@
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright: eyebrow/H1/paragraph/CTA/portrait all visible, H1 fontFamily contains Manrope, fontWeight=200, borderRadius=9999px, no 'Worked with' text.
 - **Notes:** App.tsx updated to render HomePage for verification; will be replaced fully in TASK-017.
 ---
+---
+---
+### [TASK-017] Configure React Router routes in App.tsx — iteration 14
+- **Status:** done
+- **Files changed:** src/App.tsx, src/main.tsx
+- **Key decisions:** Changed App to named export (was default). Added Routes with all 4 pages wrapped in Layout, plus `*` catch-all redirecting to `/`. Updated main.tsx import from default to named.
+- **Verification:** `npx tsc --noEmit` → zero errors; source inspection confirmed `/`, `/about`, `/work`, `/contact` render correct headings; `/nonexistent` redirects to `/`.
+- **Notes:** none
 ---
 ### [TASK-016] Create ContactPage (placeholder) — iteration 13
 - **Status:** done
