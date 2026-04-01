@@ -101,7 +101,7 @@ Using `templates/base.sh` as the base, substitute all placeholders:
 Each prerequisite becomes:
 ```bash
 echo "Pre-flight: <description>..."
-docker sandbox run bash -c "<command>"
+docker sandbox run shell -- <command>
 echo "Pre-flight complete: <description>"
 echo ""
 ```
