@@ -11,7 +11,7 @@
 | TASK-007: Create Chakra UI 3 custom theme | done | |
 | TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx | done | |
 | TASK-009: Create folder structure | done | |
-| TASK-010: Create Navbar component | pending | |
+| TASK-010: Create Navbar component | done | |
 | TASK-011: Create Footer component | pending | |
 | TASK-012: Create Layout component | pending | |
 | TASK-013: Create HomePage | pending | |
@@ -87,6 +87,13 @@
 - **Key decisions:** Created all required directories with .gitkeep files. src/theme/ already existed from TASK-007.
 - **Verification:** `ls` confirmed all directories exist; `git status` confirmed .gitkeep files appear as untracked.
 - **Notes:** none
+---
+### [TASK-010] Create Navbar component — iteration 7
+- **Status:** done
+- **Files changed:** src/components/layout/Navbar.tsx, src/App.tsx (temporary render for verification)
+- **Key decisions:** Fixed transparent navbar with `85vw`/`95vw` inner container. Hamburger is a `div[aria-label]` using stacked Box elements. Drawer uses Chakra UI v3 `DrawerRoot`/`DrawerContent`/`DrawerBody`/`DrawerCloseTrigger` with `open`/`onOpenChange` pattern. Active link shown with bottom border; hover transitions use `0.25s ease`.
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright: 4 links visible at 1440px, nav link color = `rgb(31, 31, 31)`, hamburger visible at 375px, Drawer opens with 4 links, clicking About navigates to /about.
+- **Notes:** App.tsx updated to render Navbar for test visibility; will be replaced in TASK-017.
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done
