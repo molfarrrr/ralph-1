@@ -1,5 +1,9 @@
 # CLAUDE.md — ralph-1
 
+## Off Limits
+
+Never modify, delete, or overwrite anything inside `.claude/` — this includes `settings.json`, `settings.local.json`, and all skills. These are configuration files for the AI tooling, not application code.
+
 ## Non-Negotiable
 
 This codebase will outlive you. Every shortcut you take becomes
