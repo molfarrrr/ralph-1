@@ -6,7 +6,7 @@
 | TASK-002: Configure .gitignore | done | |
 | TASK-003: Configure path aliases (@/ → src/) | done | |
 | TASK-004: Install Chakra UI 3 | done | |
-| TASK-005: Install React Router v7 | pending | |
+| TASK-005: Install React Router v7 | done | |
 | TASK-006: Add Google Fonts to index.html | pending | |
 | TASK-007: Create Chakra UI 3 custom theme | pending | |
 | TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx | pending | |
@@ -27,6 +27,13 @@
 | TASK-023: Configure Vitest in vite.config.ts | pending | |
 | TASK-024: Write smoke test for App component | pending | |
 
+---
+### [TASK-005] Install React Router v7 — iteration 1
+- **Status:** done
+- **Files changed:** package.json, package-lock.json
+- **Key decisions:** Installed `react-router-dom@^7.13.2` via npm install.
+- **Verification:** `package.json` confirms `^7.13.2`; `node -e "require('react-router-dom')"` exits cleanly.
+- **Notes:** none
 ---
 ### [TASK-004] Install Chakra UI 3 — iteration 1
 - **Status:** done
