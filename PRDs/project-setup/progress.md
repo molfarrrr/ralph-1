@@ -3,7 +3,7 @@
 | Task | Status | Notes |
 |------|--------|-------|
 | TASK-001: Initialize Vite + React + TypeScript project | done | Upgraded Vite 4→6 for Node 20 compat |
-| TASK-002: Configure .gitignore | pending | |
+| TASK-002: Configure .gitignore | done | |
 | TASK-003: Configure path aliases (@/ → src/) | pending | |
 | TASK-004: Install Chakra UI 3 | pending | |
 | TASK-005: Install React Router v7 | pending | |
@@ -27,6 +27,13 @@
 | TASK-023: Configure Vitest in vite.config.ts | pending | |
 | TASK-024: Write smoke test for App component | pending | |
 
+---
+### [TASK-002] Configure .gitignore — iteration 2
+- **Status:** done
+- **Files changed:** .gitignore
+- **Key decisions:** Added `.env*`, updated `node_modules` → `node_modules/` and `dist` → `dist/` with trailing slashes per spec.
+- **Verification:** Read .gitignore — all 5 entries present; `git status` — node_modules/ not listed as untracked.
+- **Notes:** none
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done
