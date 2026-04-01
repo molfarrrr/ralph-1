@@ -14,7 +14,7 @@
 | TASK-010: Create Navbar component | done | |
 | TASK-011: Create Footer component | done | |
 | TASK-012: Create Layout component | done | |
-| TASK-013: Create HomePage | pending | |
+| TASK-013: Create HomePage | done | |
 | TASK-014: Create AboutPage (placeholder) | pending | |
 | TASK-015: Create WorkPage (placeholder) | pending | |
 | TASK-016: Create ContactPage (placeholder) | pending | |
@@ -116,4 +116,12 @@
 - **Key decisions:** Project was already scaffolded; boilerplate already cleaned. Vite 4.x had CJS/ESM incompatibility with Node.js v20 (`Named export 'build' not found`). Upgraded to Vite 6.4.1. Newer esbuild (0.25) install script also fails postinstall on Alpine Linux (SIGSEGV), so used `--ignore-scripts` to bypass; native binary works fine at runtime.
 - **Verification:** `npx tsc --noEmit` → zero errors; `npm run dev` → server starts at localhost:5174; all required files exist (vite.config.ts, tsconfig.json, src/main.tsx, src/App.tsx)
 - **Notes:** App.css and index.css are already empty; App.tsx already has no boilerplate. Port 5173 may be in use in some runs; server falls back to 5174.
+---
+---
+### [TASK-013] Create HomePage — iteration 10
+- **Status:** done
+- **Files changed:** src/pages/HomePage.tsx, src/assets/profile/prof-pic.png, src/App.tsx (temporary render for verification)
+- **Key decisions:** Copied `public/prof pic.png` → `src/assets/profile/prof-pic.png` and imported it as a module. Hero uses eyebrow label, two-line H1 at fontWeight 200/300, paragraph, and a minimal text+arrow CTA (no filled button). Portrait uses `borderRadius="full"` (9999px). No Worked With section.
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright: eyebrow/H1/paragraph/CTA/portrait all visible, H1 fontFamily contains Manrope, fontWeight=200, borderRadius=9999px, no 'Worked with' text.
+- **Notes:** App.tsx updated to render HomePage for verification; will be replaced fully in TASK-017.
 ---
