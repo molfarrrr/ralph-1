@@ -10,7 +10,7 @@
 | TASK-006: Add Google Fonts to index.html | done | |
 | TASK-007: Create Chakra UI 3 custom theme | done | |
 | TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx | done | |
-| TASK-009: Create folder structure | pending | |
+| TASK-009: Create folder structure | done | |
 | TASK-010: Create Navbar component | pending | |
 | TASK-011: Create Footer component | pending | |
 | TASK-012: Create Layout component | pending | |
@@ -79,6 +79,14 @@
 - **Key decisions:** Wrapped App with BrowserRouter > ChakraProvider value={system} per spec.
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright confirmed page renders with no JS runtime errors.
 - **Notes:** Headless Playwright shows SSL cert error for Google Fonts (network env issue), no JS errors.
+---
+---
+### [TASK-009] Create folder structure — iteration 6
+- **Status:** done
+- **Files changed:** src/components/layout/.gitkeep, src/components/ui/.gitkeep, src/pages/.gitkeep, src/hooks/.gitkeep, src/utils/.gitkeep
+- **Key decisions:** Created all required directories with .gitkeep files. src/theme/ already existed from TASK-007.
+- **Verification:** `ls` confirmed all directories exist; `git status` confirmed .gitkeep files appear as untracked.
+- **Notes:** none
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done
