@@ -1,9 +1,6 @@
 #!/bin/bash
 # ralph.sh — AI agent loop for project-setup PRD
 # Usage: ./ralph.sh <iterations>
-#
-# Claude runs autonomously inside a Docker sandbox — full permissions are safe
-# because Docker provides the isolation boundary.
 
 set -e
 
@@ -12,12 +9,13 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+WORKSPACE="$(pwd)"
 PRD="PRDs/project-setup/project-setup.PRD.md"
 PROGRESS="PRDs/project-setup/progress.md"
 
-# Pre-flight: install Playwright's Chromium browser binary if not already present
+# Pre-flight: install Playwright Chromium via Claude
 echo "Pre-flight: installing Playwright Chromium..."
-docker sandbox run claude -- -p "Run the following command in bash and confirm it completes successfully: npx playwright install chromium --with-deps"
+docker sandbox run claude "$WORKSPACE" -- -p "Run this bash command: npx playwright install chromium --with-deps"
 echo "Pre-flight complete."
 echo ""
 
@@ -27,8 +25,8 @@ for ((i=1; i<=$1; i++)); do
   echo " Iteration $i of $1"
   echo "========================================"
 
-  result=$(docker sandbox run claude -p \
-"@${PRD} @${PROGRESS}
+  result=$(docker sandbox run claude "$WORKSPACE" -- -p \
+"Read the files $PRD and $PROGRESS before doing anything.
 
 You are an AI agent executing a PRD task by task. You have full permissions to:
 - Install packages (npm install)
@@ -38,9 +36,9 @@ You are an AI agent executing a PRD task by task. You have full permissions to:
 - Make git commits
 
 ## Before starting:
-1. Read @${PROGRESS} carefully — it shows which tasks are done, blocked, or in progress.
+1. Read $PROGRESS carefully — it shows which tasks are done, blocked, or in progress.
    Use it to avoid re-doing completed work and to understand decisions made in prior iterations.
-2. Read @${PRD} to understand the full task list, implementation details, and verification steps.
+2. Read $PRD to understand the full task list, implementation details, and verification steps.
 
 ## Your job this iteration:
 1. Pick ONE task that is still \`pending\` or \`in progress\`.
@@ -49,8 +47,8 @@ You are an AI agent executing a PRD task by task. You have full permissions to:
 3. Run every verification step listed under that task. All must pass before proceeding.
    - Use Bash for CLI verification (tsc, npm run lint, npm run test, npm run build)
    - Use Playwright tools for browser verification (navigate, evaluate, snapshot, resize)
-4. Update @${PROGRESS}: change the task row status to \`done\`.
-5. Append an entry at the bottom of @${PROGRESS} in this format:
+4. Update $PROGRESS: change the task row status to \`done\`.
+5. Append an entry at the bottom of $PROGRESS in this format:
 
 ---
 ### [TASK-XXX] <task name> — iteration $i
@@ -69,9 +67,9 @@ You are an AI agent executing a PRD task by task. You have full permissions to:
 ## If a verification step fails:
 - Fix the issue before marking the task done
 - Do not move to the next task with a broken state
-- If you cannot fix it, mark the task as \`blocked\` in @${PROGRESS} with a clear reason
+- If you cannot fix it, mark the task as \`blocked\` in $PROGRESS with a clear reason
 
-## If all tasks in @${PROGRESS} are \`done\`:
+## If all tasks in $PROGRESS are \`done\`:
 Output exactly: <promise>COMPLETE</promise>
 ")
 
