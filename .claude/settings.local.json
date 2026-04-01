@@ -9,7 +9,9 @@
       "WebFetch(domain:api.github.com)",
       "Bash(npm show:*)",
       "Bash(mv /Users/oleh/Projects/ralph-1/.claude/skills/react-dev/SKILL.md /Users/oleh/Projects/ralph-1/.claude/skills/react-developer/SKILL.md)",
-      "Bash(rm -r /Users/oleh/Projects/ralph-1/.claude/skills/react-dev)"
+      "Bash(rm -r /Users/oleh/Projects/ralph-1/.claude/skills/react-dev)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
