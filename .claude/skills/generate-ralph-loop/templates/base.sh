@@ -11,20 +11,31 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+WORKSPACE="$(pwd)"
 PRD="{{PRD_PATH}}"
 PROGRESS="{{PROGRESS_PATH}}"
+LOG="${PROGRESS%.md}.log"
+
+: > "$LOG"
+exec > >(tee -a "$LOG") 2>&1
+
+echo "Ralph loop started at $(date)"
+echo "Workspace: $WORKSPACE"
+echo "Iterations: $1"
 
 # Pre-flight: install required environment dependencies directly in the sandbox
+echo ""
+echo "Pre-flight starting..."
 {{PREFLIGHT_BLOCK}}
+echo "Pre-flight complete."
 
 for ((i=1; i<=$1; i++)); do
   echo ""
   echo "========================================"
-  echo " Iteration $i of $1"
+  echo " Iteration $i of $1 — $(date)"
   echo "========================================"
 
-  result=$(docker sandbox run claude -p \
-"@${PRD} @${PROGRESS}
+  PROMPT="@${PRD} @${PROGRESS}
 
 You are an AI agent executing a PRD task by task. You have full permissions to:
 - Install packages (npm install)
@@ -68,15 +79,24 @@ You are an AI agent executing a PRD task by task. You have full permissions to:
 
 ## If all tasks in @\${PROGRESS} are \`done\`:
 Output exactly: <promise>COMPLETE</promise>
-")
+"
 
-  echo "$result"
+  iteration_output="$(mktemp)"
+  docker sandbox run claude "$WORKSPACE" -- -p "$PROMPT" 2>&1 | tee "$iteration_output"
 
-  if [[ "$result" == *"<promise>COMPLETE</promise>"* ]]; then
+  echo ""
+  echo "--- Iteration $i complete — $(date) ---"
+  echo "Recent commits:"
+  git log --oneline -3 2>&1 || true
+
+  if grep -q "<promise>COMPLETE</promise>" "$iteration_output"; then
+    rm -f "$iteration_output"
     echo ""
     echo "All tasks complete. PRD done."
     exit 0
   fi
+
+  rm -f "$iteration_output"
 done
 
 echo ""
