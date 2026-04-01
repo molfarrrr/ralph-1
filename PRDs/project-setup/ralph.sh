@@ -12,21 +12,30 @@ fi
 WORKSPACE="$(pwd)"
 PRD="PRDs/project-setup/project-setup.PRD.md"
 PROGRESS="PRDs/project-setup/progress.md"
+LOG="PRDs/project-setup/ralph.log"
 
-# Pre-flight: install Playwright Chromium via Claude
-echo "Pre-flight: installing Playwright Chromium..."
-docker sandbox run claude "$WORKSPACE" -- -p "Run this bash command: npx playwright install chromium --with-deps"
-echo "Pre-flight complete."
-echo ""
+log() {
+  echo "$1" | tee -a "$LOG"
+}
+
+echo "" > "$LOG"
+log "Ralph loop started at $(date)"
+log "Workspace: $WORKSPACE"
+log "Iterations: $1"
+
+# Pre-flight: install Playwright Chromium
+log ""
+log "Pre-flight: installing Playwright Chromium..."
+docker sandbox run claude "$WORKSPACE" -- -p "Run this bash command and show the output: npx playwright install chromium --with-deps" | tee -a "$LOG"
+log "Pre-flight complete."
 
 for ((i=1; i<=$1; i++)); do
-  echo ""
-  echo "========================================"
-  echo " Iteration $i of $1"
-  echo "========================================"
+  log ""
+  log "========================================"
+  log " Iteration $i of $1 — $(date)"
+  log "========================================"
 
-  result=$(docker sandbox run claude "$WORKSPACE" -- -p \
-"Read the files $PRD and $PROGRESS before doing anything.
+  PROMPT="Read the files $PRD and $PROGRESS before doing anything.
 
 You are an AI agent executing a PRD task by task. You have full permissions to:
 - Install packages (npm install)
@@ -70,17 +79,21 @@ You are an AI agent executing a PRD task by task. You have full permissions to:
 - If you cannot fix it, mark the task as \`blocked\` in $PROGRESS with a clear reason
 
 ## If all tasks in $PROGRESS are \`done\`:
-Output exactly: <promise>COMPLETE</promise>
-")
+Output exactly: <promise>COMPLETE</promise>"
 
-  echo "$result"
+  result=$(docker sandbox run claude "$WORKSPACE" -- -p "$PROMPT" | tee -a "$LOG")
+
+  log ""
+  log "--- Iteration $i complete ---"
+  log "Git log tail:"
+  git log --oneline -3 | tee -a "$LOG"
 
   if [[ "$result" == *"<promise>COMPLETE</promise>"* ]]; then
-    echo ""
-    echo "All tasks complete. PRD done."
+    log ""
+    log "All tasks complete. PRD done."
     exit 0
   fi
 done
 
-echo ""
-echo "Reached iteration limit ($1). Check $PROGRESS for remaining tasks."
+log ""
+log "Reached iteration limit ($1). Check $PROGRESS for remaining tasks."
