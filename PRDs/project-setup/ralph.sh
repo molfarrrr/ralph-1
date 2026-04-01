@@ -17,7 +17,7 @@ PROGRESS="PRDs/project-setup/progress.md"
 
 # Pre-flight: install Playwright's Chromium browser binary if not already present
 echo "Pre-flight: installing Playwright Chromium..."
-docker sandbox run shell -- npx playwright install chromium --with-deps
+docker sandbox run claude -- -p "Run the following command in bash and confirm it completes successfully: npx playwright install chromium --with-deps"
 echo "Pre-flight complete."
 echo ""
 
