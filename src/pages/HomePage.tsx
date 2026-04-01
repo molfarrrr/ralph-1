@@ -1,5 +1,7 @@
-import { Box, Flex, Heading, Text, Image } from '@chakra-ui/react'
+import { Box, Flex, Heading, Text, Image, chakra } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+
+const ChakraLink = chakra(Link)
 import profilePic from '@/assets/profile/prof-pic.png'
 
 export function HomePage(): React.JSX.Element {
@@ -57,8 +59,7 @@ export function HomePage(): React.JSX.Element {
           </Text>
 
           {/* CTA — minimal text/arrow treatment */}
-          <Box
-            as={Link}
+          <ChakraLink
             to="/work"
             display="inline-flex"
             alignItems="center"
@@ -75,7 +76,7 @@ export function HomePage(): React.JSX.Element {
           >
             View my work
             <Box as="span" aria-hidden="true">→</Box>
-          </Box>
+          </ChakraLink>
         </Box>
 
         {/* Right: portrait */}

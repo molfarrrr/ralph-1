@@ -20,7 +20,7 @@
 | TASK-016: Create ContactPage (placeholder) | done | |
 | TASK-017: Configure React Router routes in App.tsx | done | |
 | TASK-018: Verify design tokens render correctly | done | |
-| TASK-019: Production build check | pending | |
+| TASK-019: Production build check | done | |
 | TASK-020: Install and configure ESLint v9 | pending | |
 | TASK-021: Configure ESLint TypeScript strict integration | pending | |
 | TASK-022: Install Vitest and React Testing Library | pending | |
@@ -162,4 +162,12 @@
 - **Key decisions:** Verification-only task — no source changes needed.
 - **Verification:** Playwright at localhost:5174 confirmed: fontFamily=Manrope, bgColor=rgb(244,242,233), textColor=rgb(31,31,31), wrapperBg=rgb(242,233,233), mutedColor=rgb(115,115,115), mainWidthRatio=0.85, noOverflow at 375px=true. All checks passed.
 - **Notes:** none
+---
+---
+### [TASK-019] Production build check — iteration 16
+- **Status:** done
+- **Files changed:** src/components/layout/Footer.tsx, src/pages/HomePage.tsx, PRDs/project-setup/progress.md
+- **Key decisions:** `Box as="a"` and `Box as="svg"` don't merge native HTML attrs in Chakra UI v3 strict TypeScript mode. Replaced with `chakra.a` and `chakra.svg`. Similarly, `Box as={Link}` doesn't pick up react-router's `to` prop — replaced with `chakra(Link)` pattern. `npm run build` passed after these fixes.
+- **Verification:** `npm run build` → exit 0, dist/index.html and dist/assets/ present. Preview server at :4173 — Playwright confirmed /, /about, /work, /contact all render correct headings; /nonexistent redirects to /. Only console "error" is SSL cert for Google Fonts (headless browser network issue, not a JS error).
+- **Notes:** Chunk size warning for large bundle (profile image + deps) — not an error, just informational.
 ---
