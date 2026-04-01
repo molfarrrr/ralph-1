@@ -10,10 +10,10 @@ After completing each task:
 Status values:
 - `pending` — not started
 - `in progress` — currently being worked on
-- `done` — acceptance criterion met
+- `done` — acceptance criterion met and all verification steps passed
 - `blocked` — cannot proceed, reason in Notes
 
-Do not move to the next task until the current task's acceptance criterion is verified and progress.md is updated.
+Do not move to the next task until every verification step passes and progress.md is updated.
 
 ## Stack
 - Vite (build tool)
@@ -57,182 +57,219 @@ All interactive elements: `0.3s ease-out`
 ## Tasks
 
 ### TASK-001: Initialize Vite + React + TypeScript project
-- HITL: `none`
 - Run `npm create vite@latest . -- --template react-ts`
 - Delete boilerplate content from `src/App.css`, `src/index.css`, `src/App.tsx`
-- Acceptance: `npm run dev` starts with blank page, no errors
+- **Verification:**
+  - Run `npm run dev` — confirm exit code 0 and server URL printed
+  - Run `npx tsc --noEmit` — must produce zero errors
+  - Confirm files exist: `vite.config.ts`, `tsconfig.json`, `src/main.tsx`, `src/App.tsx`
 
 ### TASK-002: Configure .gitignore
-- HITL: `none`
 - Entries: `node_modules/`, `dist/`, `.env*`, `.DS_Store`, `*.local`
-- Acceptance: file exists with correct entries
+- **Verification:**
+  - Read `.gitignore` and confirm all 5 entries are present
+  - Run `git status` — confirm `node_modules/` does not appear as untracked
 
 ### TASK-003: Configure path aliases (@/ → src/)
-- HITL: `none`
 - `vite.config.ts`: add `resolve.alias: { '@': path.resolve(__dirname, 'src') }`
 - `tsconfig.json`: add `"baseUrl": "."` and `"paths": { "@/*": ["src/*"] }`
-- Install `@types/node` if needed for path import
-- Acceptance: `@/` imports resolve without TypeScript errors
+- Install `@types/node` if needed for `path` import
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Add a temporary `import {} from '@/App'` to `main.tsx`, run `npx tsc --noEmit`, confirm no "Cannot find module" error, then revert
 
 ### TASK-004: Install Chakra UI 3
-- HITL: `none`
 - Run `npm install @chakra-ui/react@^3 @emotion/react`
-- Acceptance: packages in `package.json`, no peer dependency warnings
+- **Verification:**
+  - Read `package.json` — confirm `@chakra-ui/react` version starts with `^3` or `3.x`
+  - Run `npm install` — confirm zero peer dependency warnings in output
+  - Run `node -e "require('@chakra-ui/react')"` — must not throw
 
 ### TASK-005: Install React Router v7
-- HITL: `none`
 - Run `npm install react-router-dom`
-- Acceptance: package in `package.json`
+- **Verification:**
+  - Read `package.json` — confirm `react-router-dom` version starts with `^7` or `7.x`
+  - Run `node -e "require('react-router-dom')"` — must not throw
 
 ### TASK-006: Add Google Fonts to index.html
-- HITL: `required` — open browser Network tab and confirm Inter + Roboto Mono requests appear
-- Add `<link rel="preconnect">` for Google Fonts
+- Add `<link rel="preconnect">` for `fonts.googleapis.com` and `fonts.gstatic.com`
 - Load Inter weights 300,400,500,600,700 and Roboto Mono weights 400,500
-- Acceptance: fonts visible in browser Network tab on load
+- **Verification:**
+  - Read `index.html` — confirm preconnect links present for both domains
+  - Read `index.html` — confirm stylesheet `<link>` references `Inter` and `Roboto+Mono` with correct weights
+  - Start dev server, use Playwright to navigate to `http://localhost:5173`, intercept network requests, confirm requests to `fonts.googleapis.com` and `fonts.gstatic.com` are made
+  - Use Playwright `evaluate` to run `document.fonts.check('16px Inter')` — must return `true`
 
 ### TASK-007: Create Chakra UI 3 custom theme
-- HITL: `none`
 - File: `src/theme/index.ts`
 - Use `createSystem` + `defaultConfig` from `@chakra-ui/react`
 - Define color tokens: brand (500, 600) and neutral (100, 500, 900)
 - Define fonts: body → `'Inter, sans-serif'`, heading → `'Inter, sans-serif'`, mono → `'Roboto Mono, monospace'`
 - Global styles: `body { background: white; color: neutral.900 }`
-- Acceptance: theme exports a valid `system` object, no TS errors
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Read `src/theme/index.ts` — confirm `brand.500` value is `#4353FF`, `neutral.900` is `#2a2a2a`
+  - Read `src/theme/index.ts` — confirm `fonts.body` contains `Inter` and `fonts.mono` contains `Roboto Mono`
 
 ### TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx
-- HITL: `review` — check browser console for errors on first render
 - Import `ChakraProvider` from `@chakra-ui/react`, `system` from `@/theme`
 - Import `BrowserRouter` from `react-router-dom`
 - Wrap: `<BrowserRouter><ChakraProvider value={system}><App /></ChakraProvider></BrowserRouter>`
-- Acceptance: app renders, no console errors
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Start dev server, use Playwright to navigate to `http://localhost:5173`
+  - Use Playwright `browser_console_messages` — confirm zero errors in console
+  - Use Playwright `browser_snapshot` — confirm page renders (DOM is not empty)
 
 ### TASK-009: Create folder structure
-- HITL: `none`
-- Create with placeholder files:
-  - `src/components/layout/`
-  - `src/components/ui/`
-  - `src/pages/`
-  - `src/theme/`
-  - `src/hooks/`
-  - `src/utils/`
-- Acceptance: directories present in repo
+- Create directories with `.gitkeep`: `src/components/layout/`, `src/components/ui/`, `src/pages/`, `src/theme/`, `src/hooks/`, `src/utils/`
+- **Verification:**
+  - Confirm each directory exists via `ls src/components/layout src/components/ui src/pages src/hooks src/utils`
+  - Run `git status` — confirm `.gitkeep` files appear as untracked (directories are tracked)
 
 ### TASK-010: Create Navbar component
-- HITL: `required` — resize browser to mobile viewport and verify hamburger menu opens/closes
 - File: `src/components/layout/Navbar.tsx`
-- Chakra `Box` container: full width, `bg: white`, bottom border `1px solid` `neutral.100`
+- Chakra `Box` as `nav`, full width, `bg: white`, bottom border `1px solid neutral.100`, sticky top, z-index 100
 - Left: site name in Inter 600, `color: neutral.900`, links to `/`
-- Right: nav links (Home `/`, About `/about`, Work `/work`, Contact `/contact`)
-  - Inter 400, `color: neutral.900`, hover `color: brand.500`, transition `0.3s ease-out`
-- Mobile: hide links, show hamburger; open Chakra `Drawer` with stacked links
-- Acceptance: renders correctly on desktop and mobile, links are correct paths
+- Right: nav links (Home `/`, About `/about`, Work `/work`, Contact `/contact`) with hover `color: brand.500`, `transition: 0.3s ease-out`
+- Mobile: links hidden, hamburger shown; Chakra `Drawer` opens with stacked links
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Start dev server, use Playwright at `http://localhost:5173`
+  - Desktop (1440px): snapshot confirms 4 nav links visible
+  - Use Playwright `evaluate` to check computed color of a nav link: `rgb(42, 42, 42)` (neutral.900)
+  - Mobile (375px): use `browser_resize` to 375×812, snapshot confirms links hidden and hamburger icon visible
+  - Click hamburger — snapshot confirms Drawer opens with all 4 links
+  - Click a Drawer link — confirm navigation occurs (URL changes)
 
 ### TASK-011: Create Footer component
-- HITL: `review` — visually verify layout at desktop and mobile widths
 - File: `src/components/layout/Footer.tsx`
-- Single row: copyright left, placeholder social links right
-- `bg: white`, top border `1px solid` `neutral.100`
-- Inter 400, `color: neutral.500`
-- Acceptance: renders at all breakpoints
+- Single row: copyright text left, placeholder social links right
+- `bg: white`, top border `1px solid neutral.100`, Inter 400, `color: neutral.500`
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright at `http://localhost:5173`, scroll to bottom
+  - Snapshot confirms footer is visible with copyright text
+  - Use Playwright `evaluate` to check `footer` computed `background-color` — must be `rgb(255, 255, 255)`
+  - Resize to 375px — snapshot confirms footer still renders in a single row without overflow
 
 ### TASK-012: Create Layout component
-- HITL: `review` — verify children render correctly between nav and footer
 - File: `src/components/layout/Layout.tsx`
-- Renders: `<Navbar />` + `<Box as="main">` (min-height fills viewport) + `<Footer />`
-- Main container: centered, `maxW: 1320px`, `px: 20px`
+- Renders: `<Navbar />` + `<Box as="main">` + `<Footer />`
+- Main: `flex: 1`, centered, `maxW: 1320px`, `px: { base: 4, md: 6, lg: 8 }`
 - Props: `{ children: React.ReactNode }`
-- Acceptance: children render correctly between nav and footer
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright at `http://localhost:5173`
+  - Snapshot confirms `nav`, `main`, and `footer` elements all present in DOM
+  - Use Playwright `evaluate`: `document.querySelector('main').style.flex || getComputedStyle(document.querySelector('main')).flex` — confirms main grows to fill space
+  - Use Playwright `evaluate`: `document.querySelector('main').getBoundingClientRect().width` at 1440px — must be ≤ 1320px
 
 ### TASK-013: Create HomePage
-- HITL: `required` — visually confirm hero image, heading, subtitle, and CTA button render correctly
 - File: `src/pages/HomePage.tsx`
-- Hero section:
-  - H1 in Inter 700, `color: neutral.900`, e.g. "Hi, I'm [Name]"
-  - Subtitle paragraph in Inter 300, `color: neutral.500`
-  - CTA button: `bg: brand.500`, `color: white`, hover `bg: brand.600`, transition `0.3s ease-out`
-  - Profile image: `public/prof pic.png` in Chakra `Image`, circular crop (`borderRadius: full`)
-- Acceptance: hero section renders with image, text, and CTA
+- Hero: H1 Inter 700 `color neutral.900`, subtitle Inter 300 `color neutral.500`, CTA button `bg brand.500` hover `brand.600`, profile image circular
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright at `http://localhost:5173`
+  - Snapshot confirms H1, subtitle, button, and image are visible
+  - Use Playwright `evaluate`: check `h1` computed `font-weight` = `700`
+  - Use Playwright `evaluate`: check CTA button computed `background-color` = `rgb(67, 83, 255)` (#4353FF)
+  - Use Playwright `evaluate`: check profile image computed `border-radius` = `9999px` (full)
+  - Hover over CTA button — use `evaluate` to confirm `background-color` changes to `rgb(46, 59, 204)` (#2e3bcc)
 
 ### TASK-014: Create AboutPage (placeholder)
-- HITL: `none`
-- File: `src/pages/AboutPage.tsx`
-- Heading "About" + one paragraph placeholder text
-- Acceptance: page renders at `/about`
+- File: `src/pages/AboutPage.tsx` — Heading "About" + paragraph text
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright: navigate to `http://localhost:5173/about`
+  - Snapshot confirms heading "About" is visible in DOM
 
 ### TASK-015: Create WorkPage (placeholder)
-- HITL: `none`
-- File: `src/pages/WorkPage.tsx`
-- Heading "Work" + one paragraph placeholder text
-- Acceptance: page renders at `/work`
+- File: `src/pages/WorkPage.tsx` — Heading "Work" + paragraph text
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright: navigate to `http://localhost:5173/work`
+  - Snapshot confirms heading "Work" is visible in DOM
 
 ### TASK-016: Create ContactPage (placeholder)
-- HITL: `none`
-- File: `src/pages/ContactPage.tsx`
-- Heading "Contact" + one paragraph placeholder text
-- Acceptance: page renders at `/contact`
+- File: `src/pages/ContactPage.tsx` — Heading "Contact" + paragraph text
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright: navigate to `http://localhost:5173/contact`
+  - Snapshot confirms heading "Contact" is visible in DOM
 
 ### TASK-017: Configure React Router routes in App.tsx
-- HITL: `review` — click through all 4 routes in browser to confirm correct page renders
-- `src/App.tsx`: use `<Routes>` and `<Route>` from `react-router-dom`
-- Wrap each page in `<Layout>`
-- Routes:
-  - `/` → `<HomePage />`
-  - `/about` → `<AboutPage />`
-  - `/work` → `<WorkPage />`
-  - `/contact` → `<ContactPage />`
-  - `*` → redirect to `/`
-- Acceptance: navigating to each path renders correct page
+- Use `<Routes>` and `<Route>`, every page wrapped in `<Layout>`
+- Routes: `/` → HomePage, `/about` → AboutPage, `/work` → WorkPage, `/contact` → ContactPage, `*` → redirect `/`
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors
+  - Use Playwright: navigate to each of `/`, `/about`, `/work`, `/contact` — confirm correct heading visible on each
+  - Use Playwright: navigate to `/nonexistent` — confirm redirect to `/` and HomePage heading visible
+  - Use Playwright `browser_console_messages` across all routes — zero errors
 
 ### TASK-018: Verify design tokens render correctly
-- HITL: `required` — manual visual check required; cannot be automated
-- Manual check in browser:
-  - Inter font loads for all text
-  - Roboto Mono available (apply `fontFamily: mono` to one element temporarily)
-  - Brand blue #4353FF shows on CTA button
-  - Neutral dark #2a2a2a on headings
-  - Responsive layout works at mobile (375px) and desktop (1440px)
-- Acceptance: all design tokens visually correct
+- **Verification:**
+  - Use Playwright at `http://localhost:5173`
+  - `evaluate`: `getComputedStyle(document.body).fontFamily` — must contain `Inter`
+  - `evaluate`: `getComputedStyle(document.body).backgroundColor` — must be `rgb(255, 255, 255)`
+  - `evaluate`: `getComputedStyle(document.body).color` — must be `rgb(42, 42, 42)` (#2a2a2a)
+  - `evaluate`: `getComputedStyle(document.querySelector('h1')).fontWeight` — must be `700`
+  - `evaluate`: computed color of CTA button background — must be `rgb(67, 83, 255)`
+  - Resize to 375px — snapshot confirms no horizontal overflow (`document.body.scrollWidth === window.innerWidth`)
+  - Resize to 1440px — snapshot confirms layout is centered and max-width respected
 
 ### TASK-019: Production build check
-- HITL: `review` — open preview URL and click through all pages
-- Run `npm run build`
-- Run `npm run preview`
-- Verify all routes work in preview
-- Acceptance: build succeeds, all pages load in preview
+- Run `npm run build` — must exit with code 0
+- Run `npm run preview` (background) — navigate with Playwright
+- **Verification:**
+  - `npm run build` output contains no errors, `dist/` directory created
+  - `ls dist/` — confirm `index.html` and `assets/` present
+  - Start preview server, use Playwright to visit each route: `/`, `/about`, `/work`, `/contact`
+  - Confirm each route returns correct page heading (same checks as TASK-017)
+  - `browser_console_messages` on preview — zero errors
 
 ### TASK-020: Install and configure ESLint v9
-- HITL: `none`
 - Install: `npm install -D eslint @eslint/js typescript-eslint eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y`
 - Create `eslint.config.js` (v9 flat config) with TypeScript parser, React 19 settings, hooks rules, a11y rules
 - Rules: `no-console: warn`, `no-unused-vars: error`, `react-hooks/exhaustive-deps: warn`
-- Add to `package.json` scripts: `"lint": "eslint src"`, `"lint:fix": "eslint src --fix"`
-- Acceptance: `npm run lint` completes with zero errors
+- Add scripts: `"lint": "eslint src"`, `"lint:fix": "eslint src --fix"`
+- **Verification:**
+  - Run `npm run lint` — exit code 0, zero errors printed
+  - Create a temp file `src/test-lint.ts` with `const x = 1` (unused var), run `npm run lint` — confirm `no-unused-vars` error appears, then delete the file
+  - Run `npm run lint` again — confirm clean output after temp file removed
 
 ### TASK-021: Configure ESLint TypeScript strict integration
-- HITL: `none`
-- Extend `eslint.config.js` with `typescript-eslint` recommended-type-checked rules
-- Set `parserOptions.project: true` and `parserOptions.tsconfigRootDir: import.meta.dirname`
-- Add rules: `@typescript-eslint/no-explicit-any: error`, `@typescript-eslint/explicit-function-return-type: warn`
-- Acceptance: `npm run lint` passes with TS-aware rules active, no errors
+- Extend with `typescript-eslint` recommended-type-checked rules
+- Set `parserOptions.project: true`, `parserOptions.tsconfigRootDir: import.meta.dirname`
+- Rules: `@typescript-eslint/no-explicit-any: error`, `@typescript-eslint/explicit-function-return-type: warn`
+- **Verification:**
+  - Run `npm run lint` — zero errors on the existing source
+  - Create temp file `src/test-any.ts` with `const x: any = 1`, run `npm run lint` — confirm `no-explicit-any` error, then delete
+  - Run `npm run lint` — clean after temp file removed
 
 ### TASK-022: Install Vitest and React Testing Library
-- HITL: `none`
 - Install: `npm install -D vitest @vitest/ui jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event`
-- Acceptance: all packages present in `package.json`
+- **Verification:**
+  - Read `package.json` devDependencies — confirm all 6 packages present
+  - Run `node -e "require('vitest')"` — must not throw
+  - Run `node -e "require('@testing-library/react')"` — must not throw
 
 ### TASK-023: Configure Vitest in vite.config.ts
-- HITL: `none`
-- Add `test` block to `vite.config.ts`:
-  - `globals: true`, `environment: 'jsdom'`, `setupFiles: ['./src/test/setup.ts']`
-  - `coverage: { provider: 'v8', reporter: ['text', 'lcov'] }`
-- Create `src/test/setup.ts` containing `import '@testing-library/jest-dom'`
-- Add to `package.json` scripts: `"test": "vitest"`, `"test:ui": "vitest --ui"`, `"test:coverage": "vitest run --coverage"`
-- Acceptance: `npm run test` starts Vitest watch mode without errors
+- Add `test` block: `globals: true`, `environment: 'jsdom'`, `setupFiles: ['./src/test/setup.ts']`, `coverage: { provider: 'v8' }`
+- Create `src/test/setup.ts` with `import '@testing-library/jest-dom'`
+- Add scripts: `"test": "vitest run"`, `"test:watch": "vitest"`, `"test:coverage": "vitest run --coverage"`
+- **Verification:**
+  - Run `npx tsc --noEmit` — zero errors (Vitest types must resolve)
+  - Read `vite.config.ts` — confirm `test.globals`, `test.environment`, `test.setupFiles` present
+  - Read `src/test/setup.ts` — confirm `@testing-library/jest-dom` import present
+  - Run `npm run test` — Vitest starts and reports "no test files found" (exit 0 or pass)
 
 ### TASK-024: Write smoke test for App component
-- HITL: `review` — read test output and confirm assertions reflect actual page content
 - File: `src/App.test.tsx`
-- Render `<App />` wrapped in `MemoryRouter` + `ChakraProvider value={system}`
-- Assert component renders without crashing
-- Assert home route heading is present in the DOM
-- Acceptance: `npm run test` passes with 1+ passing tests
+- Render `<App />` in `MemoryRouter` + `ChakraProvider value={system}`
+- Assert: component renders without crashing
+- Assert: home route `<h1>` heading is present in the DOM
+- **Verification:**
+  - Run `npm run test` — exit code 0, 1 test suite, all tests green
+  - Run `npm run test:coverage` — coverage report generated in `coverage/` directory
+  - Read test output — confirm test name and assertion description are meaningful (not "it works")
