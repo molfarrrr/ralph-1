@@ -13,7 +13,7 @@
 | TASK-009: Create folder structure | done | |
 | TASK-010: Create Navbar component | done | |
 | TASK-011: Create Footer component | done | |
-| TASK-012: Create Layout component | pending | |
+| TASK-012: Create Layout component | done | |
 | TASK-013: Create HomePage | pending | |
 | TASK-014: Create AboutPage (placeholder) | pending | |
 | TASK-015: Create WorkPage (placeholder) | pending | |
@@ -101,6 +101,14 @@
 - **Key decisions:** Used inline SVGs for LinkedIn and GitHub icons (no icon library installed). Footer uses `bg: transparent`, Manrope 400, `color: neutral.500`. Layout mirrors Navbar's `maxW: { base: '95vw', lg: '85vw' }` pattern. Copyright year is computed dynamically.
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright: footer visible with copyright text, LinkedIn + GitHub aria-labels present, no forbidden text (Instagram/Facebook/Twitter/Privacy Policy/Style Guide/Licensing), no horizontal overflow at 375px.
 - **Notes:** App.tsx updated to render Footer for test visibility; will be replaced in TASK-012.
+---
+---
+### [TASK-012] Create Layout component — iteration 9
+- **Status:** done
+- **Files changed:** src/components/layout/Layout.tsx, src/App.tsx
+- **Key decisions:** Outer wrapper uses `bg: brand.50` per spec; `main` uses `flex={1}`, `maxW="85vw"`, `px={{ base: 4, md: 6, lg: 0 }}`. App.tsx updated to render Layout wrapping a placeholder div.
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright: nav/main/footer all in DOM, `getComputedStyle(main).flex = "1 1 0%"`, width ratio at 1440px = 0.85.
+- **Notes:** none
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done

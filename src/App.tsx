@@ -1,12 +1,10 @@
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
+import { Layout } from '@/components/layout/Layout'
 
 function App(): React.JSX.Element {
   return (
-    <>
-      <Navbar />
-      <Footer />
-    </>
+    <Layout>
+      <div />
+    </Layout>
   )
 }
 
