@@ -12,7 +12,7 @@
 | TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx | done | |
 | TASK-009: Create folder structure | done | |
 | TASK-010: Create Navbar component | done | |
-| TASK-011: Create Footer component | pending | |
+| TASK-011: Create Footer component | done | |
 | TASK-012: Create Layout component | pending | |
 | TASK-013: Create HomePage | pending | |
 | TASK-014: Create AboutPage (placeholder) | pending | |
@@ -94,6 +94,13 @@
 - **Key decisions:** Fixed transparent navbar with `85vw`/`95vw` inner container. Hamburger is a `div[aria-label]` using stacked Box elements. Drawer uses Chakra UI v3 `DrawerRoot`/`DrawerContent`/`DrawerBody`/`DrawerCloseTrigger` with `open`/`onOpenChange` pattern. Active link shown with bottom border; hover transitions use `0.25s ease`.
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright: 4 links visible at 1440px, nav link color = `rgb(31, 31, 31)`, hamburger visible at 375px, Drawer opens with 4 links, clicking About navigates to /about.
 - **Notes:** App.tsx updated to render Navbar for test visibility; will be replaced in TASK-017.
+---
+### [TASK-011] Create Footer component — iteration 8
+- **Status:** done
+- **Files changed:** src/components/layout/Footer.tsx, src/App.tsx (temporary Footer render for verification)
+- **Key decisions:** Used inline SVGs for LinkedIn and GitHub icons (no icon library installed). Footer uses `bg: transparent`, Manrope 400, `color: neutral.500`. Layout mirrors Navbar's `maxW: { base: '95vw', lg: '85vw' }` pattern. Copyright year is computed dynamically.
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright: footer visible with copyright text, LinkedIn + GitHub aria-labels present, no forbidden text (Instagram/Facebook/Twitter/Privacy Policy/Style Guide/Licensing), no horizontal overflow at 375px.
+- **Notes:** App.tsx updated to render Footer for test visibility; will be replaced in TASK-012.
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done
