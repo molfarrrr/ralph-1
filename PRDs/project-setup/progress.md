@@ -17,7 +17,7 @@
 | TASK-013: Create HomePage | done | |
 | TASK-014: Create AboutPage (placeholder) | done | |
 | TASK-015: Create WorkPage (placeholder) | done | |
-| TASK-016: Create ContactPage (placeholder) | pending | |
+| TASK-016: Create ContactPage (placeholder) | done | |
 | TASK-017: Configure React Router routes in App.tsx | pending | |
 | TASK-018: Verify design tokens render correctly | pending | |
 | TASK-019: Production build check | pending | |
@@ -138,4 +138,12 @@
 - **Key decisions:** Copied `public/prof pic.png` → `src/assets/profile/prof-pic.png` and imported it as a module. Hero uses eyebrow label, two-line H1 at fontWeight 200/300, paragraph, and a minimal text+arrow CTA (no filled button). Portrait uses `borderRadius="full"` (9999px). No Worked With section.
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright: eyebrow/H1/paragraph/CTA/portrait all visible, H1 fontFamily contains Manrope, fontWeight=200, borderRadius=9999px, no 'Worked with' text.
 - **Notes:** App.tsx updated to render HomePage for verification; will be replaced fully in TASK-017.
+---
+---
+### [TASK-016] Create ContactPage (placeholder) — iteration 13
+- **Status:** done
+- **Files changed:** src/pages/ContactPage.tsx
+- **Key decisions:** Same pattern as AboutPage/WorkPage. Temporarily added /contact route to App.tsx for Playwright verification, then reverted.
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright at /contact confirmed H1 "Contact" visible.
+- **Notes:** Routing will be properly wired in TASK-017.
 ---
