@@ -13,7 +13,7 @@ export default defineConfig([
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
+      tseslint.configs.recommendedTypeChecked,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
       jsxA11y.flatConfigs.recommended,
@@ -24,6 +24,10 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        project: ['./tsconfig.app.json', './tsconfig.node.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
     settings: {
       react: {
@@ -34,6 +38,8 @@ export default defineConfig([
       'no-console': 'warn',
       'no-unused-vars': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/explicit-function-return-type': 'warn',
     },
   },
 ])
