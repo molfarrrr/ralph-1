@@ -2,7 +2,7 @@
 
 | Task | Status | Notes |
 |------|--------|-------|
-| TASK-001: Initialize Vite + React + TypeScript project | pending | |
+| TASK-001: Initialize Vite + React + TypeScript project | done | Upgraded Vite 4→6 for Node 20 compat |
 | TASK-002: Configure .gitignore | pending | |
 | TASK-003: Configure path aliases (@/ → src/) | pending | |
 | TASK-004: Install Chakra UI 3 | pending | |
@@ -26,3 +26,12 @@
 | TASK-022: Install Vitest and React Testing Library | pending | |
 | TASK-023: Configure Vitest in vite.config.ts | pending | |
 | TASK-024: Write smoke test for App component | pending | |
+
+---
+### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
+- **Status:** done
+- **Files changed:** package.json (vite upgraded 4→6.4.1, @vitejs/plugin-react upgraded), package-lock.json
+- **Key decisions:** Project was already scaffolded; boilerplate already cleaned. Vite 4.x had CJS/ESM incompatibility with Node.js v20 (`Named export 'build' not found`). Upgraded to Vite 6.4.1. Newer esbuild (0.25) install script also fails postinstall on Alpine Linux (SIGSEGV), so used `--ignore-scripts` to bypass; native binary works fine at runtime.
+- **Verification:** `npx tsc --noEmit` → zero errors; `npm run dev` → server starts at localhost:5174; all required files exist (vite.config.ts, tsconfig.json, src/main.tsx, src/App.tsx)
+- **Notes:** App.css and index.css are already empty; App.tsx already has no boilerplate. Port 5173 may be in use in some runs; server falls back to 5174.
+---
