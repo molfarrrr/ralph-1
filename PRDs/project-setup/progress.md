@@ -4,7 +4,7 @@
 |------|--------|-------|
 | TASK-001: Initialize Vite + React + TypeScript project | done | Upgraded Vite 4→6 for Node 20 compat |
 | TASK-002: Configure .gitignore | done | |
-| TASK-003: Configure path aliases (@/ → src/) | pending | |
+| TASK-003: Configure path aliases (@/ → src/) | done | |
 | TASK-004: Install Chakra UI 3 | pending | |
 | TASK-005: Install React Router v7 | pending | |
 | TASK-006: Add Google Fonts to index.html | pending | |
@@ -27,6 +27,13 @@
 | TASK-023: Configure Vitest in vite.config.ts | pending | |
 | TASK-024: Write smoke test for App component | pending | |
 
+---
+### [TASK-003] Configure path aliases (@/ → src/) — iteration 3
+- **Status:** done
+- **Files changed:** vite.config.ts, tsconfig.app.json
+- **Key decisions:** Added `resolve.alias` in vite.config.ts and `baseUrl`/`paths` in tsconfig.app.json (not tsconfig.json root, since app sources are in tsconfig.app.json). `@types/node` was already installed.
+- **Verification:** `npx tsc --noEmit` → zero errors; temp `import {} from '@/App'` in main.tsx resolved without error; reverted successfully.
+- **Notes:** none
 ---
 ### [TASK-002] Configure .gitignore — iteration 2
 - **Status:** done

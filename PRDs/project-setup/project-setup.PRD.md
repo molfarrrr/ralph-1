@@ -22,27 +22,29 @@ Do not move to the next task until every verification step passes and progress.m
 - Chakra UI 3 (styling & components)
 - React Router v7 (routing)
 
-## Design System Reference (Eonia Template)
+## Design System Reference
 
 ### Colors
-| Token       | Value   | Usage                    |
-|------------|---------|--------------------------|
-| brand.500   | #4353FF | Primary accent, CTAs     |
-| brand.600   | #2e3bcc | Hover states             |
-| neutral.900 | #2a2a2a | Primary text, headings   |
-| neutral.500 | #6b6b6b | Secondary text           |
-| neutral.100 | #f5f5f5 | Subtle backgrounds       |
-| white       | #ffffff | Page background          |
+| Token       | Value   | Usage                                       |
+|------------|---------|---------------------------------------------|
+| brand.50    | #f2e9e9 | Primary blush surface, page wrapper         |
+| brand.100   | #e6ddd9 | Secondary soft surface, supporting sections |
+| brand.700   | #2d1640 | Deep brand accent, optional emphasis        |
+| neutral.0   | #f4f2e9 | Base canvas                                 |
+| neutral.500 | #737373 | Muted text, inactive states                 |
+| neutral.900 | #1f1f1f | Primary text, borders, icons                |
 
 ### Typography
-| Role    | Family      | Weights       |
-|--------|-------------|---------------|
-| body    | Inter       | 300, 400, 500 |
-| heading | Inter       | 600, 700      |
-| mono    | Roboto Mono | 400, 500      |
+| Role    | Family      | Weights                |
+|--------|-------------|------------------------|
+| body    | Manrope     | 300, 400, 500, 600    |
+| heading | Manrope     | 200, 300, 400, 500    |
+| mono    | ui-monospace| 400, 500              |
 
 ### Transitions
-All interactive elements: `0.3s ease-out`
+- Standard links/icons: `0.25s ease`
+- Quick opacity changes: `0.2s ease`
+- Expressive CTA width motion: `0.5s cubic-bezier(.23, 1, .32, 1)`
 
 ### Breakpoints
 | Name | Value  |
@@ -50,7 +52,13 @@ All interactive elements: `0.3s ease-out`
 | sm   | 480px  |
 | md   | 768px  |
 | lg   | 992px  |
-| xl   | 1320px |
+| xl   | 1280px |
+
+### Structure Notes
+- Home page should follow the reference personal landing structure: fixed transparent navbar, editorial hero, circular portrait, and a minimal footer.
+- Do not implement the `Worked with` block or the placeholder logo row.
+- Do not implement the `Links +` control, Instagram/Facebook/Twitter links, or Privacy Policy / Style Guide / Licensing links.
+- Footer/social area should expose icon links for LinkedIn and GitHub only.
 
 ---
 
@@ -93,23 +101,24 @@ All interactive elements: `0.3s ease-out`
 
 ### TASK-006: Add Google Fonts to index.html
 - Add `<link rel="preconnect">` for `fonts.googleapis.com` and `fonts.gstatic.com`
-- Load Inter weights 300,400,500,600,700 and Roboto Mono weights 400,500
+- Load Manrope weights 200,300,400,500,600
 - **Verification:**
   - Read `index.html` — confirm preconnect links present for both domains
-  - Read `index.html` — confirm stylesheet `<link>` references `Inter` and `Roboto+Mono` with correct weights
+  - Read `index.html` — confirm stylesheet `<link>` references `Manrope` with the correct weights
   - Start dev server, use Playwright to navigate to `http://localhost:5173`, intercept network requests, confirm requests to `fonts.googleapis.com` and `fonts.gstatic.com` are made
-  - Use Playwright `evaluate` to run `document.fonts.check('16px Inter')` — must return `true`
+  - Use Playwright `evaluate` to run `document.fonts.check('16px Manrope')` — must return `true`
 
 ### TASK-007: Create Chakra UI 3 custom theme
 - File: `src/theme/index.ts`
 - Use `createSystem` + `defaultConfig` from `@chakra-ui/react`
-- Define color tokens: brand (500, 600) and neutral (100, 500, 900)
-- Define fonts: body → `'Inter, sans-serif'`, heading → `'Inter, sans-serif'`, mono → `'Roboto Mono, monospace'`
-- Global styles: `body { background: white; color: neutral.900 }`
+- Define color tokens: brand (50, 100, 700) and neutral (0, 500, 900)
+- Define fonts: body → `'Manrope, sans-serif'`, heading → `'Manrope, sans-serif'`, mono → `'ui-monospace, SFMono-Regular, Menlo, monospace'`
+- Add motion tokens for `fast`, `standard`, and `expressive` using the transition values from the design reference
+- Global styles: `body { background: neutral.0; color: neutral.900 }`
 - **Verification:**
   - Run `npx tsc --noEmit` — zero errors
-  - Read `src/theme/index.ts` — confirm `brand.500` value is `#4353FF`, `neutral.900` is `#2a2a2a`
-  - Read `src/theme/index.ts` — confirm `fonts.body` contains `Inter` and `fonts.mono` contains `Roboto Mono`
+  - Read `src/theme/index.ts` — confirm `brand.50` value is `#f2e9e9`, `brand.100` is `#e6ddd9`, and `neutral.900` is `#1f1f1f`
+  - Read `src/theme/index.ts` — confirm `fonts.body` contains `Manrope`
 
 ### TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx
 - Import `ChakraProvider` from `@chakra-ui/react`, `system` from `@/theme`
@@ -129,53 +138,68 @@ All interactive elements: `0.3s ease-out`
 
 ### TASK-010: Create Navbar component
 - File: `src/components/layout/Navbar.tsx`
-- Chakra `Box` as `nav`, full width, `bg: white`, bottom border `1px solid neutral.100`, sticky top, z-index 100
-- Left: site name in Inter 600, `color: neutral.900`, links to `/`
-- Right: nav links (Home `/`, About `/about`, Work `/work`, Contact `/contact`) with hover `color: brand.500`, `transition: 0.3s ease-out`
+- Chakra `Box` as `nav`, full width, `bg: transparent`, fixed top, z-index 100
+- Inner container max width `85vw` on desktop and `95vw` on tablet/mobile
+- Left: site name / wordmark in Manrope 600, `color: neutral.900`, links to `/`
+- Right: nav links (Home `/`, About `/about`, Work `/work`, Contact `/contact`) with hover `color: neutral.500`, underline/bottom-line treatment, `transition: standard`
 - Mobile: links hidden, hamburger shown; Chakra `Drawer` opens with stacked links
 - **Verification:**
   - Run `npx tsc --noEmit` — zero errors
   - Start dev server, use Playwright at `http://localhost:5173`
   - Desktop (1440px): snapshot confirms 4 nav links visible
-  - Use Playwright `evaluate` to check computed color of a nav link: `rgb(42, 42, 42)` (neutral.900)
+  - Use Playwright `evaluate` to check computed color of a nav link: `rgb(31, 31, 31)` (neutral.900)
   - Mobile (375px): use `browser_resize` to 375×812, snapshot confirms links hidden and hamburger icon visible
   - Click hamburger — snapshot confirms Drawer opens with all 4 links
   - Click a Drawer link — confirm navigation occurs (URL changes)
 
 ### TASK-011: Create Footer component
 - File: `src/components/layout/Footer.tsx`
-- Single row: copyright text left, placeholder social links right
-- `bg: white`, top border `1px solid neutral.100`, Inter 400, `color: neutral.500`
+- Minimal footer with copyright text on the left and icon links on the right
+- Social links: LinkedIn and GitHub only
+- Do not render `Links +`, Instagram, Facebook, Twitter, Privacy Policy, Style Guide, or Licensing
+- `bg: transparent`, Manrope 400, `color: neutral.500`
 - **Verification:**
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright at `http://localhost:5173`, scroll to bottom
   - Snapshot confirms footer is visible with copyright text
-  - Use Playwright `evaluate` to check `footer` computed `background-color` — must be `rgb(255, 255, 255)`
-  - Resize to 375px — snapshot confirms footer still renders in a single row without overflow
+  - Snapshot confirms LinkedIn and GitHub icons/links are visible
+  - Snapshot confirms Instagram, Facebook, Privacy Policy, Style Guide, and Licensing are absent
+  - Resize to 375px — snapshot confirms footer still renders without overflow
 
 ### TASK-012: Create Layout component
 - File: `src/components/layout/Layout.tsx`
 - Renders: `<Navbar />` + `<Box as="main">` + `<Footer />`
-- Main: `flex: 1`, centered, `maxW: 1320px`, `px: { base: 4, md: 6, lg: 8 }`
+- Outer wrapper should use the soft blush surface from the reference layout (`bg: brand.50`)
+- Main: `flex: 1`, centered, width `100%`, `maxW: 85vw`, `px: { base: 4, md: 6, lg: 0 }`
 - Props: `{ children: React.ReactNode }`
 - **Verification:**
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright at `http://localhost:5173`
   - Snapshot confirms `nav`, `main`, and `footer` elements all present in DOM
   - Use Playwright `evaluate`: `document.querySelector('main').style.flex || getComputedStyle(document.querySelector('main')).flex` — confirms main grows to fill space
-  - Use Playwright `evaluate`: `document.querySelector('main').getBoundingClientRect().width` at 1440px — must be ≤ 1320px
+  - Use Playwright `evaluate`: `document.querySelector('main').getBoundingClientRect().width / window.innerWidth` at 1440px — must be approximately `0.85`
 
 ### TASK-013: Create HomePage
 - File: `src/pages/HomePage.tsx`
-- Hero: H1 Inter 700 `color neutral.900`, subtitle Inter 300 `color neutral.500`, CTA button `bg brand.500` hover `brand.600`, profile image circular
+- Hero structure should follow the reference layout:
+- Eyebrow label above the hero copy
+- Two-line editorial H1 in Manrope 200 / 300 with `color: neutral.900`
+- Supporting paragraph in Manrope 400 with `color: neutral.900`
+- CTA should be a minimal text/arrow treatment, not a filled brand button
+- Move the provided image into the app source tree at `src/assets/profile/prof-pic.png`
+- Import the image into `src/pages/HomePage.tsx` and use the imported asset for the hero portrait
+- Profile image must remain circular
+- Do not add a `Worked with` section or placeholder brand logos beneath the hero
 - **Verification:**
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright at `http://localhost:5173`
-  - Snapshot confirms H1, subtitle, button, and image are visible
-  - Use Playwright `evaluate`: check `h1` computed `font-weight` = `700`
-  - Use Playwright `evaluate`: check CTA button computed `background-color` = `rgb(67, 83, 255)` (#4353FF)
-  - Use Playwright `evaluate`: check profile image computed `border-radius` = `9999px` (full)
-  - Hover over CTA button — use `evaluate` to confirm `background-color` changes to `rgb(46, 59, 204)` (#2e3bcc)
+  - Snapshot confirms eyebrow, H1, paragraph, CTA, and portrait image are visible
+  - Read `src/pages/HomePage.tsx` — confirm the image is imported from `@/assets/profile/prof-pic.png` or a relative `src/assets/profile/prof-pic.png` path
+  - Confirm file exists: `src/assets/profile/prof-pic.png`
+  - Use Playwright `evaluate`: check `h1` computed `font-family` contains `Manrope`
+  - Use Playwright `evaluate`: check `h1` computed `font-weight` is `200` or `300`
+  - Use Playwright `evaluate`: check profile image computed `border-radius` = `50%`
+  - Snapshot confirms no `Worked with` label or placeholder logos are rendered
 
 ### TASK-014: Create AboutPage (placeholder)
 - File: `src/pages/AboutPage.tsx` — Heading "About" + paragraph text
@@ -210,13 +234,13 @@ All interactive elements: `0.3s ease-out`
 ### TASK-018: Verify design tokens render correctly
 - **Verification:**
   - Use Playwright at `http://localhost:5173`
-  - `evaluate`: `getComputedStyle(document.body).fontFamily` — must contain `Inter`
-  - `evaluate`: `getComputedStyle(document.body).backgroundColor` — must be `rgb(255, 255, 255)`
-  - `evaluate`: `getComputedStyle(document.body).color` — must be `rgb(42, 42, 42)` (#2a2a2a)
-  - `evaluate`: `getComputedStyle(document.querySelector('h1')).fontWeight` — must be `700`
-  - `evaluate`: computed color of CTA button background — must be `rgb(67, 83, 255)`
+  - `evaluate`: `getComputedStyle(document.body).fontFamily` — must contain `Manrope`
+  - `evaluate`: `getComputedStyle(document.body).backgroundColor` — must be `rgb(244, 242, 233)`
+  - `evaluate`: `getComputedStyle(document.body).color` — must be `rgb(31, 31, 31)` (#1f1f1f)
+  - `evaluate`: background color of the main page wrapper / layout root — must be `rgb(242, 233, 233)` (#f2e9e9)
+  - `evaluate`: computed color of muted footer/nav secondary text — must be `rgb(115, 115, 115)` (#737373)
   - Resize to 375px — snapshot confirms no horizontal overflow (`document.body.scrollWidth === window.innerWidth`)
-  - Resize to 1440px — snapshot confirms layout is centered and max-width respected
+  - Resize to 1440px — snapshot confirms layout is centered and the main content width tracks the `85vw` container
 
 ### TASK-019: Production build check
 - Run `npm run build` — must exit with code 0
