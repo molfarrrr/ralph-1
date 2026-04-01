@@ -16,7 +16,7 @@
 | TASK-012: Create Layout component | done | |
 | TASK-013: Create HomePage | done | |
 | TASK-014: Create AboutPage (placeholder) | done | |
-| TASK-015: Create WorkPage (placeholder) | pending | |
+| TASK-015: Create WorkPage (placeholder) | done | |
 | TASK-016: Create ContactPage (placeholder) | pending | |
 | TASK-017: Configure React Router routes in App.tsx | pending | |
 | TASK-018: Verify design tokens render correctly | pending | |
@@ -123,6 +123,13 @@
 - **Files changed:** src/pages/AboutPage.tsx
 - **Key decisions:** Placeholder page with H1 "About" and a coming-soon paragraph. Follows component conventions (named export, explicit return type, theme tokens).
 - **Verification:** `npx tsc --noEmit` → zero errors; Playwright at /about confirmed H1 "About" visible (temporarily added route to App.tsx for verification, reverted after).
+- **Notes:** Routing will be properly wired in TASK-017.
+---
+### [TASK-015] Create WorkPage (placeholder) — iteration 12
+- **Status:** done
+- **Files changed:** src/pages/WorkPage.tsx
+- **Key decisions:** Same pattern as AboutPage. Temporarily added /work route to App.tsx for Playwright verification, then reverted.
+- **Verification:** `npx tsc --noEmit` → zero errors; Playwright at /work confirmed H1 "Work" visible.
 - **Notes:** Routing will be properly wired in TASK-017.
 ---
 ### [TASK-013] Create HomePage — iteration 10
