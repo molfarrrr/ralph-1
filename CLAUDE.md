@@ -1,5 +1,17 @@
 # CLAUDE.md — ralph-1
 
+## Non-Negotiable
+
+This codebase will outlive you. Every shortcut you take becomes
+someone else's burden. Every hack compounds into technical debt
+that slows the whole team down.
+
+You are not just writing code. You are shaping the future of this
+project. The patterns you establish will be copied. The corners
+you cut will be cut again.
+
+Fight entropy. Leave the codebase better than you found it.
+
 ## Project Overview
 Personal website frontend. No backend, no auth, no API calls.
 
