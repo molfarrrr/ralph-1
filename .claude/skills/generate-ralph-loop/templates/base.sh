@@ -2,8 +2,7 @@
 # ralph.sh — AI agent loop for {{PRD_NAME}}
 # Usage: ./ralph.sh <iterations>
 #
-# Claude runs autonomously inside a Docker sandbox — full permissions are safe
-# because Docker provides the isolation boundary.
+# Permissions are configured via .claude/settings.json — no CLI flags needed.
 
 set -e
 
@@ -23,10 +22,7 @@ for ((i=1; i<=$1; i++)); do
   echo " Iteration $i of $1"
   echo "========================================"
 
-  result=$(docker sandbox run claude \
-    --dangerously-skip-permissions \
-    --allowedTools "{{ALLOWED_TOOLS}}" \
-    -p \
+  result=$(docker sandbox run claude -p \
 "@${PRD} @${PROGRESS}
 
 You are an AI agent executing a PRD task by task. You have full permissions to:

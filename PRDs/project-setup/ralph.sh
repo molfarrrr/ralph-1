@@ -17,9 +17,7 @@ PROGRESS="PRDs/project-setup/progress.md"
 
 # Pre-flight: install Playwright's Chromium browser binary if not already present
 echo "Pre-flight: installing Playwright Chromium..."
-docker sandbox run claude \
-  --dangerously-skip-permissions \
-  -p "Run this bash command and output the result: npx playwright install chromium --with-deps"
+docker sandbox run claude -p "Run this bash command and output the result: npx playwright install chromium --with-deps"
 echo "Pre-flight complete."
 echo ""
 
@@ -29,10 +27,7 @@ for ((i=1; i<=$1; i++)); do
   echo " Iteration $i of $1"
   echo "========================================"
 
-  result=$(docker sandbox run claude \
-    --dangerously-skip-permissions \
-    --allowedTools "Bash,Read,Write,Edit,Glob,Grep,mcp__playwright__browser_navigate,mcp__playwright__browser_snapshot,mcp__playwright__browser_click,mcp__playwright__browser_evaluate,mcp__playwright__browser_resize,mcp__playwright__browser_console_messages,mcp__playwright__browser_network_requests,mcp__playwright__browser_wait_for,mcp__playwright__browser_take_screenshot,mcp__playwright__browser_type,mcp__playwright__browser_hover" \
-    -p \
+  result=$(docker sandbox run claude -p \
 "@${PRD} @${PROGRESS}
 
 You are an AI agent executing a PRD task by task. You have full permissions to:

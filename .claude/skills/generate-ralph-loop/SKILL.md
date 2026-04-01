@@ -47,24 +47,14 @@ Use this detection table to map findings to pre-flight commands:
 
 ---
 
-## Step 3 — Detect Allowed Tools
+## Step 3 — Verify permissions are covered
 
-Build the `--allowedTools` list based on what the PRD's verification steps require:
+All tool permissions are granted via `.claude/settings.json` in the repo
+(`permissions.allow` covers `Bash(*)`, file tools, and `mcp__playwright__*`).
+No CLI flags needed — the sandbox reads this file automatically.
 
-**Always include (base set):**
-```
-Bash,Read,Write,Edit,Glob,Grep
-```
-
-**Add if Playwright verification steps detected:**
-```
-mcp__playwright__browser_navigate,mcp__playwright__browser_snapshot,mcp__playwright__browser_click,mcp__playwright__browser_evaluate,mcp__playwright__browser_resize,mcp__playwright__browser_console_messages,mcp__playwright__browser_network_requests,mcp__playwright__browser_wait_for,mcp__playwright__browser_take_screenshot,mcp__playwright__browser_type,mcp__playwright__browser_hover
-```
-
-**Add if GitHub MCP operations detected (PRs, issues, CI):**
-```
-mcp__github__create_pull_request,mcp__github__get_pull_request,mcp__github__list_issues
-```
+If the PRD requires tools not covered by the existing permissions, add them to
+`.claude/settings.json` before generating the script.
 
 ---
 
@@ -111,9 +101,7 @@ Using `templates/base.sh` as the base, substitute all placeholders:
 Each prerequisite becomes:
 ```bash
 echo "Pre-flight: <description>..."
-docker sandbox run claude \
-  --dangerously-skip-permissions \
-  -p "Run this bash command and output the result: <command>"
+docker sandbox run claude -p "Run this bash command and output the result: <command>"
 echo "Pre-flight complete: <description>"
 echo ""
 ```

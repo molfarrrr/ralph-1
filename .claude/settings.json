@@ -8,5 +8,17 @@
     "code-simplifier@claude-plugins-official",
     "typescript-lsp@claude-plugins-official",
     "github@claude-plugins-official"
-  ]
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "mcp__playwright__*",
+      "mcp__github__*"
+    ]
+  }
 }
