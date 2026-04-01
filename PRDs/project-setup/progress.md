@@ -7,7 +7,7 @@
 | TASK-003: Configure path aliases (@/ → src/) | done | |
 | TASK-004: Install Chakra UI 3 | done | |
 | TASK-005: Install React Router v7 | done | |
-| TASK-006: Add Google Fonts to index.html | pending | |
+| TASK-006: Add Google Fonts to index.html | done | |
 | TASK-007: Create Chakra UI 3 custom theme | pending | |
 | TASK-008: Wire ChakraProvider and BrowserRouter in main.tsx | pending | |
 | TASK-009: Create folder structure | pending | |
@@ -55,6 +55,14 @@
 - **Key decisions:** Added `.env*`, updated `node_modules` → `node_modules/` and `dist` → `dist/` with trailing slashes per spec.
 - **Verification:** Read .gitignore — all 5 entries present; `git status` — node_modules/ not listed as untracked.
 - **Notes:** none
+---
+---
+### [TASK-006] Add Google Fonts to index.html — iteration 1
+- **Status:** done
+- **Files changed:** index.html
+- **Key decisions:** Added preconnect for fonts.googleapis.com and fonts.gstatic.com (with crossorigin), plus stylesheet link for Manrope weights 200;300;400;500;600.
+- **Verification:** Playwright confirmed preconnect links in DOM, request to fonts.googleapis.com made, `document.fonts.check('16px Manrope')` returned true.
+- **Notes:** fonts.googleapis.com is accessible (not blocked by firewall).
 ---
 ### [TASK-001] Initialize Vite + React + TypeScript project — iteration 1
 - **Status:** done
