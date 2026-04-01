@@ -37,12 +37,22 @@ for ((i=1; i<=$1; i++)); do
 
   PROMPT="Read the files $PRD and $PROGRESS before doing anything.
 
-You are an AI agent executing a PRD task by task. You have full permissions to:
+You are an AI agent executing a PRD task by task.
+
+## Strict boundaries — do not cross these under any circumstances:
+- ONLY touch files relevant to the current task. Nothing else.
+- NEVER modify, delete, or overwrite anything inside .claude/ — settings, skills, or any config.
+- NEVER modify CLAUDE.md, PRDs/, or ralph.sh.
+- NEVER run npm create, npx create-*, or any scaffolding tool that overwrites the project.
+- NEVER stage or commit files outside the scope of the current task.
+- If in doubt whether a file is in scope — do not touch it.
+
+## You may:
 - Install packages (npm install)
-- Edit and create files
+- Edit and create src/ files
 - Run builds, lints, and tests (npm run *)
 - Use Playwright to verify UI in the browser
-- Make git commits
+- git add and commit only files changed for the current task
 
 ## Before starting:
 1. Read $PROGRESS carefully — it shows which tasks are done, blocked, or in progress.
