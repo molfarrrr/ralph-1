@@ -21,7 +21,7 @@
 | TASK-017: Footer — replace LinkedIn link hover with `linkRecipe` muted | done | Imported linkRecipe + useRecipe; applied mutedStyles via css prop; removed color/_hover/transition |
 | TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | done | Replaced inline color/_hover/transition with css={mutedStyles} (reused from TASK-017) |
 | TASK-019: Layout — replace main container with `<Container>` | done | Replaced Box with Container as={Box}, removed maxW/mx/px props |
-| TASK-020: HomePage — replace H1 with `<PageHeading>` | pending | |
+| TASK-020: HomePage — replace H1 with `<PageHeading>` | done | Replaced Heading with PageHeading mb={6}; removed Heading import |
 | TASK-021: HomePage — replace eyebrow text with `<EyebrowLabel>` | pending | |
 | TASK-022: HomePage — replace CTA link hover with `linkRecipe` | pending | |
 | TASK-023: AboutPage — replace H1 with `<PageHeading>` | pending | |
@@ -205,6 +205,15 @@
 - **Notes:** `as="main"` removed since Container renders a Box by default; layout unchanged at all breakpoints
 
 ---
+---
+### [TASK-020] HomePage — replace H1 with `<PageHeading>` — iteration 20
+- **Status:** done
+- **Files changed:** `src/pages/HomePage.tsx`
+- **Key decisions:** Replaced `<Heading as="h1" ...>` with `<PageHeading mb={6}>`; removed `Heading` from Chakra import; added `PageHeading` import from `@/components/ui`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Recipe page variant uses fontWeight 300 / lineHeight 1.02 vs original 200 / 1.1 — intentional per PRD spec
+---
+
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
 - **Status:** done
 - **Files changed:** `src/components/layout/Footer.tsx`

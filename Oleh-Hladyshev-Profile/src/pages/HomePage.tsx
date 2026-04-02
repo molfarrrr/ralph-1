@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, Text, Image, chakra } from '@chakra-ui/react'
+import { Box, Flex, Text, Image, chakra } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { PageHeading } from '@/components/ui'
 
 const ChakraLink = chakra(Link)
 import profilePic from '@/assets/profile/prof-pic.png'
@@ -29,20 +30,12 @@ export function HomePage(): React.JSX.Element {
           </Text>
 
           {/* H1 */}
-          <Heading
-            as="h1"
-            fontFamily="heading"
-            fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
-            fontWeight="200"
-            lineHeight="1.1"
-            color="neutral.900"
-            mb={6}
-          >
+          <PageHeading mb={6}>
             Senior web<br />
             <Box as="span" fontWeight="300">
               developer
             </Box>
-          </Heading>
+          </PageHeading>
 
           {/* Supporting paragraph */}
           <Text
