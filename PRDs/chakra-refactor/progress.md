@@ -20,7 +20,7 @@
 | TASK-016: Footer — replace flex container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
 | TASK-017: Footer — replace LinkedIn link hover with `linkRecipe` muted | done | Imported linkRecipe + useRecipe; applied mutedStyles via css prop; removed color/_hover/transition |
 | TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | done | Replaced inline color/_hover/transition with css={mutedStyles} (reused from TASK-017) |
-| TASK-019: Layout — replace main container with `<Container>` | pending | |
+| TASK-019: Layout — replace main container with `<Container>` | done | Replaced Box with Container as={Box}, removed maxW/mx/px props |
 | TASK-020: HomePage — replace H1 with `<PageHeading>` | pending | |
 | TASK-021: HomePage — replace eyebrow text with `<EyebrowLabel>` | pending | |
 | TASK-022: HomePage — replace CTA link hover with `linkRecipe` | pending | |
@@ -197,6 +197,14 @@
 - **Notes:** No new imports needed — `linkRecipe`, `useRecipe`, and `mutedStyles` already present from TASK-017
 ---
 
+### [TASK-019] Layout — replace main container with `<Container>` — iteration 19
+- **Status:** done
+- **Files changed:** `src/components/layout/Layout.tsx`
+- **Key decisions:** Added `Container` import from `@/components/ui`; replaced `<Box as="main" maxW/mx/px ...>` with `<Container as={Box} ...>`; kept `flex`, `w`, `pt` props
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `as="main"` removed since Container renders a Box by default; layout unchanged at all breakpoints
+
+---
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
 - **Status:** done
 - **Files changed:** `src/components/layout/Footer.tsx`
