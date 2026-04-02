@@ -56,6 +56,7 @@ export function Navbar(): React.JSX.Element {
           py={5}
           align="center"
           justify="space-between"
+          gap={{ base: 4, md: 8 }}
         >
           {/* Wordmark */}
           <Link to="/" style={{ cursor: 'pointer' }}>
@@ -70,7 +71,7 @@ export function Navbar(): React.JSX.Element {
           </Link>
 
           {/* Desktop nav links */}
-          <HStack gap={8} display={{ base: 'none', md: 'flex' }}>
+          <HStack gap={8} display={{ base: 'none', md: 'flex' }} ml="auto">
             {NAV_LINKS.map(({ label, href }) => (
               <NavLink key={href} to={href} isActive={pathname === href} fontSize="sm">
                 {label}

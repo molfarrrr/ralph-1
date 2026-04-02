@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Image, chakra } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { PageHeading } from '@/components/ui'
+import { PageHeading, EyebrowLabel } from '@/components/ui'
 
 const ChakraLink = chakra(Link)
 import profilePic from '@/assets/profile/prof-pic.png'
@@ -17,17 +17,9 @@ export function HomePage(): React.JSX.Element {
         {/* Left: text content */}
         <Box flex={1} maxW={{ lg: '560px' }}>
           {/* Eyebrow */}
-          <Text
-            fontFamily="body"
-            fontSize="sm"
-            fontWeight="500"
-            color="neutral.500"
-            letterSpacing="0.1em"
-            textTransform="uppercase"
-            mb={5}
-          >
+          <EyebrowLabel mb={5}>
             Angular, React, C#, SQL
-          </Text>
+          </EyebrowLabel>
 
           {/* H1 */}
           <PageHeading mb={6}>
