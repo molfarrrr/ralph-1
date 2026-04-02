@@ -58,6 +58,38 @@ If the PRD requires tools not covered by the existing permissions, add them to
 
 ---
 
+## Step 3b — Dependency establishment: per-task, not pre-flight
+
+Do NOT add a global pre-flight block that installs dependencies unconditionally.
+Instead, add a conditional check at the start of each task's **Verification** section
+that requires the dependency.
+
+### Pattern for each dependency:
+
+**Playwright Chromium** (add to every task that uses `browser_*` or Playwright):
+```
+- Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
+```
+
+**Python packages** (add to every task that runs Python):
+```
+- Ensure Python deps are installed: `python -c "import <package>"` — if it throws, run `pip install -r requirements.txt` first
+```
+
+**Docker Compose services** (add to every task that hits a service):
+```
+- Ensure services are running: `docker compose ps | grep -q Up` — if not, run `docker compose up -d && sleep 5` first
+```
+
+**Database** (add to every task that queries the DB):
+```
+- Ensure DB is reachable: `<db-ping-command>` — if it fails, start the DB first
+```
+
+This way: dependencies install only when actually needed, and are idempotent (safe to re-check on every run).
+
+---
+
 ## Step 4 — Build Extra Capabilities List
 
 Based on detected tools, add bullet points to the "You have full permissions to:" section:
