@@ -19,10 +19,13 @@ echo "Ralph loop started at $(date)" | tee -a "$LOG"
 echo "Workspace: $WORKSPACE" | tee -a "$LOG"
 echo "Iterations: $1" | tee -a "$LOG"
 
-# Pre-flight: install Playwright Chromium
+# Pre-flight: install Playwright Chromium and verify
 echo "" | tee -a "$LOG"
 echo "Pre-flight: installing Playwright Chromium..." | tee -a "$LOG"
-docker sandbox run claude "$WORKSPACE" -- -p "Run this bash command and show the output: npx playwright install chromium --with-deps" 2>&1 | tee -a "$LOG"
+docker sandbox run claude "$WORKSPACE" -- -p "You must run these two bash commands in sequence and output the raw result of each. Do not ask questions. Do not summarise. Just run them.
+1. npx playwright install chromium --with-deps
+2. npx playwright --version && node -e \"const {chromium} = require('playwright'); chromium.executablePath() && console.log('Chromium OK:', chromium.executablePath())\"
+If either command fails, output the error and exit." 2>&1 | tee -a "$LOG"
 echo "Pre-flight complete." | tee -a "$LOG"
 
 for ((i=1; i<=$1; i++)); do
