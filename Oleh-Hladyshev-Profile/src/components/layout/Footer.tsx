@@ -1,8 +1,11 @@
-import { Box, Flex, Text, HStack, chakra } from '@chakra-ui/react'
+import { Box, Flex, Text, HStack, chakra, useRecipe } from '@chakra-ui/react'
 import { Container } from '@/components/ui'
+import { linkRecipe } from '@/theme/recipes/link.recipe'
 
 export function Footer(): React.JSX.Element {
   const year = new Date().getFullYear()
+  const link = useRecipe({ recipe: linkRecipe })
+  const mutedStyles = link({ variant: 'muted' })
 
   return (
     <Box as="footer" w="full" bg="transparent" py={6}>
@@ -31,9 +34,7 @@ export function Footer(): React.JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            color="neutral.500"
-            _hover={{ color: 'neutral.900' }}
-            transition="0.25s ease"
+            css={mutedStyles}
             display="flex"
             alignItems="center"
           >
