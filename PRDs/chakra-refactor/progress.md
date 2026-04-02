@@ -6,7 +6,7 @@
 | TASK-002: Create `headingRecipe` in theme | done | Created heading.recipe.ts, registered in theme/index.ts |
 | TASK-003: Create `iconButtonRecipe` in theme | done | Created iconButton.recipe.ts, registered in theme/index.ts |
 | TASK-004: Create `<Container>` shared component | done | Created Container.tsx in components/ui/ |
-| TASK-005: Create `<SectionDivider>` shared component | pending | |
+| TASK-005: Create `<SectionDivider>` shared component | done | Created SectionDivider.tsx in components/ui/ |
 | TASK-006: Create `<PageHeading>` shared component | pending | |
 | TASK-007: Create `<EyebrowLabel>` shared component | pending | |
 | TASK-008: Create `<NavLink>` shared component | pending | |
@@ -68,6 +68,15 @@
 - **Key decisions:** Extended BoxProps to allow passing extra Chakra props (needed for later tasks using `as={Flex}` with `py`, `align`, `justify`)
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `px` and `maxW` are the container-specific props; all others spread through to underlying Box
+---
+
+---
+### [TASK-005] Create `<SectionDivider>` shared component — iteration 5
+- **Status:** done
+- **Files changed:** `src/components/ui/SectionDivider.tsx` (created)
+- **Key decisions:** `pt ?? 6` default matches PRD spec; `borderColor` uses rgba directly as it's not a theme token
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Children render inside the bordered box — heading content goes as children
 ---
 
 ---
