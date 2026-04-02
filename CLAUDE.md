@@ -66,22 +66,23 @@ import { Navbar } from '@/components/layout/Navbar'
 Fonts: **Manrope** (body, heading) · **ui-monospace** (mono)
 
 ## Local Commands
-- Start dev server: `npm run dev`
-- Build production bundle: `npm run build`
-- Preview production build: `npm run preview`
-- Run linting: `npm run lint`
-- Auto-fix lint issues: `npm run lint:fix`
-- Run tests once: `npm run test`
-- Run tests in watch mode: `npm run test:watch`
-- Run tests with coverage: `npm run test:coverage`
-- Run browser verification against a running local app: `node scripts/verify-project-setup.mjs`
-- Run browser verification against preview or another URL: `node scripts/verify-project-setup.mjs http://127.0.0.1:4173`
+- Run app commands from the repository root by first entering `./Oleh-Hladyshev-Profile`
+- Start dev server: `cd ./Oleh-Hladyshev-Profile && npm run dev`
+- Build production bundle: `cd ./Oleh-Hladyshev-Profile && npm run build`
+- Preview production build: `cd ./Oleh-Hladyshev-Profile && npm run preview`
+- Run linting: `cd ./Oleh-Hladyshev-Profile && npm run lint`
+- Auto-fix lint issues: `cd ./Oleh-Hladyshev-Profile && npm run lint:fix`
+- Run tests once: `cd ./Oleh-Hladyshev-Profile && npm run test`
+- Run tests in watch mode: `cd ./Oleh-Hladyshev-Profile && npm run test:watch`
+- Run tests with coverage: `cd ./Oleh-Hladyshev-Profile && npm run test:coverage`
+- Run browser verification against a running local app: `cd ./Oleh-Hladyshev-Profile && node ./scripts/verify-project-setup.mjs`
+- Run browser verification against preview or another URL: `cd ./Oleh-Hladyshev-Profile && node ./scripts/verify-project-setup.mjs http://127.0.0.1:4173`
 
 ## Testing Notes
-- App smoke test lives in `src/App.test.tsx`
-- Vitest setup file is `src/test/setup.ts`
+- App smoke test lives in `Oleh-Hladyshev-Profile/src/App.test.tsx`
+- Vitest setup file is `Oleh-Hladyshev-Profile/src/test/setup.ts`
 - Coverage output is generated in `coverage/` and should not be committed
-- For PRD-style browser verification, start the app locally and use `scripts/verify-project-setup.mjs`
+- For PRD-style browser verification, start the app locally and use `Oleh-Hladyshev-Profile/scripts/verify-project-setup.mjs`
 
 ## TypeScript Rules
 - Strict mode — no `any`
