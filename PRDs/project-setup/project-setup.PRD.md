@@ -103,6 +103,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Add `<link rel="preconnect">` for `fonts.googleapis.com` and `fonts.gstatic.com`
 - Load Manrope weights 200,300,400,500,600
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Read `index.html` — confirm preconnect links present for both domains
   - Read `index.html` — confirm stylesheet `<link>` references `Manrope` with the correct weights
   - Start dev server, use Playwright to navigate to `http://localhost:5173`, intercept network requests, confirm requests to `fonts.googleapis.com` and `fonts.gstatic.com` are made
@@ -125,6 +126,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Import `BrowserRouter` from `react-router-dom`
 - Wrap: `<BrowserRouter><ChakraProvider value={system}><App /></ChakraProvider></BrowserRouter>`
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Start dev server, use Playwright to navigate to `http://localhost:5173`
   - Use Playwright `browser_console_messages` — confirm zero errors in console
@@ -144,6 +146,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Right: nav links (Home `/`, About `/about`, Work `/work`, Contact `/contact`) with hover `color: neutral.500`, underline/bottom-line treatment, `transition: standard`
 - Mobile: links hidden, hamburger shown; Chakra `Drawer` opens with stacked links
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Start dev server, use Playwright at `http://localhost:5173`
   - Desktop (1440px): snapshot confirms 4 nav links visible
@@ -159,6 +162,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Do not render `Links +`, Instagram, Facebook, Twitter, Privacy Policy, Style Guide, or Licensing
 - `bg: transparent`, Manrope 400, `color: neutral.500`
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright at `http://localhost:5173`, scroll to bottom
   - Snapshot confirms footer is visible with copyright text
@@ -173,6 +177,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Main: `flex: 1`, centered, width `100%`, `maxW: 85vw`, `px: { base: 4, md: 6, lg: 0 }`
 - Props: `{ children: React.ReactNode }`
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright at `http://localhost:5173`
   - Snapshot confirms `nav`, `main`, and `footer` elements all present in DOM
@@ -191,6 +196,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Profile image must remain circular
 - Do not add a `Worked with` section or placeholder brand logos beneath the hero
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright at `http://localhost:5173`
   - Snapshot confirms eyebrow, H1, paragraph, CTA, and portrait image are visible
@@ -204,6 +210,7 @@ Do not move to the next task until every verification step passes and progress.m
 ### TASK-014: Create AboutPage (placeholder)
 - File: `src/pages/AboutPage.tsx` — Heading "About" + paragraph text
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright: navigate to `http://localhost:5173/about`
   - Snapshot confirms heading "About" is visible in DOM
@@ -211,6 +218,7 @@ Do not move to the next task until every verification step passes and progress.m
 ### TASK-015: Create WorkPage (placeholder)
 - File: `src/pages/WorkPage.tsx` — Heading "Work" + paragraph text
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright: navigate to `http://localhost:5173/work`
   - Snapshot confirms heading "Work" is visible in DOM
@@ -218,6 +226,7 @@ Do not move to the next task until every verification step passes and progress.m
 ### TASK-016: Create ContactPage (placeholder)
 - File: `src/pages/ContactPage.tsx` — Heading "Contact" + paragraph text
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright: navigate to `http://localhost:5173/contact`
   - Snapshot confirms heading "Contact" is visible in DOM
@@ -226,6 +235,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Use `<Routes>` and `<Route>`, every page wrapped in `<Layout>`
 - Routes: `/` → HomePage, `/about` → AboutPage, `/work` → WorkPage, `/contact` → ContactPage, `*` → redirect `/`
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Run `npx tsc --noEmit` — zero errors
   - Use Playwright: navigate to each of `/`, `/about`, `/work`, `/contact` — confirm correct heading visible on each
   - Use Playwright: navigate to `/nonexistent` — confirm redirect to `/` and HomePage heading visible
@@ -233,6 +243,7 @@ Do not move to the next task until every verification step passes and progress.m
 
 ### TASK-018: Verify design tokens render correctly
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Use Playwright at `http://localhost:5173`
   - `evaluate`: `getComputedStyle(document.body).fontFamily` — must contain `Manrope`
   - `evaluate`: `getComputedStyle(document.body).backgroundColor` — must be `rgb(244, 242, 233)`
@@ -246,6 +257,7 @@ Do not move to the next task until every verification step passes and progress.m
 - Run `npm run build` — must exit with code 0
 - Run `npm run preview` (background) — navigate with Playwright
 - **Verification:**
+  - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - `npm run build` output contains no errors, `dist/` directory created
   - `ls dist/` — confirm `index.html` and `assets/` present
   - Start preview server, use Playwright to visit each route: `/`, `/about`, `/work`, `/contact`
