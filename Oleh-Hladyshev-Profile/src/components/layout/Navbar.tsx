@@ -176,28 +176,23 @@ export function Navbar(): React.JSX.Element {
           >
             <VStack gap={8}>
               {NAV_LINKS.map(({ label, href }) => (
-                <Link
+                <Box
                   key={href}
-                  to={href}
+                  fontFamily="heading"
+                  letterSpacing="-0.03em"
+                  textAlign="center"
+                  pb="2px"
                   onClick={() => setDrawerOpen(false)}
-                  style={{ cursor: 'pointer' }}
                 >
-                  <Text
+                  <NavLink
+                    to={href}
+                    isActive={pathname === href}
                     fontSize="clamp(2rem, 9vw, 3.25rem)"
                     fontWeight={pathname === href ? '500' : '300'}
-                    color="neutral.900"
-                    fontFamily="heading"
-                    letterSpacing="-0.03em"
-                    textAlign="center"
-                    pb="2px"
-                    borderBottom={pathname === href ? '1px solid' : 'none'}
-                    borderColor="neutral.900"
-                    _hover={{ color: 'neutral.500' }}
-                    transition="0.25s ease"
                   >
                     {label}
-                  </Text>
-                </Link>
+                  </NavLink>
+                </Box>
               ))}
             </VStack>
           </Flex>

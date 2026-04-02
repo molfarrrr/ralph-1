@@ -14,7 +14,7 @@
 | TASK-010: Navbar — replace container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
 | TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | done | Imported linkRecipe + useRecipe; applied wordmarkStyles via css prop; removed transition/_hover |
 | TASK-012: Navbar — replace desktop nav links with `<NavLink>` | done | Replaced Link+Text blocks with NavLink; removed _hover/transition/color inline props |
-| TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | pending | |
+| TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | done | Replaced Link+Text blocks with Box wrapper + NavLink; preserved fontFamily/letterSpacing/onClick |
 | TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | pending | |
 | TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | pending | |
 | TASK-016: Footer — replace flex container with `<Container>` | pending | |
@@ -141,6 +141,15 @@
 - **Key decisions:** Added `NavLink` to import from `@/components/ui`; replaced each `<Link><Text ...></Text></Link>` block with `<NavLink to={href} isActive={pathname === href} fontSize="sm">`; removed inline `color`, `_hover`, `transition`, `fontWeight`, `borderBottom` props (NavLink handles active state with underline via textDecoration)
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Desktop nav active state now uses `textDecoration: underline` (from NavLink) instead of `borderBottom: 1px solid` — consistent with NavLink component design; `Text` import retained for wordmark
+---
+
+---
+### [TASK-013] Navbar — replace mobile drawer links with `<NavLink>` — iteration 13
+- **Status:** done
+- **Files changed:** `src/components/layout/Navbar.tsx`
+- **Key decisions:** Wrapped each NavLink in a `<Box>` to preserve `onClick` (drawer close), `fontFamily`, `letterSpacing`, `textAlign`, `pb` which NavLink doesn't accept; removed `_hover` and `transition` (linkRecipe handles those); removed `borderBottom` active indicator (NavLink's textDecoration underline replaces it); passed `fontWeight` through NavLink's existing prop
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `Link` import retained — still used for wordmark
 ---
 
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6
