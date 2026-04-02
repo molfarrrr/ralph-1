@@ -49,9 +49,7 @@ export function Footer(): React.JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            color="neutral.500"
-            _hover={{ color: 'neutral.900' }}
-            transition="0.25s ease"
+            css={mutedStyles}
             display="flex"
             alignItems="center"
           >

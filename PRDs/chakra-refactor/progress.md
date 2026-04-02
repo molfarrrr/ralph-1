@@ -19,7 +19,7 @@
 | TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | done | Applied ghostStyles css prop; removed _hover + transition |
 | TASK-016: Footer — replace flex container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
 | TASK-017: Footer — replace LinkedIn link hover with `linkRecipe` muted | done | Imported linkRecipe + useRecipe; applied mutedStyles via css prop; removed color/_hover/transition |
-| TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | pending | |
+| TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | done | Replaced inline color/_hover/transition with css={mutedStyles} (reused from TASK-017) |
 | TASK-019: Layout — replace main container with `<Container>` | pending | |
 | TASK-020: HomePage — replace H1 with `<PageHeading>` | pending | |
 | TASK-021: HomePage — replace eyebrow text with `<EyebrowLabel>` | pending | |
@@ -186,6 +186,15 @@
 - **Key decisions:** Added `useRecipe` + `linkRecipe` imports; called `link({ variant: 'muted' })` once and reused on LinkedIn `<chakra.a>` via `css={mutedStyles}`; removed `color`, `_hover`, `transition` inline props
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `mutedStyles` will be reused for GitHub link in TASK-018 (same file, same variable already defined)
+---
+
+---
+### [TASK-018] Footer — replace GitHub link hover with `linkRecipe` muted — iteration 18
+- **Status:** done
+- **Files changed:** `src/components/layout/Footer.tsx`
+- **Key decisions:** `mutedStyles` was already computed in TASK-017; reused it on GitHub `<chakra.a>`; removed `color`, `_hover`, `transition` inline props
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** No new imports needed — `linkRecipe`, `useRecipe`, and `mutedStyles` already present from TASK-017
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
