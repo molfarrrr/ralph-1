@@ -74,11 +74,14 @@ Fonts: **Manrope** (body, heading) · **ui-monospace** (mono)
 - Run tests once: `npm run test`
 - Run tests in watch mode: `npm run test:watch`
 - Run tests with coverage: `npm run test:coverage`
+- Run browser verification against a running local app: `node scripts/verify-project-setup.mjs`
+- Run browser verification against preview or another URL: `node scripts/verify-project-setup.mjs http://127.0.0.1:4173`
 
 ## Testing Notes
 - App smoke test lives in `src/App.test.tsx`
 - Vitest setup file is `src/test/setup.ts`
 - Coverage output is generated in `coverage/` and should not be committed
+- For PRD-style browser verification, start the app locally and use `scripts/verify-project-setup.mjs`
 
 ## TypeScript Rules
 - Strict mode — no `any`

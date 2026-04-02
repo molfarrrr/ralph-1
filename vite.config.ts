@@ -1,9 +1,11 @@
-import { defineConfig } from 'vitest/config'
+/// <reference types="vitest/config" />
+import { defineConfig, type UserConfig } from 'vite'
+import type { InlineConfig } from 'vitest/node'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // https://vite.dev/config/
-export default defineConfig({
+const config: UserConfig & { test: InlineConfig } = {
   plugins: [react()],
   resolve: {
     alias: {
@@ -18,4 +20,6 @@ export default defineConfig({
       provider: 'v8',
     },
   },
-})
+}
+
+export default defineConfig(config)

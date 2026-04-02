@@ -65,16 +65,28 @@ Generate a coverage report:
 npm run test:coverage
 ```
 
+Run the browser verification script against the local dev server:
+
+```bash
+node scripts/verify-project-setup.mjs
+```
+
+Run it against a custom URL, for example a preview server:
+
+```bash
+node scripts/verify-project-setup.mjs http://127.0.0.1:4173
+```
+
 ## Testing Notes
 
 - The app smoke test is in `src/App.test.tsx`
 - Vitest setup is in `src/test/setup.ts`
 - Coverage artifacts are written to `coverage/`
 - `coverage/` is generated output and should not be committed
+- For browser-level PRD verification, start `npm run dev` or `npm run preview` first, then run `node scripts/verify-project-setup.mjs`
 
 ## Project Notes
 
 - Use `@/` imports for internal source paths
 - Theme tokens live in `src/theme/index.ts`
 - App routes are defined in `src/App.tsx`
-```
