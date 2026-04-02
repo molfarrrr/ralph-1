@@ -9,7 +9,7 @@
 | TASK-005: Create `<SectionDivider>` shared component | done | Created SectionDivider.tsx in components/ui/ |
 | TASK-006: Create `<PageHeading>` shared component | done | Created PageHeading.tsx using useRecipe with headingRecipe page variant |
 | TASK-007: Create `<EyebrowLabel>` shared component | done | Created EyebrowLabel.tsx using headingRecipe label variant |
-| TASK-008: Create `<NavLink>` shared component | pending | |
+| TASK-008: Create `<NavLink>` shared component | done | Created NavLink.tsx using linkRecipe default variant; isActive adds fontWeight 500 + underline |
 | TASK-009: Create barrel export `ui/index.ts` | pending | |
 | TASK-010: Navbar — replace container with `<Container>` | pending | |
 | TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | pending | |
@@ -98,6 +98,15 @@
 ---
 
 ---
+---
+### [TASK-008] Create `<NavLink>` shared component — iteration 8
+- **Status:** done
+- **Files changed:** `src/components/ui/NavLink.tsx` (created)
+- **Key decisions:** Used `useRecipe({ recipe: linkRecipe })` with `variant: 'default'`; `Box as={Link}` renders React Router Link with recipe styles; `isActive` applies `fontWeight: 500` and `textDecoration: underline` with `textUnderlineOffset: 3px`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `fontSize` and `fontWeight` props allow per-instance overrides (needed for mobile drawer's large font size)
+---
+
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6
 - **Status:** done
 - **Files changed:** `src/components/ui/PageHeading.tsx` (created)
