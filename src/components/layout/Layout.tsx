@@ -8,7 +8,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps): React.JSX.Element {
   return (
-    <Box minH="100vh" display="flex" flexDirection="column" bg="brand.50">
+    <Box minH="100vh" display="flex" flexDirection="column" bg="neutral.0">
       <Navbar />
       <Box
         as="main"

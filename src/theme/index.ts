@@ -10,7 +10,7 @@ const config = defineConfig({
           700: { value: '#2d1640' },
         },
         neutral: {
-          0:   { value: '#f4f2e9' },
+          0:   { value: '#f4f2ee' },
           500: { value: '#737373' },
           900: { value: '#1f1f1f' },
         },

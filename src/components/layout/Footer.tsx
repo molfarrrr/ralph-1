@@ -25,7 +25,7 @@ export function Footer(): React.JSX.Element {
         <HStack gap={4}>
           {/* LinkedIn */}
           <chakra.a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/oleg-gladyshev-profile/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -42,7 +42,7 @@ export function Footer(): React.JSX.Element {
 
           {/* GitHub */}
           <chakra.a
-            href="https://github.com"
+            href="https://github.com/molfarrrr/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"

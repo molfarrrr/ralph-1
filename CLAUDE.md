@@ -59,7 +59,7 @@ import { Navbar } from '@/components/layout/Navbar'
 | brand.50    | #f2e9e9 |
 | brand.100   | #e6ddd9 |
 | brand.700   | #2d1640 |
-| neutral.0   | #f4f2e9 |
+| neutral.0   | #f4f2ee |
 | neutral.500 | #737373 |
 | neutral.900 | #1f1f1f |
 

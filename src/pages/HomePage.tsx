@@ -87,6 +87,7 @@ export function HomePage(): React.JSX.Element {
             borderRadius="full"
             boxSize={{ base: '200px', md: '260px', lg: '320px' }}
             objectFit="cover"
+            objectPosition="center 12%"
           />
         </Box>
       </Flex>

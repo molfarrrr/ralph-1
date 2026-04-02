@@ -30,7 +30,7 @@ Do not move to the next task until every verification step passes and progress.m
 | brand.50    | #f2e9e9 | Primary blush surface, page wrapper         |
 | brand.100   | #e6ddd9 | Secondary soft surface, supporting sections |
 | brand.700   | #2d1640 | Deep brand accent, optional emphasis        |
-| neutral.0   | #f4f2e9 | Base canvas                                 |
+| neutral.0   | #f4f2ee | Base canvas                                 |
 | neutral.500 | #737373 | Muted text, inactive states                 |
 | neutral.900 | #1f1f1f | Primary text, borders, icons                |
 
@@ -246,7 +246,7 @@ Do not move to the next task until every verification step passes and progress.m
   - Ensure Playwright Chromium is available: `node -e "require('playwright').chromium.executablePath()"` — if it throws, run `npx playwright install chromium --with-deps` first
   - Use Playwright at `http://localhost:5173`
   - `evaluate`: `getComputedStyle(document.body).fontFamily` — must contain `Manrope`
-  - `evaluate`: `getComputedStyle(document.body).backgroundColor` — must be `rgb(244, 242, 233)`
+  - `evaluate`: `getComputedStyle(document.body).backgroundColor` — must be `rgb(244, 242, 238)`
   - `evaluate`: `getComputedStyle(document.body).color` — must be `rgb(31, 31, 31)` (#1f1f1f)
   - `evaluate`: background color of the main page wrapper / layout root — must be `rgb(242, 233, 233)` (#f2e9e9)
   - `evaluate`: computed color of muted footer/nav secondary text — must be `rgb(115, 115, 115)` (#737373)
