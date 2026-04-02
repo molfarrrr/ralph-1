@@ -60,7 +60,7 @@ export function Navbar(): React.JSX.Element {
               transition="0.25s ease"
               _hover={{ color: 'neutral.500' }}
             >
-              Oleh Gladyshev
+              Oleh Hladyshev
             </Text>
           </Link>
 
