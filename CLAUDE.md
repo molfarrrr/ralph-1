@@ -29,6 +29,7 @@ Personal website frontend. No backend, no auth, no API calls.
 ## Project Structure
 ```
 src/
+  assets/       # Images and app-bundled static assets
   components/
     layout/     # Navbar, Footer, Layout
     ui/         # Reusable UI primitives
@@ -48,20 +49,36 @@ import { Navbar } from '@/components/layout/Navbar'
 
 ## Styling Rules
 - Use **Chakra UI style props** exclusively — no inline `style={{}}`, no CSS files, no SCSS
-- All colors must reference theme tokens: `brand.500`, `neutral.900`, etc. — no raw hex values
-- All interactive elements must have `transition: 0.3s ease-out`
+- All colors must reference theme tokens: `brand.50`, `brand.100`, `brand.700`, `neutral.0`, `neutral.500`, `neutral.900`
+- Interactive elements should use motion tokens from the theme (`fast`, `standard`, `expressive`) instead of hardcoded transition strings
 - Responsive props use Chakra breakpoint array syntax: `fontSize={{ base: 'md', lg: 'xl' }}`
 
 ## Design Tokens
 | Token       | Value   |
 |------------|---------|
-| brand.500   | #4353FF |
-| brand.600   | #2e3bcc |
-| neutral.900 | #2a2a2a |
-| neutral.500 | #6b6b6b |
-| neutral.100 | #f5f5f5 |
+| brand.50    | #f2e9e9 |
+| brand.100   | #e6ddd9 |
+| brand.700   | #2d1640 |
+| neutral.0   | #f4f2e9 |
+| neutral.500 | #737373 |
+| neutral.900 | #1f1f1f |
 
-Fonts: **Inter** (body, heading) · **Roboto Mono** (mono)
+Fonts: **Manrope** (body, heading) · **ui-monospace** (mono)
+
+## Local Commands
+- Start dev server: `npm run dev`
+- Build production bundle: `npm run build`
+- Preview production build: `npm run preview`
+- Run linting: `npm run lint`
+- Auto-fix lint issues: `npm run lint:fix`
+- Run tests once: `npm run test`
+- Run tests in watch mode: `npm run test:watch`
+- Run tests with coverage: `npm run test:coverage`
+
+## Testing Notes
+- App smoke test lives in `src/App.test.tsx`
+- Vitest setup file is `src/test/setup.ts`
+- Coverage output is generated in `coverage/` and should not be committed
 
 ## TypeScript Rules
 - Strict mode — no `any`
