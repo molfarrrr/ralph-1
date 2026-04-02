@@ -7,7 +7,7 @@
 | TASK-003: Create `iconButtonRecipe` in theme | done | Created iconButton.recipe.ts, registered in theme/index.ts |
 | TASK-004: Create `<Container>` shared component | done | Created Container.tsx in components/ui/ |
 | TASK-005: Create `<SectionDivider>` shared component | done | Created SectionDivider.tsx in components/ui/ |
-| TASK-006: Create `<PageHeading>` shared component | pending | |
+| TASK-006: Create `<PageHeading>` shared component | done | Created PageHeading.tsx using useRecipe with headingRecipe page variant |
 | TASK-007: Create `<EyebrowLabel>` shared component | pending | |
 | TASK-008: Create `<NavLink>` shared component | pending | |
 | TASK-009: Create barrel export `ui/index.ts` | pending | |
@@ -86,4 +86,13 @@
 - **Key decisions:** 4 variants: ghost (opacity hover), solid (filled), outline (bordered), ghostRound (circle close button); defaultVariants.variant = 'ghost'
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** px/py passed as string '5'/'3' to match Chakra spacing token syntax
+---
+
+---
+### [TASK-006] Create `<PageHeading>` shared component — iteration 6
+- **Status:** done
+- **Files changed:** `src/components/ui/PageHeading.tsx` (created)
+- **Key decisions:** Used `useRecipe({ recipe: headingRecipe })` to consume the page variant; `Box as={as}` with `css={styles}` avoids Heading component defaults; default `as="h1"` per PRD
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `mb` accepts number|string to support both spacing scale values and custom strings
 ---
