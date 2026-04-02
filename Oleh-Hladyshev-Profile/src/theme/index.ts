@@ -1,7 +1,11 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
+import { linkRecipe } from './recipes/link.recipe'
 
 const config = defineConfig({
   theme: {
+    recipes: {
+      link: linkRecipe,
+    },
     tokens: {
       colors: {
         brand: {

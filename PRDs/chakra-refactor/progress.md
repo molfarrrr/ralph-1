@@ -2,7 +2,7 @@
 
 | Task | Status | Notes |
 |------|--------|-------|
-| TASK-001: Create `linkRecipe` in theme | pending | |
+| TASK-001: Create `linkRecipe` in theme | done | Created link.recipe.ts, registered in theme/index.ts |
 | TASK-002: Create `headingRecipe` in theme | pending | |
 | TASK-003: Create `iconButtonRecipe` in theme | pending | |
 | TASK-004: Create `<Container>` shared component | pending | |
@@ -42,3 +42,12 @@
 | TASK-038: WorkPage — replace H1 with `<PageHeading>` | pending | |
 | TASK-039: Update all imports to use barrel `@/components/ui` | pending | |
 | TASK-040: Update react-developer skill with Chakra authoring rules | pending | |
+
+---
+### [TASK-001] Create `linkRecipe` in theme — iteration 1
+- **Status:** done
+- **Files changed:** `src/theme/recipes/link.recipe.ts` (created), `src/theme/index.ts` (updated)
+- **Key decisions:** Used `variant` as the discriminator key per Chakra `defineRecipe` convention; set `defaultVariants.variant = 'default'`
+- **Verification:** `npx tsc --noEmit` — zero errors; `theme/index.ts` has `recipes.link`
+- **Notes:** recipes directory created fresh; heading/iconButton recipes follow same pattern
+---
