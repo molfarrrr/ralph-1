@@ -436,7 +436,7 @@ export function AboutPage(): React.JSX.Element {
             >
               <Flex align="center" justify="space-between" px={{ base: 4, md: 5 }} py={4} borderBottom="1px solid" borderColor="rgba(31, 31, 31, 0.1)">
                 <Text fontSize="sm" fontWeight="500" color="neutral.900">
-                  Exact HTML CV
+                  CV Preview
                 </Text>
                 <chakra.button
                   type="button"
