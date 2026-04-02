@@ -51,7 +51,7 @@ export function Navbar(): React.JSX.Element {
           justify="space-between"
         >
           {/* Wordmark */}
-          <Link to="/">
+          <Link to="/" style={{ cursor: 'pointer' }}>
             <Text
               fontWeight="600"
               fontSize="lg"
@@ -67,12 +67,12 @@ export function Navbar(): React.JSX.Element {
           {/* Desktop nav links */}
           <HStack gap={8} display={{ base: 'none', md: 'flex' }}>
             {NAV_LINKS.map(({ label, href }) => (
-              <Link key={href} to={href}>
+              <Link key={href} to={href} style={{ cursor: 'pointer' }}>
                 <Text
                   color="neutral.900"
                   fontFamily="body"
                   fontSize="sm"
-                  fontWeight="400"
+                  fontWeight={pathname === href ? '500' : '400'}
                   _hover={{ color: 'neutral.500' }}
                   transition="0.25s ease"
                   pb="2px"
@@ -98,6 +98,8 @@ export function Navbar(): React.JSX.Element {
             onClick={() => setDrawerOpen((open) => !open)}
             aria-label="Open menu"
             zIndex={201}
+            _hover={{ opacity: 0.7 }}
+            transition="opacity 0.25s ease"
           >
             <Box
               position="absolute"
@@ -136,8 +138,46 @@ export function Navbar(): React.JSX.Element {
           zIndex={200}
           overflow="hidden"
         >
+          <Flex justify="flex-end" px={5} pt={5}>
+            <chakra.button
+              type="button"
+              display="inline-flex"
+              alignItems="center"
+              justifyContent="center"
+              w="32px"
+              h="32px"
+              color="neutral.900"
+              onClick={() => setDrawerOpen(false)}
+              aria-label="Close menu"
+              cursor="pointer"
+              _hover={{ opacity: 0.7 }}
+              transition="opacity 0.25s ease"
+            >
+              <Box position="relative" w="24px" h="24px" aria-hidden="true">
+                <Box
+                  position="absolute"
+                  top="11px"
+                  left="2px"
+                  w="20px"
+                  h="1.5px"
+                  bg="neutral.900"
+                  transform="rotate(45deg)"
+                />
+                <Box
+                  position="absolute"
+                  top="11px"
+                  left="2px"
+                  w="20px"
+                  h="1.5px"
+                  bg="neutral.900"
+                  transform="rotate(-45deg)"
+                />
+              </Box>
+            </chakra.button>
+          </Flex>
+
           <Flex
-            h="100vh"
+            h="calc(100vh - 72px)"
             direction="column"
             justify="center"
             align="center"
@@ -146,7 +186,12 @@ export function Navbar(): React.JSX.Element {
           >
             <VStack gap={8}>
               {NAV_LINKS.map(({ label, href }) => (
-                <Link key={href} to={href} onClick={() => setDrawerOpen(false)}>
+                <Link
+                  key={href}
+                  to={href}
+                  onClick={() => setDrawerOpen(false)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <Text
                     fontSize="clamp(2rem, 9vw, 3.25rem)"
                     fontWeight={pathname === href ? '500' : '300'}
@@ -154,6 +199,9 @@ export function Navbar(): React.JSX.Element {
                     fontFamily="heading"
                     letterSpacing="-0.03em"
                     textAlign="center"
+                    pb="2px"
+                    borderBottom={pathname === href ? '1px solid' : 'none'}
+                    borderColor="neutral.900"
                     _hover={{ color: 'neutral.500' }}
                     transition="0.25s ease"
                   >
