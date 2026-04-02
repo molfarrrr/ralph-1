@@ -219,7 +219,7 @@ export function AboutPage(): React.JSX.Element {
           <Box maxW="760px">
             <Heading
               as="h1"
-              fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
+              fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
               fontWeight="300"
               lineHeight="1.02"
               color="neutral.900"
@@ -338,7 +338,7 @@ export function AboutPage(): React.JSX.Element {
 
           <VStack align="stretch" gap={8}>
             <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
-              <Text fontSize="lg" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
+              <Text fontSize="md" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
                 Contact
               </Text>
               <VStack align="stretch" gap={2} color="neutral.900">
@@ -371,7 +371,7 @@ export function AboutPage(): React.JSX.Element {
             </Box>
 
             <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
-              <Text fontSize="lg" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
+              <Text fontSize="md" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
                 Education
               </Text>
               <Heading as="h2" fontSize="lg" fontWeight="500" color="neutral.900" mb={2}>
@@ -386,7 +386,7 @@ export function AboutPage(): React.JSX.Element {
             </Box>
 
             <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
-              <Text fontSize="lg" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
+              <Text fontSize="md" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
                 Skills
               </Text>
               <VStack align="stretch" gap={4}>
