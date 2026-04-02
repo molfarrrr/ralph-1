@@ -13,10 +13,12 @@ export function Footer(): React.JSX.Element {
         as={Flex}
         align={{ base: 'flex-start', md: 'center' }}
         justify="space-between"
-        wrap="wrap"
+        wrap="nowrap"
         gap={4}
       >
         <Text
+          flex="1"
+          minW={0}
           fontFamily="body"
           fontWeight="400"
           fontSize="xs"
@@ -27,7 +29,7 @@ export function Footer(): React.JSX.Element {
           © {year} Oleh Hladyshev. Senior software developer.
         </Text>
 
-        <HStack gap={4}>
+        <HStack gap={4} ml="auto" flexShrink={0}>
           {/* LinkedIn */}
           <chakra.a
             href="https://www.linkedin.com/in/oleg-gladyshev-profile/"

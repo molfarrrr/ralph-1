@@ -88,6 +88,7 @@ export function Navbar(): React.JSX.Element {
             position="relative"
             w="32px"
             h="32px"
+            ml="auto"
             cursor="pointer"
             onClick={() => setDrawerOpen((open) => !open)}
             aria-label="Open menu"
@@ -131,7 +132,7 @@ export function Navbar(): React.JSX.Element {
           zIndex={200}
           overflow="hidden"
         >
-          <Flex justify="flex-end" px={5} pt={5}>
+          <Flex justify="flex-end" px={{ base: 5, md: 8 }} pt={5}>
             <chakra.button
               type="button"
               display="inline-flex"
