@@ -14,9 +14,9 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
         as="main"
         flex={1}
         w="full"
-        maxW="85vw"
+        maxW="1128px"
         mx="auto"
-        px={{ base: 4, md: 6, lg: 0 }}
+        px={{ base: 5, md: 8, xl: 0 }}
       >
         {children}
       </Box>

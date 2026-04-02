@@ -1,15 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Flex,
   Text,
   HStack,
   VStack,
-  DrawerRoot,
-  DrawerBackdrop,
-  DrawerContent,
-  DrawerBody,
-  DrawerCloseTrigger,
+  Portal,
+  chakra,
 } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -24,6 +21,17 @@ export function Navbar(): React.JSX.Element {
   const { pathname } = useLocation()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
+  useEffect(() => {
+    if (!drawerOpen) return
+
+    const { overflow } = document.body.style
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = overflow
+    }
+  }, [drawerOpen])
+
   return (
     <>
       <Box
@@ -35,8 +43,9 @@ export function Navbar(): React.JSX.Element {
         zIndex={100}
       >
         <Flex
-          maxW={{ base: '95vw', lg: '85vw' }}
+          maxW="1128px"
           mx="auto"
+          px={{ base: 5, md: 8, xl: 0 }}
           py={5}
           align="center"
           justify="space-between"
@@ -77,40 +86,74 @@ export function Navbar(): React.JSX.Element {
           </HStack>
 
           {/* Hamburger icon (mobile only) */}
-          <Box
+          <chakra.button
+            type="button"
             display={{ base: 'flex', md: 'none' }}
-            flexDirection="column"
-            gap="5px"
-            w="24px"
+            alignItems="center"
+            justifyContent="center"
+            position="relative"
+            w="32px"
+            h="32px"
             cursor="pointer"
-            onClick={() => setDrawerOpen(true)}
+            onClick={() => setDrawerOpen((open) => !open)}
             aria-label="Open menu"
+            zIndex={201}
           >
-            <Box h="1.5px" w="full" bg="neutral.900" transition="0.25s ease" />
-            <Box h="1.5px" w="full" bg="neutral.900" transition="0.25s ease" />
-            <Box h="1.5px" w="full" bg="neutral.900" transition="0.25s ease" />
-          </Box>
+            <Box
+              position="absolute"
+              h="1.5px"
+              w="24px"
+              bg="neutral.900"
+              transition="transform 0.25s ease, opacity 0.25s ease"
+              transform={drawerOpen ? 'rotate(45deg)' : 'translateY(-6px)'}
+            />
+            <Box
+              position="absolute"
+              h="1.5px"
+              w="24px"
+              bg="neutral.900"
+              transition="opacity 0.25s ease"
+              opacity={drawerOpen ? 0 : 1}
+            />
+            <Box
+              position="absolute"
+              h="1.5px"
+              w="24px"
+              bg="neutral.900"
+              transition="transform 0.25s ease, opacity 0.25s ease"
+              transform={drawerOpen ? 'rotate(-45deg)' : 'translateY(6px)'}
+            />
+          </chakra.button>
         </Flex>
       </Box>
 
-      {/* Mobile drawer */}
-      <DrawerRoot
-        open={drawerOpen}
-        onOpenChange={(e) => setDrawerOpen(e.open)}
-        placement="end"
-      >
-        <DrawerBackdrop />
-        <DrawerContent bg="neutral.0">
-          <DrawerCloseTrigger />
-          <DrawerBody>
-            <VStack gap={6} align="flex-start" pt={12}>
+      <Portal>
+        <Box
+          display={{ base: drawerOpen ? 'block' : 'none', md: 'none' }}
+          position="fixed"
+          inset={0}
+          bg="neutral.0"
+          zIndex={200}
+          overflow="hidden"
+        >
+          <Flex
+            h="100vh"
+            direction="column"
+            justify="center"
+            align="center"
+            px={5}
+            gap={8}
+          >
+            <VStack gap={8}>
               {NAV_LINKS.map(({ label, href }) => (
                 <Link key={href} to={href} onClick={() => setDrawerOpen(false)}>
                   <Text
-                    fontSize="2xl"
-                    fontWeight="300"
+                    fontSize="clamp(2rem, 9vw, 3.25rem)"
+                    fontWeight={pathname === href ? '500' : '300'}
                     color="neutral.900"
                     fontFamily="heading"
+                    letterSpacing="-0.03em"
+                    textAlign="center"
                     _hover={{ color: 'neutral.500' }}
                     transition="0.25s ease"
                   >
@@ -119,9 +162,9 @@ export function Navbar(): React.JSX.Element {
                 </Link>
               ))}
             </VStack>
-          </DrawerBody>
-        </DrawerContent>
-      </DrawerRoot>
+          </Flex>
+        </Box>
+      </Portal>
     </>
   )
 }

@@ -6,20 +6,24 @@ export function Footer(): React.JSX.Element {
   return (
     <Box as="footer" w="full" bg="transparent" py={6}>
       <Flex
-        maxW={{ base: '95vw', lg: '85vw' }}
+        maxW="1128px"
         mx="auto"
-        align="center"
+        align={{ base: 'flex-start', md: 'center' }}
         justify="space-between"
         wrap="wrap"
         gap={4}
+        px={{ base: 5, md: 8, xl: 0 }}
       >
         <Text
           fontFamily="body"
           fontWeight="400"
-          fontSize="sm"
+          fontSize="xs"
+          lineHeight="1.6"
           color="neutral.500"
+          maxW="34rem"
         >
-          © {year} Oleh Gladyshev
+          © {year} Oleh Gladyshev. Product designer and developer building
+          thoughtful digital experiences with React, Chakra UI, and Vite.
         </Text>
 
         <HStack gap={4}>
