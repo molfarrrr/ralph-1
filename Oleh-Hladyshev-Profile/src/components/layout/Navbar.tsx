@@ -142,8 +142,7 @@ export function Navbar(): React.JSX.Element {
               onClick={() => setDrawerOpen(false)}
               aria-label="Close menu"
               cursor="pointer"
-              _hover={{ opacity: 0.7 }}
-              transition="opacity 0.25s ease"
+              css={ghostStyles}
             >
               <Box position="relative" w="24px" h="24px" aria-hidden="true">
                 <Box

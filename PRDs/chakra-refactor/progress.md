@@ -16,7 +16,7 @@
 | TASK-012: Navbar — replace desktop nav links with `<NavLink>` | done | Replaced Link+Text blocks with NavLink; removed _hover/transition/color inline props |
 | TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | done | Replaced Link+Text blocks with Box wrapper + NavLink; preserved fontFamily/letterSpacing/onClick |
 | TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | done | Imported iconButtonRecipe; applied ghostStyles via css prop; removed _hover + transition |
-| TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | pending | |
+| TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | done | Applied ghostStyles css prop; removed _hover + transition |
 | TASK-016: Footer — replace flex container with `<Container>` | pending | |
 | TASK-017: Footer — replace LinkedIn link hover with `linkRecipe` muted | pending | |
 | TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | pending | |
@@ -159,6 +159,15 @@
 - **Key decisions:** Imported `iconButtonRecipe`; called `useRecipe({ recipe: iconButtonRecipe })` + `iconBtnStyles({ variant: 'ghost' })`; applied via `css={ghostStyles}`; removed `_hover={{ opacity: 0.7 }}` and `transition="opacity 0.25s ease"`
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Recipe base provides `transition: 0.25s ease`; ghost variant provides `_hover: { opacity: 0.7 }`; explicit layout props (alignItems, justifyContent, cursor, display) kept as-is
+---
+
+---
+### [TASK-015] Navbar — replace close button with `iconButtonRecipe` ghost — iteration 15
+- **Status:** done
+- **Files changed:** `src/components/layout/Navbar.tsx`
+- **Key decisions:** `ghostStyles` was already computed in TASK-014; reused it on the close button; removed `_hover={{ opacity: 0.7 }}` and `transition="opacity 0.25s ease"`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** No new imports needed — `iconButtonRecipe` and `useRecipe` already present from TASK-014
 ---
 
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6
