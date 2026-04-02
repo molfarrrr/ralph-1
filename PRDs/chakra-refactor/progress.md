@@ -8,7 +8,7 @@
 | TASK-004: Create `<Container>` shared component | done | Created Container.tsx in components/ui/ |
 | TASK-005: Create `<SectionDivider>` shared component | done | Created SectionDivider.tsx in components/ui/ |
 | TASK-006: Create `<PageHeading>` shared component | done | Created PageHeading.tsx using useRecipe with headingRecipe page variant |
-| TASK-007: Create `<EyebrowLabel>` shared component | pending | |
+| TASK-007: Create `<EyebrowLabel>` shared component | done | Created EyebrowLabel.tsx using headingRecipe label variant |
 | TASK-008: Create `<NavLink>` shared component | pending | |
 | TASK-009: Create barrel export `ui/index.ts` | pending | |
 | TASK-010: Navbar — replace container with `<Container>` | pending | |
@@ -86,6 +86,15 @@
 - **Key decisions:** 4 variants: ghost (opacity hover), solid (filled), outline (bordered), ghostRound (circle close button); defaultVariants.variant = 'ghost'
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** px/py passed as string '5'/'3' to match Chakra spacing token syntax
+---
+
+---
+### [TASK-007] Create `<EyebrowLabel>` shared component — iteration 7
+- **Status:** done
+- **Files changed:** `src/components/ui/EyebrowLabel.tsx` (created)
+- **Key decisions:** Same pattern as PageHeading — `useRecipe({ recipe: headingRecipe })` with `variant: 'label'`; renders as plain `Box` (no heading semantics needed for eyebrow labels)
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `mb` accepts number|string matching PageHeading convention
 ---
 
 ---
