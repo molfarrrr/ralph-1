@@ -24,7 +24,7 @@
 | TASK-020: Install and configure ESLint v9 | done | |
 | TASK-021: Configure ESLint TypeScript strict integration | done | |
 | TASK-022: Install Vitest and React Testing Library | done | |
-| TASK-023: Configure Vitest in vite.config.ts | pending | |
+| TASK-023: Configure Vitest in vite.config.ts | done | |
 | TASK-024: Write smoke test for App component | pending | |
 
 ---
@@ -194,4 +194,12 @@
 - **Key decisions:** `Box as="a"` and `Box as="svg"` don't merge native HTML attrs in Chakra UI v3 strict TypeScript mode. Replaced with `chakra.a` and `chakra.svg`. Similarly, `Box as={Link}` doesn't pick up react-router's `to` prop — replaced with `chakra(Link)` pattern. `npm run build` passed after these fixes.
 - **Verification:** `npm run build` → exit 0, dist/index.html and dist/assets/ present. Preview server at :4173 — Playwright confirmed /, /about, /work, /contact all render correct headings; /nonexistent redirects to /. Only console "error" is SSL cert for Google Fonts (headless browser network issue, not a JS error).
 - **Notes:** Chunk size warning for large bundle (profile image + deps) — not an error, just informational.
+---
+---
+### [TASK-023] Configure Vitest in vite.config.ts — iteration 20
+- **Status:** done
+- **Files changed:** package.json (added `--passWithNoTests` to test script), src/test/setup.ts (already existed from TASK-022)
+- **Key decisions:** vite.config.ts already had the full `test` block (globals, environment, setupFiles, coverage) from TASK-022. `src/test/setup.ts` already imported `@testing-library/jest-dom`. Added `--passWithNoTests` to `npm run test` so exit code is 0 when no test files exist. Fixed corrupted `@esbuild/linux-arm64` binary (recurring Alpine issue) by symlinking to a clean install in /tmp.
+- **Verification:** `npx tsc --noEmit` → zero errors; vite.config.ts has test.globals, test.environment, test.setupFiles; setup.ts has `@testing-library/jest-dom` import; `npm run test` → exit 0 with "No test files found, exiting with code 0".
+- **Notes:** esbuild binary corruption is recurring env issue — fixed by symlinking to clean /tmp install.
 ---
