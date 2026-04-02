@@ -11,7 +11,7 @@
 | TASK-007: Create `<EyebrowLabel>` shared component | done | Created EyebrowLabel.tsx using headingRecipe label variant |
 | TASK-008: Create `<NavLink>` shared component | done | Created NavLink.tsx using linkRecipe default variant; isActive adds fontWeight 500 + underline |
 | TASK-009: Create barrel export `ui/index.ts` | done | Created index.ts re-exporting all 5 shared components |
-| TASK-010: Navbar — replace container with `<Container>` | pending | |
+| TASK-010: Navbar — replace container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
 | TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | pending | |
 | TASK-012: Navbar — replace desktop nav links with `<NavLink>` | pending | |
 | TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | pending | |
@@ -114,6 +114,15 @@
 - **Key decisions:** Simple re-exports for all 5 components; no default exports per project conventions
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** All subsequent tasks should import from `@/components/ui` rather than individual files
+---
+
+---
+### [TASK-010] Navbar — replace inner flex container with `<Container>` — iteration 10
+- **Status:** done
+- **Files changed:** `src/components/layout/Navbar.tsx`
+- **Key decisions:** Added `import { Container } from '@/components/ui'`; replaced `<Flex maxW="1128px" mx="auto" px={...}>` with `<Container as={Flex} ...>`; kept only `py`, `align`, `justify` on the Container
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Closing `</Flex>` also replaced with `</Container>`
 ---
 
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6

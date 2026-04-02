@@ -9,6 +9,7 @@ import {
   chakra,
 } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
+import { Container } from '@/components/ui'
 
 const NAV_LINKS = [
   { label: 'Home',    href: '/' },
@@ -43,10 +44,8 @@ export function Navbar(): React.JSX.Element {
         top={0}
         zIndex={100}
       >
-        <Flex
-          maxW="1128px"
-          mx="auto"
-          px={{ base: 5, md: 8, xl: 0 }}
+        <Container
+          as={Flex}
           py={5}
           align="center"
           justify="space-between"
@@ -127,7 +126,7 @@ export function Navbar(): React.JSX.Element {
               transform={drawerOpen ? 'rotate(-45deg)' : 'translateY(6px)'}
             />
           </chakra.button>
-        </Flex>
+        </Container>
       </Box>
 
       <Portal>
