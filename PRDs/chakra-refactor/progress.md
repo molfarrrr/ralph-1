@@ -4,7 +4,7 @@
 |------|--------|-------|
 | TASK-001: Create `linkRecipe` in theme | done | Created link.recipe.ts, registered in theme/index.ts |
 | TASK-002: Create `headingRecipe` in theme | done | Created heading.recipe.ts, registered in theme/index.ts |
-| TASK-003: Create `iconButtonRecipe` in theme | pending | |
+| TASK-003: Create `iconButtonRecipe` in theme | done | Created iconButton.recipe.ts, registered in theme/index.ts |
 | TASK-004: Create `<Container>` shared component | pending | |
 | TASK-005: Create `<SectionDivider>` shared component | pending | |
 | TASK-006: Create `<PageHeading>` shared component | pending | |
@@ -59,4 +59,13 @@
 - **Key decisions:** Used `variant` discriminator; `defaultVariants.variant = 'section'`; fontWeight as string to match Chakra token expectations
 - **Verification:** `npx tsc --noEmit` — zero errors; `theme/index.ts` has `recipes.heading`
 - **Notes:** `page` variant matches exact PRD spec; `label` variant has textTransform uppercase for eyebrow labels
+---
+
+---
+### [TASK-003] Create `iconButtonRecipe` in theme — iteration 3
+- **Status:** done
+- **Files changed:** `src/theme/recipes/iconButton.recipe.ts` (created), `src/theme/index.ts` (updated)
+- **Key decisions:** 4 variants: ghost (opacity hover), solid (filled), outline (bordered), ghostRound (circle close button); defaultVariants.variant = 'ghost'
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** px/py passed as string '5'/'3' to match Chakra spacing token syntax
 ---
