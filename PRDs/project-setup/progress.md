@@ -25,7 +25,7 @@
 | TASK-021: Configure ESLint TypeScript strict integration | done | |
 | TASK-022: Install Vitest and React Testing Library | done | |
 | TASK-023: Configure Vitest in vite.config.ts | done | |
-| TASK-024: Write smoke test for App component | pending | |
+| TASK-024: Write smoke test for App component | done | |
 
 ---
 ### [TASK-005] Install React Router v7 — iteration 1
@@ -202,4 +202,12 @@
 - **Key decisions:** vite.config.ts already had the full `test` block (globals, environment, setupFiles, coverage) from TASK-022. `src/test/setup.ts` already imported `@testing-library/jest-dom`. Added `--passWithNoTests` to `npm run test` so exit code is 0 when no test files exist. Fixed corrupted `@esbuild/linux-arm64` binary (recurring Alpine issue) by symlinking to a clean install in /tmp.
 - **Verification:** `npx tsc --noEmit` → zero errors; vite.config.ts has test.globals, test.environment, test.setupFiles; setup.ts has `@testing-library/jest-dom` import; `npm run test` → exit 0 with "No test files found, exiting with code 0".
 - **Notes:** esbuild binary corruption is recurring env issue — fixed by symlinking to clean /tmp install.
+---
+---
+### [TASK-024] Write smoke test for App component — iteration 21
+- **Status:** done
+- **Files changed:** src/App.test.tsx, package.json, package-lock.json
+- **Key decisions:** Test renders `<App />` wrapped in `MemoryRouter` + `ChakraProvider value={system}`. Two assertions: (1) renders without crashing (body.firstChild truthy), (2) home route h1 heading present via `getByRole`. Required fixing multiple corrupted native binaries: `@rollup/rollup-linux-arm64-gnu.node` (was corrupted, replaced from clean /tmp install), `@vitest/coverage-v8/dist/provider.js` (corrupted with null bytes, replaced from clean install), vitest nested esbuild (corrupted after npm install, replaced from clean 0.21.5 install), missing `@testing-library/dom` and `@vitest/coverage-v8` packages. Also downgraded vitest from ^4 to ^2 (v4 crashed with SIGILL in worker threads; v2 works).
+- **Verification:** `npx tsc --noEmit` → zero errors; `npm run test` → exit 0, 1 test suite, 2 tests green; `npm run test:coverage` → coverage report generated in `coverage/` directory.
+- **Notes:** Recurring environment issue: npm install corrupts files in node_modules (null bytes inserted). Each install run may corrupt newly installed packages. Fix by installing in /tmp and copying clean files over.
 ---
