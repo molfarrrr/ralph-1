@@ -5,7 +5,7 @@
 | TASK-001: Create `linkRecipe` in theme | done | Created link.recipe.ts, registered in theme/index.ts |
 | TASK-002: Create `headingRecipe` in theme | done | Created heading.recipe.ts, registered in theme/index.ts |
 | TASK-003: Create `iconButtonRecipe` in theme | done | Created iconButton.recipe.ts, registered in theme/index.ts |
-| TASK-004: Create `<Container>` shared component | pending | |
+| TASK-004: Create `<Container>` shared component | done | Created Container.tsx in components/ui/ |
 | TASK-005: Create `<SectionDivider>` shared component | pending | |
 | TASK-006: Create `<PageHeading>` shared component | pending | |
 | TASK-007: Create `<EyebrowLabel>` shared component | pending | |
@@ -59,6 +59,15 @@
 - **Key decisions:** Used `variant` discriminator; `defaultVariants.variant = 'section'`; fontWeight as string to match Chakra token expectations
 - **Verification:** `npx tsc --noEmit` — zero errors; `theme/index.ts` has `recipes.heading`
 - **Notes:** `page` variant matches exact PRD spec; `label` variant has textTransform uppercase for eyebrow labels
+---
+
+---
+### [TASK-004] Create `<Container>` shared component — iteration 4
+- **Status:** done
+- **Files changed:** `src/components/ui/Container.tsx` (created)
+- **Key decisions:** Extended BoxProps to allow passing extra Chakra props (needed for later tasks using `as={Flex}` with `py`, `align`, `justify`)
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `px` and `maxW` are the container-specific props; all others spread through to underlying Box
 ---
 
 ---
