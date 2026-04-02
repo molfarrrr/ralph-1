@@ -1,18 +1,17 @@
 import { Box, Flex, Text, HStack, chakra } from '@chakra-ui/react'
+import { Container } from '@/components/ui'
 
 export function Footer(): React.JSX.Element {
   const year = new Date().getFullYear()
 
   return (
     <Box as="footer" w="full" bg="transparent" py={6}>
-      <Flex
-        maxW="1128px"
-        mx="auto"
+      <Container
+        as={Flex}
         align={{ base: 'flex-start', md: 'center' }}
         justify="space-between"
         wrap="wrap"
         gap={4}
-        px={{ base: 5, md: 8, xl: 0 }}
       >
         <Text
           fontFamily="body"
@@ -60,7 +59,7 @@ export function Footer(): React.JSX.Element {
             </chakra.svg>
           </chakra.a>
         </HStack>
-      </Flex>
+      </Container>
     </Box>
   )
 }

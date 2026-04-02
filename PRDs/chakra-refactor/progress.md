@@ -17,7 +17,7 @@
 | TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | done | Replaced Link+Text blocks with Box wrapper + NavLink; preserved fontFamily/letterSpacing/onClick |
 | TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | done | Imported iconButtonRecipe; applied ghostStyles via css prop; removed _hover + transition |
 | TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | done | Applied ghostStyles css prop; removed _hover + transition |
-| TASK-016: Footer — replace flex container with `<Container>` | pending | |
+| TASK-016: Footer — replace flex container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
 | TASK-017: Footer — replace LinkedIn link hover with `linkRecipe` muted | pending | |
 | TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | pending | |
 | TASK-019: Layout — replace main container with `<Container>` | pending | |
@@ -176,4 +176,13 @@
 - **Key decisions:** Used `useRecipe({ recipe: headingRecipe })` to consume the page variant; `Box as={as}` with `css={styles}` avoids Heading component defaults; default `as="h1"` per PRD
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `mb` accepts number|string to support both spacing scale values and custom strings
+---
+
+---
+### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
+- **Status:** done
+- **Files changed:** `src/components/layout/Footer.tsx`
+- **Key decisions:** Replaced `<Flex maxW="1128px" mx="auto" px={...}>` with `<Container as={Flex} ...>`; kept `align`, `justify`, `wrap`, `gap`; `Flex` import retained as it's passed as `as` prop; added `Container` import from `@/components/ui`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Footer layout unchanged; same pattern as Navbar TASK-010
 ---
