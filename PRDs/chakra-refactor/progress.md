@@ -12,7 +12,7 @@
 | TASK-008: Create `<NavLink>` shared component | done | Created NavLink.tsx using linkRecipe default variant; isActive adds fontWeight 500 + underline |
 | TASK-009: Create barrel export `ui/index.ts` | done | Created index.ts re-exporting all 5 shared components |
 | TASK-010: Navbar — replace container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
-| TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | pending | |
+| TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | done | Imported linkRecipe + useRecipe; applied wordmarkStyles via css prop; removed transition/_hover |
 | TASK-012: Navbar — replace desktop nav links with `<NavLink>` | pending | |
 | TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | pending | |
 | TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | pending | |
@@ -123,6 +123,15 @@
 - **Key decisions:** Added `import { Container } from '@/components/ui'`; replaced `<Flex maxW="1128px" mx="auto" px={...}>` with `<Container as={Flex} ...>`; kept only `py`, `align`, `justify` on the Container
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Closing `</Flex>` also replaced with `</Container>`
+---
+
+---
+### [TASK-011] Navbar — replace wordmark link hover with `linkRecipe` — iteration 11
+- **Status:** done
+- **Files changed:** `src/components/layout/Navbar.tsx`
+- **Key decisions:** Added `useRecipe` import and `linkRecipe` import; called `useRecipe({ recipe: linkRecipe })` in component body to get `wordmarkStyles`; applied via `css={wordmarkStyles}` on `<Text>`; removed `color="neutral.900"`, `transition`, and `_hover` props (color now provided by recipe)
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Recipe provides `color: neutral.900`, `transition: 0.25s ease`, `_hover: { color: neutral.500 }` — all three inline props replaced
 ---
 
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6

@@ -7,9 +7,11 @@ import {
   VStack,
   Portal,
   chakra,
+  useRecipe,
 } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { Container } from '@/components/ui'
+import { linkRecipe } from '@/theme/recipes/link.recipe'
 
 const NAV_LINKS = [
   { label: 'Home',    href: '/' },
@@ -20,6 +22,8 @@ const NAV_LINKS = [
 export function Navbar(): React.JSX.Element {
   const { pathname } = useLocation()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const linkStyles = useRecipe({ recipe: linkRecipe })
+  const wordmarkStyles = linkStyles({ variant: 'default' })
 
   useEffect((): (() => void) | void => {
     if (!drawerOpen) return
@@ -55,10 +59,8 @@ export function Navbar(): React.JSX.Element {
             <Text
               fontWeight="600"
               fontSize="lg"
-              color="neutral.900"
               fontFamily="heading"
-              transition="0.25s ease"
-              _hover={{ color: 'neutral.500' }}
+              css={wordmarkStyles}
             >
               Oleh Hladyshev
             </Text>
