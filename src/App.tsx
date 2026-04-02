@@ -9,7 +9,8 @@ export function App(): React.JSX.Element {
   return (
     <Routes>
       <Route path="/" element={<Layout><HomePage /></Layout>} />
-      <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+      <Route path="/cv" element={<Layout><AboutPage /></Layout>} />
+      <Route path="/about" element={<Navigate to="/cv" replace />} />
       <Route path="/work" element={<Layout><WorkPage /></Layout>} />
       <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
       <Route path="*" element={<Navigate to="/" replace />} />

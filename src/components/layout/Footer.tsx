@@ -22,8 +22,7 @@ export function Footer(): React.JSX.Element {
           color="neutral.500"
           maxW="34rem"
         >
-          © {year} Oleh Hladyshev. Product designer and developer building
-          thoughtful digital experiences with React, Chakra UI, and Vite.
+          © {year} Oleh Hladyshev. Senior software developer.
         </Text>
 
         <HStack gap={4}>

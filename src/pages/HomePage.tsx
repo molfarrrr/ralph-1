@@ -25,7 +25,7 @@ export function HomePage(): React.JSX.Element {
             textTransform="uppercase"
             mb={5}
           >
-            Product Designer &amp; Developer
+            Angular, React, C#, SQL
           </Text>
 
           {/* H1 */}
@@ -38,9 +38,9 @@ export function HomePage(): React.JSX.Element {
             color="neutral.900"
             mb={6}
           >
-            Crafting digital<br />
+            Senior web<br />
             <Box as="span" fontWeight="300">
-              experiences
+              developer
             </Box>
           </Heading>
 
@@ -51,16 +51,15 @@ export function HomePage(): React.JSX.Element {
             fontWeight="400"
             color="neutral.900"
             lineHeight="1.7"
-            maxW="480px"
+            maxW="540px"
             mb={10}
           >
-            I design and build thoughtful products that put people first.
-            Based in Kyiv, open to remote opportunities worldwide.
+            I build enterprise web applications with Angular, React, C#, and SQL, with a track record in modernization, delivery, and long-lived systems.
           </Text>
 
           {/* CTA — minimal text/arrow treatment */}
           <ChakraLink
-            to="/work"
+            to="/cv"
             display="inline-flex"
             alignItems="center"
             gap={2}
@@ -74,7 +73,7 @@ export function HomePage(): React.JSX.Element {
             _hover={{ color: 'neutral.500', borderColor: 'neutral.500' }}
             transition="0.25s ease"
           >
-            View my work
+            View my CV
             <Box as="span" aria-hidden="true">→</Box>
           </ChakraLink>
         </Box>

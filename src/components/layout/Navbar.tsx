@@ -12,8 +12,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 const NAV_LINKS = [
   { label: 'Home',    href: '/' },
-  { label: 'About',   href: '/about' },
-  { label: 'Work',    href: '/work' },
+  { label: 'CV',      href: '/cv' },
   { label: 'Contact', href: '/contact' },
 ] as const
 
@@ -21,13 +20,13 @@ export function Navbar(): React.JSX.Element {
   const { pathname } = useLocation()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  useEffect(() => {
+  useEffect((): (() => void) | void => {
     if (!drawerOpen) return
 
     const { overflow } = document.body.style
     document.body.style.overflow = 'hidden'
 
-    return () => {
+    return (): void => {
       document.body.style.overflow = overflow
     }
   }, [drawerOpen])
@@ -37,7 +36,9 @@ export function Navbar(): React.JSX.Element {
       <Box
         as="nav"
         w="full"
-        bg="transparent"
+        bg="neutral.0"
+        borderBottom="1px solid"
+        borderColor="rgba(31, 31, 31, 0.08)"
         position="fixed"
         top={0}
         zIndex={100}

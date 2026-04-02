@@ -17,6 +17,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
         maxW="1128px"
         mx="auto"
         px={{ base: 5, md: 8, xl: 0 }}
+        pt={{ base: '72px', md: '76px' }}
       >
         {children}
       </Box>
