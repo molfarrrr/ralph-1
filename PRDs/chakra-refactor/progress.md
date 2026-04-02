@@ -13,7 +13,7 @@
 | TASK-009: Create barrel export `ui/index.ts` | done | Created index.ts re-exporting all 5 shared components |
 | TASK-010: Navbar — replace container with `<Container>` | done | Replaced Flex with Container as={Flex}, removed maxW/mx/px props |
 | TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | done | Imported linkRecipe + useRecipe; applied wordmarkStyles via css prop; removed transition/_hover |
-| TASK-012: Navbar — replace desktop nav links with `<NavLink>` | pending | |
+| TASK-012: Navbar — replace desktop nav links with `<NavLink>` | done | Replaced Link+Text blocks with NavLink; removed _hover/transition/color inline props |
 | TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | pending | |
 | TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | pending | |
 | TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | pending | |
@@ -132,6 +132,15 @@
 - **Key decisions:** Added `useRecipe` import and `linkRecipe` import; called `useRecipe({ recipe: linkRecipe })` in component body to get `wordmarkStyles`; applied via `css={wordmarkStyles}` on `<Text>`; removed `color="neutral.900"`, `transition`, and `_hover` props (color now provided by recipe)
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Recipe provides `color: neutral.900`, `transition: 0.25s ease`, `_hover: { color: neutral.500 }` — all three inline props replaced
+---
+
+---
+### [TASK-012] Navbar — replace desktop nav links with `<NavLink>` — iteration 12
+- **Status:** done
+- **Files changed:** `src/components/layout/Navbar.tsx`
+- **Key decisions:** Added `NavLink` to import from `@/components/ui`; replaced each `<Link><Text ...></Text></Link>` block with `<NavLink to={href} isActive={pathname === href} fontSize="sm">`; removed inline `color`, `_hover`, `transition`, `fontWeight`, `borderBottom` props (NavLink handles active state with underline via textDecoration)
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Desktop nav active state now uses `textDecoration: underline` (from NavLink) instead of `borderBottom: 1px solid` — consistent with NavLink component design; `Text` import retained for wordmark
 ---
 
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6

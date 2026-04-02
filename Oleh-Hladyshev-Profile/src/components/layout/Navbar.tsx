@@ -10,7 +10,7 @@ import {
   useRecipe,
 } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
-import { Container } from '@/components/ui'
+import { Container, NavLink } from '@/components/ui'
 import { linkRecipe } from '@/theme/recipes/link.recipe'
 
 const NAV_LINKS = [
@@ -69,21 +69,9 @@ export function Navbar(): React.JSX.Element {
           {/* Desktop nav links */}
           <HStack gap={8} display={{ base: 'none', md: 'flex' }}>
             {NAV_LINKS.map(({ label, href }) => (
-              <Link key={href} to={href} style={{ cursor: 'pointer' }}>
-                <Text
-                  color="neutral.900"
-                  fontFamily="body"
-                  fontSize="sm"
-                  fontWeight={pathname === href ? '500' : '400'}
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
-                  pb="2px"
-                  borderBottom={pathname === href ? '1px solid' : 'none'}
-                  borderColor="neutral.900"
-                >
-                  {label}
-                </Text>
-              </Link>
+              <NavLink key={href} to={href} isActive={pathname === href} fontSize="sm">
+                {label}
+              </NavLink>
             ))}
           </HStack>
 
