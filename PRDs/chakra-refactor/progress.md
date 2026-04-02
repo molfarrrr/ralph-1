@@ -15,7 +15,7 @@
 | TASK-011: Navbar — replace wordmark link hover with `linkRecipe` | done | Imported linkRecipe + useRecipe; applied wordmarkStyles via css prop; removed transition/_hover |
 | TASK-012: Navbar — replace desktop nav links with `<NavLink>` | done | Replaced Link+Text blocks with NavLink; removed _hover/transition/color inline props |
 | TASK-013: Navbar — replace mobile drawer links with `<NavLink>` | done | Replaced Link+Text blocks with Box wrapper + NavLink; preserved fontFamily/letterSpacing/onClick |
-| TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | pending | |
+| TASK-014: Navbar — replace hamburger button with `iconButtonRecipe` ghost | done | Imported iconButtonRecipe; applied ghostStyles via css prop; removed _hover + transition |
 | TASK-015: Navbar — replace close button with `iconButtonRecipe` ghost | pending | |
 | TASK-016: Footer — replace flex container with `<Container>` | pending | |
 | TASK-017: Footer — replace LinkedIn link hover with `linkRecipe` muted | pending | |
@@ -150,6 +150,15 @@
 - **Key decisions:** Wrapped each NavLink in a `<Box>` to preserve `onClick` (drawer close), `fontFamily`, `letterSpacing`, `textAlign`, `pb` which NavLink doesn't accept; removed `_hover` and `transition` (linkRecipe handles those); removed `borderBottom` active indicator (NavLink's textDecoration underline replaces it); passed `fontWeight` through NavLink's existing prop
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `Link` import retained — still used for wordmark
+---
+
+---
+### [TASK-014] Navbar — replace hamburger button with `iconButtonRecipe` ghost — iteration 14
+- **Status:** done
+- **Files changed:** `src/components/layout/Navbar.tsx`
+- **Key decisions:** Imported `iconButtonRecipe`; called `useRecipe({ recipe: iconButtonRecipe })` + `iconBtnStyles({ variant: 'ghost' })`; applied via `css={ghostStyles}`; removed `_hover={{ opacity: 0.7 }}` and `transition="opacity 0.25s ease"`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Recipe base provides `transition: 0.25s ease`; ghost variant provides `_hover: { opacity: 0.7 }`; explicit layout props (alignItems, justifyContent, cursor, display) kept as-is
 ---
 
 ### [TASK-006] Create `<PageHeading>` shared component — iteration 6

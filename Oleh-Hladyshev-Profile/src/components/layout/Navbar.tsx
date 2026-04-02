@@ -12,6 +12,7 @@ import {
 import { Link, useLocation } from 'react-router-dom'
 import { Container, NavLink } from '@/components/ui'
 import { linkRecipe } from '@/theme/recipes/link.recipe'
+import { iconButtonRecipe } from '@/theme/recipes/iconButton.recipe'
 
 const NAV_LINKS = [
   { label: 'Home',    href: '/' },
@@ -24,6 +25,8 @@ export function Navbar(): React.JSX.Element {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const linkStyles = useRecipe({ recipe: linkRecipe })
   const wordmarkStyles = linkStyles({ variant: 'default' })
+  const iconBtnStyles = useRecipe({ recipe: iconButtonRecipe })
+  const ghostStyles = iconBtnStyles({ variant: 'ghost' })
 
   useEffect((): (() => void) | void => {
     if (!drawerOpen) return
@@ -88,8 +91,7 @@ export function Navbar(): React.JSX.Element {
             onClick={() => setDrawerOpen((open) => !open)}
             aria-label="Open menu"
             zIndex={201}
-            _hover={{ opacity: 0.7 }}
-            transition="opacity 0.25s ease"
+            css={ghostStyles}
           >
             <Box
               position="absolute"
