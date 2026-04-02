@@ -3,7 +3,7 @@
 | Task | Status | Notes |
 |------|--------|-------|
 | TASK-001: Create `linkRecipe` in theme | done | Created link.recipe.ts, registered in theme/index.ts |
-| TASK-002: Create `headingRecipe` in theme | pending | |
+| TASK-002: Create `headingRecipe` in theme | done | Created heading.recipe.ts, registered in theme/index.ts |
 | TASK-003: Create `iconButtonRecipe` in theme | pending | |
 | TASK-004: Create `<Container>` shared component | pending | |
 | TASK-005: Create `<SectionDivider>` shared component | pending | |
@@ -50,4 +50,13 @@
 - **Key decisions:** Used `variant` as the discriminator key per Chakra `defineRecipe` convention; set `defaultVariants.variant = 'default'`
 - **Verification:** `npx tsc --noEmit` — zero errors; `theme/index.ts` has `recipes.link`
 - **Notes:** recipes directory created fresh; heading/iconButton recipes follow same pattern
+---
+
+---
+### [TASK-002] Create `headingRecipe` in theme — iteration 2
+- **Status:** done
+- **Files changed:** `src/theme/recipes/heading.recipe.ts` (created), `src/theme/index.ts` (updated)
+- **Key decisions:** Used `variant` discriminator; `defaultVariants.variant = 'section'`; fontWeight as string to match Chakra token expectations
+- **Verification:** `npx tsc --noEmit` — zero errors; `theme/index.ts` has `recipes.heading`
+- **Notes:** `page` variant matches exact PRD spec; `label` variant has textTransform uppercase for eyebrow labels
 ---
