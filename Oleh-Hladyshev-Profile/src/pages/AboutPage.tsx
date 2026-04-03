@@ -3,7 +3,7 @@ import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra, useReci
 import { PageHeading, SectionDivider, TextLink } from '@/components/ui'
 import { iconButtonRecipe } from '@/theme/recipes/iconButton.recipe'
 
-const VIEW_RESUME_URL = new URL('resume/resume_print.html', import.meta.env.BASE_URL).toString()
+const VIEW_RESUME_URL = `${import.meta.env.BASE_URL}resume/resume_print.html`
 
 type ExperienceBullet = {
   id: string
