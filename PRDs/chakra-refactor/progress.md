@@ -40,7 +40,7 @@
 | TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
 | TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | done | Reused defaultLinkStyles (css prop) from TASK-036; removed color/_hover/transition |
 | TASK-038: WorkPage — replace H1 with `<PageHeading>` | done | Replaced Heading with PageHeading mb={6}; removed Heading import |
-| TASK-039: Update all imports to use barrel `@/components/ui` | pending | |
+| TASK-039: Update all imports to use barrel `@/components/ui` | done | No direct path imports found — all files already use barrel |
 | TASK-040: Update react-developer skill with Chakra authoring rules | pending | |
 
 ---
@@ -365,6 +365,15 @@
 - **Key decisions:** `defaultLinkStyles` was already computed in TASK-036; reused `css={defaultLinkStyles}` on LinkedIn and GitHub `<chakra.a>`; removed `color="neutral.900"`, `_hover`, `transition` inline props
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** No new imports needed — `linkRecipe`, `useRecipe`, and `defaultLinkStyles` already present from TASK-036
+---
+
+---
+### [TASK-039] Update all imports to use barrel `@/components/ui` — iteration 17
+- **Status:** done
+- **Files changed:** none
+- **Key decisions:** Verified with grep — zero results for `from '@/components/ui/'` (direct path imports); all components already import from barrel `@/components/ui`
+- **Verification:** `grep -r "from '@/components/ui/"` — zero results; `npx tsc --noEmit` — zero errors
+- **Notes:** All tasks from TASK-009 onward correctly used barrel imports, so no changes needed
 ---
 
 ---
