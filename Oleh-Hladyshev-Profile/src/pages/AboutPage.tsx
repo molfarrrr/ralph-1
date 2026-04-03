@@ -330,7 +330,7 @@ export function AboutPage(): React.JSX.Element {
           </VStack>
 
           <VStack align="stretch" gap={8}>
-            <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
+            <SectionDivider>
               <Text fontSize="md" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
                 Contact
               </Text>
@@ -361,7 +361,7 @@ export function AboutPage(): React.JSX.Element {
                   GitHub
                 </chakra.a>
               </VStack>
-            </Box>
+            </SectionDivider>
 
             <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
               <Text fontSize="md" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>

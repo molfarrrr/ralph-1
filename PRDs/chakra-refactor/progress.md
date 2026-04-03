@@ -26,7 +26,7 @@
 | TASK-022: HomePage — replace CTA link hover with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
 | TASK-023: AboutPage — replace H1 with `<PageHeading>` | done | Replaced Heading as="h1" with PageHeading mb={5}; added PageHeading import from @/components/ui |
 | TASK-024: AboutPage — replace "Experience" divider with `<SectionDivider>` | done | Added SectionDivider import; replaced Box at line 293 and its closing tag |
-| TASK-025: AboutPage — replace "Contact" divider with `<SectionDivider>` | pending | |
+| TASK-025: AboutPage — replace "Contact" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; updated closing tag |
 | TASK-026: AboutPage — replace "Education" divider with `<SectionDivider>` | pending | |
 | TASK-027: AboutPage — replace "Skills" divider with `<SectionDivider>` | pending | |
 | TASK-028: AboutPage — replace email + phone link hovers with `linkRecipe` | pending | |
@@ -248,6 +248,15 @@
 - **Key decisions:** Added `SectionDivider` to import from `@/components/ui`; replaced `<Box borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` at line 293 with `<SectionDivider>`; updated closing tag accordingly
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Three more similar dividers remain (Contact, Education, Skills) — TASK-025/026/027
+---
+
+---
+### [TASK-025] AboutPage — replace "Contact" divider with `<SectionDivider>` — iteration 4
+- **Status:** done
+- **Files changed:** `src/pages/AboutPage.tsx`
+- **Key decisions:** Replaced `<Box borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` wrapping "Contact" heading and content with `<SectionDivider>`; `SectionDivider` was already imported from TASK-024
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Education (line 366) and Skills (line 381) dividers still pending as separate tasks
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
