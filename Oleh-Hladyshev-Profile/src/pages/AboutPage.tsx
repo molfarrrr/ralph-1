@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra } from '@chakra-ui/react'
+import { PageHeading } from '@/components/ui'
 
 const VIEW_RESUME_URL = '/resume/resume_03_2026.html'
 
@@ -217,17 +218,9 @@ export function AboutPage(): React.JSX.Element {
           gap={8}
         >
           <Box maxW="760px">
-            <Heading
-              as="h1"
-              fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
-              fontWeight="300"
-              lineHeight="1.02"
-              color="neutral.900"
-              letterSpacing="-0.04em"
-              mb={5}
-            >
+            <PageHeading mb={5}>
               Senior software developer with a strong frontend edge.
-            </Heading>
+            </PageHeading>
             <Text
               fontSize={{ base: 'md', lg: 'lg' }}
               lineHeight="1.8"

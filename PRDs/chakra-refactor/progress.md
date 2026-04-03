@@ -24,7 +24,7 @@
 | TASK-020: HomePage — replace H1 with `<PageHeading>` | done | Replaced Heading with PageHeading mb={6}; removed Heading import |
 | TASK-021: HomePage — replace eyebrow text with `<EyebrowLabel>` | done | Replaced Text with EyebrowLabel mb={5}; removed Text import not needed |
 | TASK-022: HomePage — replace CTA link hover with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
-| TASK-023: AboutPage — replace H1 with `<PageHeading>` | pending | |
+| TASK-023: AboutPage — replace H1 with `<PageHeading>` | done | Replaced Heading as="h1" with PageHeading mb={5}; added PageHeading import from @/components/ui |
 | TASK-024: AboutPage — replace "Experience" divider with `<SectionDivider>` | pending | |
 | TASK-025: AboutPage — replace "Contact" divider with `<SectionDivider>` | pending | |
 | TASK-026: AboutPage — replace "Education" divider with `<SectionDivider>` | pending | |
@@ -230,6 +230,15 @@
 - **Key decisions:** Added `useRecipe` + `linkRecipe` imports; called `link({ variant: 'default' })` and applied via `css={linkStyles}`; removed `color="neutral.900"`, `_hover`, `transition` inline props
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `borderBottom` and `borderColor` remain explicit since recipe only covers color/transition; borderColor hover for the underline is not in the recipe but PRD specifies to remove it
+---
+
+---
+### [TASK-023] AboutPage — replace H1 with `<PageHeading>` — iteration 23
+- **Status:** done
+- **Files changed:** `src/pages/AboutPage.tsx`
+- **Key decisions:** Added `PageHeading` import from `@/components/ui`; replaced `<Heading as="h1" fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} ...>` with `<PageHeading mb={5}>`; `Heading` import retained (used for h2 elements in experience/education sections)
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Actual file had `3xl/4xl/5xl` sizes (vs PRD-listed `4xl/5xl/6xl`); replaced per PRD instruction; recipe page variant now controls font sizing
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
