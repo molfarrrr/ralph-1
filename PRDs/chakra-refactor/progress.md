@@ -33,7 +33,7 @@
 | TASK-029: AboutPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | done | Reused defaultLinkStyles (css prop) from TASK-028; removed _hover + transition |
 | TASK-030: AboutPage — replace Print button with `iconButtonRecipe` solid | done | Imported iconButtonRecipe; applied solidStyles via css prop; removed layout/hover/transition props |
 | TASK-031: AboutPage — replace Preview button with `iconButtonRecipe` outline | done | Applied outlineStyles via css prop; removed layout/border/hover/transition inline props |
-| TASK-032: AboutPage — replace modal close button with `iconButtonRecipe` ghostRound | pending | |
+| TASK-032: AboutPage — replace modal close button with `iconButtonRecipe` ghostRound | done | Applied ghostRoundStyles via css prop; removed w/h/display/alignItems/justifyContent/borderRadius/cursor/_hover/transition |
 | TASK-033: ContactPage — replace H1 with `<PageHeading>` | pending | |
 | TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | pending | |
 | TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | pending | |
@@ -311,6 +311,15 @@
 - **Key decisions:** Added `outlineStyles = iconBtn({ variant: 'outline' })` (reused existing `iconBtn` from TASK-030); applied via `css={outlineStyles}`; removed `display`, `alignItems`, `justifyContent`, `px`, `py`, `border`, `borderColor`, `color`, `borderRadius`, `cursor`, `_hover`, `transition`; kept `fontSize`, `fontWeight`, `onClick`
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `outlineStyles` ready for reuse on any future outline buttons
+---
+
+---
+### [TASK-032] AboutPage — replace modal close button with `iconButtonRecipe` ghostRound — iteration 11
+- **Status:** done
+- **Files changed:** `src/pages/AboutPage.tsx`
+- **Key decisions:** Added `ghostRoundStyles = iconBtn({ variant: 'ghostRound' })` reusing existing `iconBtn` from TASK-030; applied via `css={ghostRoundStyles}`; removed `w`, `h`, `display`, `alignItems`, `justifyContent`, `borderRadius`, `cursor`, `_hover`, `transition`; kept `color` and `onClick`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `iconBtn` and `iconButtonRecipe` already imported from TASK-030/031 — no new imports needed
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

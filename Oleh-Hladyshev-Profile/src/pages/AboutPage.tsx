@@ -184,6 +184,7 @@ export function AboutPage(): React.JSX.Element {
   const iconBtn = useRecipe({ recipe: iconButtonRecipe })
   const solidStyles = iconBtn({ variant: 'solid' })
   const outlineStyles = iconBtn({ variant: 'outline' })
+  const ghostRoundStyles = iconBtn({ variant: 'ghostRound' })
 
   useEffect((): (() => void) | void => {
     if (!isResumeOpen) return
@@ -417,17 +418,9 @@ export function AboutPage(): React.JSX.Element {
                 </Text>
                 <chakra.button
                   type="button"
-                  w="36px"
-                  h="36px"
-                  display="inline-flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  borderRadius="full"
                   color="neutral.900"
-                  cursor="pointer"
                   onClick={() => setIsResumeOpen(false)}
-                  _hover={{ bg: 'rgba(31, 31, 31, 0.06)' }}
-                  transition="0.25s ease"
+                  css={ghostRoundStyles}
                   aria-label="Close resume preview"
                 >
                   <Box position="relative" w="18px" h="18px" aria-hidden="true">
