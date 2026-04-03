@@ -29,7 +29,7 @@
 | TASK-025: AboutPage — replace "Contact" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; updated closing tag |
 | TASK-026: AboutPage — replace "Education" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; closing tag updated |
 | TASK-027: AboutPage — replace "Skills" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; closing tag updated |
-| TASK-028: AboutPage — replace email + phone link hovers with `linkRecipe` | pending | |
+| TASK-028: AboutPage — replace email + phone link hovers with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed _hover + transition |
 | TASK-029: AboutPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | pending | |
 | TASK-030: AboutPage — replace Print button with `iconButtonRecipe` solid | pending | |
 | TASK-031: AboutPage — replace Preview button with `iconButtonRecipe` outline | pending | |
@@ -275,6 +275,15 @@
 - **Key decisions:** Replaced `<Box borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` wrapping Skills content with `<SectionDivider>`; `SectionDivider` already imported from TASK-024
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** All four section dividers in AboutPage are now using SectionDivider
+---
+
+---
+### [TASK-028] AboutPage — replace email + phone link hovers with `linkRecipe` — iteration 7
+- **Status:** done
+- **Files changed:** `src/pages/AboutPage.tsx`
+- **Key decisions:** Added `useRecipe` to Chakra import and `linkRecipe` import; called `link({ variant: 'default' })` in component body as `defaultLinkStyles`; applied via `css={defaultLinkStyles}` on email and phone `<chakra.a>`; removed `_hover` and `transition` props
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `defaultLinkStyles` variable will be reused for LinkedIn/GitHub links in TASK-029
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

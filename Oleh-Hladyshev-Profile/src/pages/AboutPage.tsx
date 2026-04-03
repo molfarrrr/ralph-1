@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra } from '@chakra-ui/react'
+import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra, useRecipe } from '@chakra-ui/react'
 import { PageHeading, SectionDivider } from '@/components/ui'
+import { linkRecipe } from '@/theme/recipes/link.recipe'
 
 const VIEW_RESUME_URL = '/resume/resume_03_2026.html'
 
@@ -177,6 +178,8 @@ const SKILL_GROUPS = [
 export function AboutPage(): React.JSX.Element {
   const [isResumeOpen, setIsResumeOpen] = useState(false)
   const printFrameRef = useRef<HTMLIFrameElement | null>(null)
+  const link = useRecipe({ recipe: linkRecipe })
+  const defaultLinkStyles = link({ variant: 'default' })
 
   useEffect((): (() => void) | void => {
     if (!isResumeOpen) return
@@ -336,10 +339,10 @@ export function AboutPage(): React.JSX.Element {
               </Text>
               <VStack align="stretch" gap={2} color="neutral.900">
                 <Text fontSize="md">Digby, Nova Scotia, Canada</Text>
-                <chakra.a href="mailto:molfarr@gmail.com" _hover={{ color: 'neutral.500' }} transition="0.25s ease">
+                <chakra.a href="mailto:molfarr@gmail.com" css={defaultLinkStyles}>
                   molfarr@gmail.com
                 </chakra.a>
-                <chakra.a href="tel:+12267538037" _hover={{ color: 'neutral.500' }} transition="0.25s ease">
+                <chakra.a href="tel:+12267538037" css={defaultLinkStyles}>
                   +1 226 753 8037
                 </chakra.a>
                 <chakra.a
