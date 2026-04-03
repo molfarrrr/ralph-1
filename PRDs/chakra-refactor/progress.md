@@ -34,7 +34,7 @@
 | TASK-030: AboutPage — replace Print button with `iconButtonRecipe` solid | done | Imported iconButtonRecipe; applied solidStyles via css prop; removed layout/hover/transition props |
 | TASK-031: AboutPage — replace Preview button with `iconButtonRecipe` outline | done | Applied outlineStyles via css prop; removed layout/border/hover/transition inline props |
 | TASK-032: AboutPage — replace modal close button with `iconButtonRecipe` ghostRound | done | Applied ghostRoundStyles via css prop; removed w/h/display/alignItems/justifyContent/borderRadius/cursor/_hover/transition |
-| TASK-033: ContactPage — replace H1 with `<PageHeading>` | pending | |
+| TASK-033: ContactPage — replace H1 with `<PageHeading>` | done | Replaced Heading as="h1" with PageHeading mb={5}; removed Heading import |
 | TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | pending | |
 | TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | pending | |
 | TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | pending | |
@@ -320,6 +320,15 @@
 - **Key decisions:** Added `ghostRoundStyles = iconBtn({ variant: 'ghostRound' })` reusing existing `iconBtn` from TASK-030; applied via `css={ghostRoundStyles}`; removed `w`, `h`, `display`, `alignItems`, `justifyContent`, `borderRadius`, `cursor`, `_hover`, `transition`; kept `color` and `onClick`
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `iconBtn` and `iconButtonRecipe` already imported from TASK-030/031 — no new imports needed
+---
+
+---
+### [TASK-033] ContactPage — replace H1 with `<PageHeading>` — iteration 12
+- **Status:** done
+- **Files changed:** `src/pages/ContactPage.tsx`
+- **Key decisions:** Added `PageHeading` import from `@/components/ui`; replaced `<Heading as="h1" fontSize=... fontWeight="300" lineHeight="1.02" color="neutral.900" letterSpacing="-0.04em" mb={5}>` with `<PageHeading mb={5}>`; removed `Heading` from Chakra import (no other usage)
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `pageRecipe` variant now controls all heading typography
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

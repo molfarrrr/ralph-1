@@ -1,21 +1,14 @@
-import { Box, Flex, Heading, Text, VStack, chakra } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack, chakra } from '@chakra-ui/react'
+import { PageHeading } from '@/components/ui'
 
 export function ContactPage(): React.JSX.Element {
   return (
     <Box py={{ base: 12, lg: 18 }}>
       <VStack align="stretch" gap={{ base: 10, lg: 14 }}>
         <Box maxW="760px">
-          <Heading
-            as="h1"
-            fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
-            fontWeight="300"
-            lineHeight="1.02"
-            color="neutral.900"
-            letterSpacing="-0.04em"
-            mb={5}
-          >
+          <PageHeading mb={5}>
             Contact
-          </Heading>
+          </PageHeading>
           <Text fontSize={{ base: 'md', lg: 'lg' }} lineHeight="1.8" color="neutral.500" maxW="620px">
             Open to relevant product and engineering conversations, especially around frontend-heavy systems,
             modernization work, and senior individual contributor roles.
