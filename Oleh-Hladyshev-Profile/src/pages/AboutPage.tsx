@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra, useRecipe } from '@chakra-ui/react'
 import { PageHeading, SectionDivider } from '@/components/ui'
 import { linkRecipe } from '@/theme/recipes/link.recipe'
+import { iconButtonRecipe } from '@/theme/recipes/iconButton.recipe'
 
 const VIEW_RESUME_URL = '/resume/resume_03_2026.html'
 
@@ -180,6 +181,8 @@ export function AboutPage(): React.JSX.Element {
   const printFrameRef = useRef<HTMLIFrameElement | null>(null)
   const link = useRecipe({ recipe: linkRecipe })
   const defaultLinkStyles = link({ variant: 'default' })
+  const iconBtn = useRecipe({ recipe: iconButtonRecipe })
+  const solidStyles = iconBtn({ variant: 'solid' })
 
   useEffect((): (() => void) | void => {
     if (!isResumeOpen) return
@@ -242,20 +245,10 @@ export function AboutPage(): React.JSX.Element {
           <HStack gap={3} flexWrap="wrap">
             <chakra.button
               type="button"
-              display="inline-flex"
-              alignItems="center"
-              justifyContent="center"
-              px={5}
-              py={3}
-              bg="neutral.900"
-              color="neutral.0"
               fontSize="sm"
               fontWeight="500"
-              borderRadius="full"
-              cursor="pointer"
               onClick={handlePrint}
-              _hover={{ opacity: 0.82 }}
-              transition="opacity 0.25s ease"
+              css={solidStyles}
             >
               <chakra.svg w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" mr={2}>
                 <path d="M7 9V4h10v5" />
