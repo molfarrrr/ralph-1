@@ -1,7 +1,10 @@
-import { Box, Flex, Text, VStack, chakra } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack, chakra, useRecipe } from '@chakra-ui/react'
 import { PageHeading, SectionDivider } from '@/components/ui'
+import { linkRecipe } from '@/theme/recipes/link.recipe'
 
 export function ContactPage(): React.JSX.Element {
+  const link = useRecipe({ recipe: linkRecipe })
+  const defaultLinkStyles = link({ variant: 'default' })
   return (
     <Box py={{ base: 12, lg: 18 }}>
       <VStack align="stretch" gap={{ base: 10, lg: 14 }}>
@@ -25,18 +28,14 @@ export function ContactPage(): React.JSX.Element {
                 <chakra.a
                   href="mailto:molfarr@gmail.com"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  color="neutral.900"
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
+                  css={defaultLinkStyles}
                 >
                   molfarr@gmail.com
                 </chakra.a>
                 <chakra.a
                   href="tel:+12267538037"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  color="neutral.900"
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
+                  css={defaultLinkStyles}
                 >
                   +1 226 753 8037
                 </chakra.a>

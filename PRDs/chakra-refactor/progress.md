@@ -37,7 +37,7 @@
 | TASK-033: ContactPage — replace H1 with `<PageHeading>` | done | Replaced Heading as="h1" with PageHeading mb={5}; removed Heading import |
 | TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; added SectionDivider to import |
 | TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; same pattern as TASK-034 |
-| TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | pending | |
+| TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
 | TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | pending | |
 | TASK-038: WorkPage — replace H1 with `<PageHeading>` | pending | |
 | TASK-039: Update all imports to use barrel `@/components/ui` | pending | |
@@ -347,6 +347,15 @@
 - **Key decisions:** Replaced `<Box flex={1} borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` with `<Box flex={1}><SectionDivider>...</SectionDivider></Box>`; kept `flex={1}` on outer Box since SectionDivider doesn't accept flex prop; `SectionDivider` already imported from TASK-034
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Same wrapping pattern as TASK-034 "Reach out" divider
+---
+
+---
+### [TASK-036] ContactPage — replace email + phone link hovers with `linkRecipe` — iteration 15
+- **Status:** done
+- **Files changed:** `src/pages/ContactPage.tsx`
+- **Key decisions:** Added `useRecipe` + `linkRecipe` imports; called `link({ variant: 'default' })` as `defaultLinkStyles`; applied via `css={defaultLinkStyles}` on email and phone `<chakra.a>`; removed `color`, `_hover`, `transition`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `defaultLinkStyles` will be reused for LinkedIn/GitHub links in TASK-037 (same file, same variable)
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
