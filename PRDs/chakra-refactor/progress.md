@@ -35,7 +35,7 @@
 | TASK-031: AboutPage — replace Preview button with `iconButtonRecipe` outline | done | Applied outlineStyles via css prop; removed layout/border/hover/transition inline props |
 | TASK-032: AboutPage — replace modal close button with `iconButtonRecipe` ghostRound | done | Applied ghostRoundStyles via css prop; removed w/h/display/alignItems/justifyContent/borderRadius/cursor/_hover/transition |
 | TASK-033: ContactPage — replace H1 with `<PageHeading>` | done | Replaced Heading as="h1" with PageHeading mb={5}; removed Heading import |
-| TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | pending | |
+| TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; added SectionDivider to import |
 | TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | pending | |
 | TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | pending | |
 | TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | pending | |
@@ -329,6 +329,15 @@
 - **Key decisions:** Added `PageHeading` import from `@/components/ui`; replaced `<Heading as="h1" fontSize=... fontWeight="300" lineHeight="1.02" color="neutral.900" letterSpacing="-0.04em" mb={5}>` with `<PageHeading mb={5}>`; removed `Heading` from Chakra import (no other usage)
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `pageRecipe` variant now controls all heading typography
+---
+
+---
+### [TASK-034] ContactPage — replace "Reach out" divider with `<SectionDivider>` — iteration 13
+- **Status:** done
+- **Files changed:** `src/pages/ContactPage.tsx`
+- **Key decisions:** Added `SectionDivider` to import from `@/components/ui`; `flex={1}` kept on wrapping `<Box>` since SectionDivider doesn't accept flex prop; replaced `<Box flex={1} borderTop... pt={6}>` with `<Box flex={1}><SectionDivider>...</SectionDivider></Box>`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Same pattern needed for "Profiles" divider in TASK-035
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

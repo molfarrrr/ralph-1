@@ -1,5 +1,5 @@
 import { Box, Flex, Text, VStack, chakra } from '@chakra-ui/react'
-import { PageHeading } from '@/components/ui'
+import { PageHeading, SectionDivider } from '@/components/ui'
 
 export function ContactPage(): React.JSX.Element {
   return (
@@ -16,33 +16,35 @@ export function ContactPage(): React.JSX.Element {
         </Box>
 
         <Flex direction={{ base: 'column', lg: 'row' }} gap={{ base: 8, lg: 12 }}>
-          <Box flex={1} borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
-            <Text fontSize={{ base: '2xl', lg: '3xl' }} fontWeight="400" color="neutral.900" letterSpacing="-0.03em" mb={5}>
-              Reach out
-            </Text>
-            <VStack align="stretch" gap={4}>
-              <chakra.a
-                href="mailto:molfarr@gmail.com"
-                fontSize={{ base: 'lg', lg: 'xl' }}
-                color="neutral.900"
-                _hover={{ color: 'neutral.500' }}
-                transition="0.25s ease"
-              >
-                molfarr@gmail.com
-              </chakra.a>
-              <chakra.a
-                href="tel:+12267538037"
-                fontSize={{ base: 'lg', lg: 'xl' }}
-                color="neutral.900"
-                _hover={{ color: 'neutral.500' }}
-                transition="0.25s ease"
-              >
-                +1 226 753 8037
-              </chakra.a>
-              <Text fontSize="md" color="neutral.500">
-                Digby, Nova Scotia, Canada
+          <Box flex={1}>
+            <SectionDivider>
+              <Text fontSize={{ base: '2xl', lg: '3xl' }} fontWeight="400" color="neutral.900" letterSpacing="-0.03em" mb={5}>
+                Reach out
               </Text>
-            </VStack>
+              <VStack align="stretch" gap={4}>
+                <chakra.a
+                  href="mailto:molfarr@gmail.com"
+                  fontSize={{ base: 'lg', lg: 'xl' }}
+                  color="neutral.900"
+                  _hover={{ color: 'neutral.500' }}
+                  transition="0.25s ease"
+                >
+                  molfarr@gmail.com
+                </chakra.a>
+                <chakra.a
+                  href="tel:+12267538037"
+                  fontSize={{ base: 'lg', lg: 'xl' }}
+                  color="neutral.900"
+                  _hover={{ color: 'neutral.500' }}
+                  transition="0.25s ease"
+                >
+                  +1 226 753 8037
+                </chakra.a>
+                <Text fontSize="md" color="neutral.500">
+                  Digby, Nova Scotia, Canada
+                </Text>
+              </VStack>
+            </SectionDivider>
           </Box>
 
           <Box flex={1} borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
