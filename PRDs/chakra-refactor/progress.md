@@ -39,7 +39,7 @@
 | TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; same pattern as TASK-034 |
 | TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
 | TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | done | Reused defaultLinkStyles (css prop) from TASK-036; removed color/_hover/transition |
-| TASK-038: WorkPage — replace H1 with `<PageHeading>` | pending | |
+| TASK-038: WorkPage — replace H1 with `<PageHeading>` | done | Replaced Heading with PageHeading mb={6}; removed Heading import |
 | TASK-039: Update all imports to use barrel `@/components/ui` | pending | |
 | TASK-040: Update react-developer skill with Chakra authoring rules | pending | |
 
@@ -365,6 +365,15 @@
 - **Key decisions:** `defaultLinkStyles` was already computed in TASK-036; reused `css={defaultLinkStyles}` on LinkedIn and GitHub `<chakra.a>`; removed `color="neutral.900"`, `_hover`, `transition` inline props
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** No new imports needed — `linkRecipe`, `useRecipe`, and `defaultLinkStyles` already present from TASK-036
+---
+
+---
+### [TASK-038] WorkPage — replace H1 with `<PageHeading>` — iteration 17
+- **Status:** done
+- **Files changed:** `src/pages/WorkPage.tsx`
+- **Key decisions:** Added `PageHeading` import from `@/components/ui`; replaced `<Heading as="h1" fontSize={{ base: '3xl', lg: '5xl' }} fontWeight="300" color="neutral.900" mb={6}>` with `<PageHeading mb={6}>`; removed `Heading` from Chakra import
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Recipe page variant controls font sizing; WorkPage now consistent with all other pages
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
