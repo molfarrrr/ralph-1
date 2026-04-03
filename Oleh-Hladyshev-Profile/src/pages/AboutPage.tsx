@@ -349,8 +349,7 @@ export function AboutPage(): React.JSX.Element {
                   href="https://www.linkedin.com/in/oleg-gladyshev-profile/"
                   target="_blank"
                   rel="noreferrer"
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
+                  css={defaultLinkStyles}
                 >
                   LinkedIn
                 </chakra.a>
@@ -358,8 +357,7 @@ export function AboutPage(): React.JSX.Element {
                   href="https://github.com/molfarrrr/"
                   target="_blank"
                   rel="noreferrer"
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
+                  css={defaultLinkStyles}
                 >
                   GitHub
                 </chakra.a>
