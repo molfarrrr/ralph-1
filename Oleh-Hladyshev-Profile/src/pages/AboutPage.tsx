@@ -378,7 +378,7 @@ export function AboutPage(): React.JSX.Element {
               </Text>
             </SectionDivider>
 
-            <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
+            <SectionDivider>
               <Text fontSize="md" fontWeight="500" color="neutral.900" letterSpacing="-0.02em" mb={4}>
                 Skills
               </Text>
@@ -402,7 +402,7 @@ export function AboutPage(): React.JSX.Element {
                   </Flex>
                 ))}
               </VStack>
-            </Box>
+            </SectionDivider>
           </VStack>
         </Grid>
         </VStack>

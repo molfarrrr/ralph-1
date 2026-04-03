@@ -28,7 +28,7 @@
 | TASK-024: AboutPage — replace "Experience" divider with `<SectionDivider>` | done | Added SectionDivider import; replaced Box at line 293 and its closing tag |
 | TASK-025: AboutPage — replace "Contact" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; updated closing tag |
 | TASK-026: AboutPage — replace "Education" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; closing tag updated |
-| TASK-027: AboutPage — replace "Skills" divider with `<SectionDivider>` | pending | |
+| TASK-027: AboutPage — replace "Skills" divider with `<SectionDivider>` | done | Replaced Box with SectionDivider; closing tag updated |
 | TASK-028: AboutPage — replace email + phone link hovers with `linkRecipe` | pending | |
 | TASK-029: AboutPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | pending | |
 | TASK-030: AboutPage — replace Print button with `iconButtonRecipe` solid | pending | |
@@ -266,6 +266,15 @@
 - **Key decisions:** Replaced `<Box borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` wrapping Education content with `<SectionDivider>`; `SectionDivider` already imported from TASK-024
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Skills divider (TASK-027) also pending at line 381
+---
+
+---
+### [TASK-027] AboutPage — replace "Skills" divider with `<SectionDivider>` — iteration 6
+- **Status:** done
+- **Files changed:** `src/pages/AboutPage.tsx`
+- **Key decisions:** Replaced `<Box borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` wrapping Skills content with `<SectionDivider>`; `SectionDivider` already imported from TASK-024
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** All four section dividers in AboutPage are now using SectionDivider
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
