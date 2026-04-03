@@ -1,10 +1,7 @@
-import { Box, Flex, Text, VStack, chakra, useRecipe } from '@chakra-ui/react'
-import { PageHeading, SectionDivider } from '@/components/ui'
-import { linkRecipe } from '@/theme/recipes/link.recipe'
+import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import { PageHeading, SectionDivider, TextLink } from '@/components/ui'
 
 export function ContactPage(): React.JSX.Element {
-  const link = useRecipe({ recipe: linkRecipe })
-  const defaultLinkStyles = link({ variant: 'default' })
   return (
     <Box py={{ base: 12, lg: 18 }}>
       <VStack align="stretch" gap={{ base: 10, lg: 14 }}>
@@ -25,20 +22,18 @@ export function ContactPage(): React.JSX.Element {
                 Reach out
               </Text>
               <VStack align="stretch" gap={4}>
-                <chakra.a
+                <TextLink
                   href="mailto:molfarr@gmail.com"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  css={defaultLinkStyles}
                 >
                   molfarr@gmail.com
-                </chakra.a>
-                <chakra.a
+                </TextLink>
+                <TextLink
                   href="tel:+12267538037"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  css={defaultLinkStyles}
                 >
                   +1 226 753 8037
-                </chakra.a>
+                </TextLink>
                 <Text fontSize="md" color="neutral.500">
                   Digby, Nova Scotia, Canada
                 </Text>
@@ -52,24 +47,22 @@ export function ContactPage(): React.JSX.Element {
                 Profiles
               </Text>
               <VStack align="stretch" gap={4}>
-                <chakra.a
+                <TextLink
                   href="https://www.linkedin.com/in/oleg-gladyshev-profile/"
                   target="_blank"
                   rel="noreferrer"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  css={defaultLinkStyles}
                 >
                   LinkedIn
-                </chakra.a>
-                <chakra.a
+                </TextLink>
+                <TextLink
                   href="https://github.com/molfarrrr/"
                   target="_blank"
                   rel="noreferrer"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  css={defaultLinkStyles}
                 >
                   GitHub
-                </chakra.a>
+                </TextLink>
               </VStack>
             </SectionDivider>
           </Box>

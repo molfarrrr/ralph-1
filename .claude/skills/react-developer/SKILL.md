@@ -626,7 +626,16 @@ export function useScrollPosition(): number {
 
 ---
 
-## 12. Checklist Before Committing a Component
+## 12. Chakra Component Authoring Rules
+
+1. Check the app root's `src/theme/recipes/` directory before writing inline hover, transition, or repeated font style props. In this repo, for example, that is `Oleh-Hladyshev-Profile/src/theme/recipes/`.
+2. Check the app root's `src/components/ui/` directory before creating any new heading, label, link, container, or divider. In this repo, for example, that is `Oleh-Hladyshev-Profile/src/components/ui/`. Reuse `PageHeading`, `EyebrowLabel`, `NavLink`, `Container`, and `SectionDivider` where applicable.
+3. If a visual or interaction pattern appears more than once, it belongs in a recipe or a shared component rather than being duplicated inline.
+4. To use a recipe, either call `useRecipe({ recipe: linkRecipe })` and apply the returned styles, or use a component that already exposes the recipe variant.
+5. To add a new recipe: create it with `defineRecipe`, place it in the app root's `src/theme/recipes/`, then register it in that app root's `src/theme/index.ts`. In this repo, that means `Oleh-Hladyshev-Profile/src/theme/recipes/` and `Oleh-Hladyshev-Profile/src/theme/index.ts`.
+6. To add a shared component: create a file in the app root's `src/components/ui/`, use a named export, then add it to the barrel export in that app root's `src/components/ui/index.ts`. In this repo, that means `Oleh-Hladyshev-Profile/src/components/ui/` and `Oleh-Hladyshev-Profile/src/components/ui/index.ts`.
+
+## 13. Checklist Before Committing a Component
 
 - [ ] Named export (not default)
 - [ ] Props interface defined with explicit types

@@ -41,7 +41,7 @@
 | TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | done | Reused defaultLinkStyles (css prop) from TASK-036; removed color/_hover/transition |
 | TASK-038: WorkPage — replace H1 with `<PageHeading>` | done | Replaced Heading with PageHeading mb={6}; removed Heading import |
 | TASK-039: Update all imports to use barrel `@/components/ui` | done | No direct path imports found — all files already use barrel |
-| TASK-040: Update react-developer skill with Chakra authoring rules | pending | |
+| TASK-040: Update react-developer skill with Chakra authoring rules | done | Added section 12 to .claude/skills/react-developer/SKILL.md covering recipe/shared-component rules and renumbered checklist |
 
 ---
 ### [TASK-001] Create `linkRecipe` in theme — iteration 1
@@ -383,6 +383,15 @@
 - **Key decisions:** Added `PageHeading` import from `@/components/ui`; replaced `<Heading as="h1" fontSize={{ base: '3xl', lg: '5xl' }} fontWeight="300" color="neutral.900" mb={6}>` with `<PageHeading mb={6}>`; removed `Heading` from Chakra import
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Recipe page variant controls font sizing; WorkPage now consistent with all other pages
+---
+
+---
+### [TASK-040] Update react-developer skill with Chakra authoring rules — iteration 18
+- **Status:** done
+- **Files changed:** `.claude/skills/react-developer/SKILL.md`, `PRDs/chakra-refactor/progress.md`
+- **Key decisions:** Added the required Chakra authoring rules section before the checklist and renumbered the checklist section so the file stays coherent.
+- **Verification:** Read `.claude/skills/react-developer/SKILL.md` and confirmed all 6 required points are present under `## 12. Chakra Component Authoring Rules`.
+- **Notes:** This resolves the earlier blocker; the progress table and detailed entry now both reflect completion.
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

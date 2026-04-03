@@ -1,17 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Read(//home/agent/.claude/plugins/**)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:webflow.com)",
-      "Bash(grep -E '\\\\.\\(json|ts|js|jsx|tsx|html|css\\)$')",
-      "WebFetch(domain:api.github.com)",
-      "Bash(npm show:*)",
-      "Bash(mv /Users/oleh/Projects/ralph-1/.claude/skills/react-dev/SKILL.md /Users/oleh/Projects/ralph-1/.claude/skills/react-developer/SKILL.md)",
-      "Bash(rm -r /Users/oleh/Projects/ralph-1/.claude/skills/react-dev)",
+      "Bash(git restore:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit -m ':*)",
+      "Bash(git checkout:*)",
+      "Bash(chmod +x /Users/oleh/Projects/ralph-1/PRDs/chakra-refactor/ralph.sh)"
     ]
   }
 }

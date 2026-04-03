@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra, useRecipe } from '@chakra-ui/react'
-import { PageHeading, SectionDivider } from '@/components/ui'
-import { linkRecipe } from '@/theme/recipes/link.recipe'
+import { PageHeading, SectionDivider, TextLink } from '@/components/ui'
 import { iconButtonRecipe } from '@/theme/recipes/iconButton.recipe'
 
 const VIEW_RESUME_URL = '/resume/resume_03_2026.html'
@@ -179,8 +178,6 @@ const SKILL_GROUPS = [
 export function AboutPage(): React.JSX.Element {
   const [isResumeOpen, setIsResumeOpen] = useState(false)
   const printFrameRef = useRef<HTMLIFrameElement | null>(null)
-  const link = useRecipe({ recipe: linkRecipe })
-  const defaultLinkStyles = link({ variant: 'default' })
   const iconBtn = useRecipe({ recipe: iconButtonRecipe })
   const solidStyles = iconBtn({ variant: 'solid' })
   const outlineStyles = iconBtn({ variant: 'outline' })
@@ -323,28 +320,26 @@ export function AboutPage(): React.JSX.Element {
               </Text>
               <VStack align="stretch" gap={2} color="neutral.900">
                 <Text fontSize="md">Digby, Nova Scotia, Canada</Text>
-                <chakra.a href="mailto:molfarr@gmail.com" css={defaultLinkStyles}>
+                <TextLink href="mailto:molfarr@gmail.com">
                   molfarr@gmail.com
-                </chakra.a>
-                <chakra.a href="tel:+12267538037" css={defaultLinkStyles}>
+                </TextLink>
+                <TextLink href="tel:+12267538037">
                   +1 226 753 8037
-                </chakra.a>
-                <chakra.a
+                </TextLink>
+                <TextLink
                   href="https://www.linkedin.com/in/oleg-gladyshev-profile/"
                   target="_blank"
                   rel="noreferrer"
-                  css={defaultLinkStyles}
                 >
                   LinkedIn
-                </chakra.a>
-                <chakra.a
+                </TextLink>
+                <TextLink
                   href="https://github.com/molfarrrr/"
                   target="_blank"
                   rel="noreferrer"
-                  css={defaultLinkStyles}
                 >
                   GitHub
-                </chakra.a>
+                </TextLink>
               </VStack>
             </SectionDivider>
 
