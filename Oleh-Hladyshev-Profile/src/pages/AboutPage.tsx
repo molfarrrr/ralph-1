@@ -183,6 +183,7 @@ export function AboutPage(): React.JSX.Element {
   const defaultLinkStyles = link({ variant: 'default' })
   const iconBtn = useRecipe({ recipe: iconButtonRecipe })
   const solidStyles = iconBtn({ variant: 'solid' })
+  const outlineStyles = iconBtn({ variant: 'outline' })
 
   useEffect((): (() => void) | void => {
     if (!isResumeOpen) return
@@ -259,21 +260,10 @@ export function AboutPage(): React.JSX.Element {
             </chakra.button>
             <chakra.button
               type="button"
-              display="inline-flex"
-              alignItems="center"
-              justifyContent="center"
-              px={5}
-              py={3}
-              border="1px solid"
-              borderColor="neutral.900"
-              color="neutral.900"
               fontSize="sm"
               fontWeight="500"
-              borderRadius="full"
-              cursor="pointer"
               onClick={() => setIsResumeOpen(true)}
-              _hover={{ bg: 'rgba(31, 31, 31, 0.04)' }}
-              transition="0.25s ease"
+              css={outlineStyles}
             >
               <chakra.svg w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" mr={2}>
                 <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z" />
