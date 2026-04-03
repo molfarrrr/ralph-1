@@ -13,12 +13,13 @@ const config = defineConfig({
     tokens: {
       colors: {
         brand: {
-          50:  { value: '#f2e9e9' },
-          100: { value: '#e6ddd9' },
-          700: { value: '#2d1640' },
+          50:  { value: '#f8eeef' },
+          100: { value: '#f4d8d4' },
+          500: { value: '#ea7d6f' },
+          700: { value: '#c85d50' },
         },
         neutral: {
-          0:   { value: '#f4f2ee' },
+          0:   { value: '#fbf3f4' },
           500: { value: '#737373' },
           900: { value: '#1f1f1f' },
         },

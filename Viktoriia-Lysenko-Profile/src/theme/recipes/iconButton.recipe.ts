@@ -14,12 +14,12 @@ export const iconButtonRecipe = defineRecipe({
         _hover: { opacity: 0.7 },
       },
       solid: {
-        bg: 'neutral.900',
+        bg: 'brand.500',
         color: 'neutral.0',
         px: '5',
         py: '3',
         borderRadius: 'full',
-        _hover: { opacity: 0.82 },
+        _hover: { bg: 'brand.700' },
       },
       outline: {
         border: '1px solid',
