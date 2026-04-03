@@ -8,9 +8,9 @@
 
 ## GitHub Pages
 
-- Landing page: `https://molfarrrr.github.io/ralph-1/`
-- Oleh profile: `https://molfarrrr.github.io/ralph-1/oleh/`
-- Viktoriia profile: `https://molfarrrr.github.io/ralph-1/viktoriia/`
+- Landing page: [https://molfarrrr.github.io/ralph-1/](https://molfarrrr.github.io/ralph-1/)
+- Oleh profile: [https://molfarrrr.github.io/ralph-1/oleh/](https://molfarrrr.github.io/ralph-1/oleh/)
+- Viktoriia profile: [https://molfarrrr.github.io/ralph-1/viktoriia/](https://molfarrrr.github.io/ralph-1/viktoriia/)
 
 ## Apps
 
