@@ -1,11 +1,15 @@
-import { Box, Flex, Text, Image, chakra } from '@chakra-ui/react'
+import { Box, Flex, Text, Image, chakra, useRecipe } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { PageHeading, EyebrowLabel } from '@/components/ui'
+import { linkRecipe } from '@/theme/recipes/link.recipe'
 
 const ChakraLink = chakra(Link)
 import profilePic from '@/assets/profile/prof-pic.png'
 
 export function HomePage(): React.JSX.Element {
+  const link = useRecipe({ recipe: linkRecipe })
+  const linkStyles = link({ variant: 'default' })
+
   return (
     <Box py={{ base: 12, lg: 20 }}>
       <Flex
@@ -51,12 +55,10 @@ export function HomePage(): React.JSX.Element {
             fontFamily="body"
             fontSize="sm"
             fontWeight="500"
-            color="neutral.900"
             borderBottom="1px solid"
             borderColor="neutral.900"
             pb="2px"
-            _hover={{ color: 'neutral.500', borderColor: 'neutral.500' }}
-            transition="0.25s ease"
+            css={linkStyles}
           >
             View my CV
             <Box as="span" aria-hidden="true">→</Box>

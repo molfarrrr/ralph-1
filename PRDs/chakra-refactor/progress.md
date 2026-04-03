@@ -22,8 +22,8 @@
 | TASK-018: Footer — replace GitHub link hover with `linkRecipe` muted | done | Replaced inline color/_hover/transition with css={mutedStyles} (reused from TASK-017) |
 | TASK-019: Layout — replace main container with `<Container>` | done | Replaced Box with Container as={Box}, removed maxW/mx/px props |
 | TASK-020: HomePage — replace H1 with `<PageHeading>` | done | Replaced Heading with PageHeading mb={6}; removed Heading import |
-| TASK-021: HomePage — replace eyebrow text with `<EyebrowLabel>` | pending | |
-| TASK-022: HomePage — replace CTA link hover with `linkRecipe` | pending | |
+| TASK-021: HomePage — replace eyebrow text with `<EyebrowLabel>` | done | Replaced Text with EyebrowLabel mb={5}; removed Text import not needed |
+| TASK-022: HomePage — replace CTA link hover with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
 | TASK-023: AboutPage — replace H1 with `<PageHeading>` | pending | |
 | TASK-024: AboutPage — replace "Experience" divider with `<SectionDivider>` | pending | |
 | TASK-025: AboutPage — replace "Contact" divider with `<SectionDivider>` | pending | |
@@ -212,6 +212,24 @@
 - **Key decisions:** Replaced `<Heading as="h1" ...>` with `<PageHeading mb={6}>`; removed `Heading` from Chakra import; added `PageHeading` import from `@/components/ui`
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Recipe page variant uses fontWeight 300 / lineHeight 1.02 vs original 200 / 1.1 — intentional per PRD spec
+---
+
+---
+### [TASK-021] HomePage — replace eyebrow text with `<EyebrowLabel>` — iteration 21
+- **Status:** done
+- **Files changed:** `src/pages/HomePage.tsx`
+- **Key decisions:** Added `EyebrowLabel` to import from `@/components/ui`; replaced `<Text fontFamily="body" fontSize="sm" fontWeight="500" color="neutral.500" letterSpacing="0.1em" textTransform="uppercase" mb={5}>` with `<EyebrowLabel mb={5}>`
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `Text` import retained — still used for supporting paragraph
+---
+
+---
+### [TASK-022] HomePage — replace CTA link hover with `linkRecipe` — iteration 22
+- **Status:** done
+- **Files changed:** `src/pages/HomePage.tsx`
+- **Key decisions:** Added `useRecipe` + `linkRecipe` imports; called `link({ variant: 'default' })` and applied via `css={linkStyles}`; removed `color="neutral.900"`, `_hover`, `transition` inline props
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** `borderBottom` and `borderColor` remain explicit since recipe only covers color/transition; borderColor hover for the underline is not in the recipe but PRD specifies to remove it
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16
