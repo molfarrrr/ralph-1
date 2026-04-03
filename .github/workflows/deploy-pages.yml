@@ -1,0 +1,141 @@
+name: Deploy Profiles to GitHub Pages
+
+on:
+  push:
+    branches: ['master']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            Oleh-Hladyshev-Profile/package-lock.json
+            Viktoriia-Lysenko-Profile/package-lock.json
+
+      - name: Install Oleh app deps
+        working-directory: ./Oleh-Hladyshev-Profile
+        run: npm ci
+
+      - name: Install Viktoriia app deps
+        working-directory: ./Viktoriia-Lysenko-Profile
+        run: npm ci
+
+      - name: Build Oleh app
+        working-directory: ./Oleh-Hladyshev-Profile
+        run: BASE_PATH=/ralph-1/oleh/ npm run build
+
+      - name: Build Viktoriia app
+        working-directory: ./Viktoriia-Lysenko-Profile
+        run: BASE_PATH=/ralph-1/viktoriia/ npm run build
+
+      - name: Assemble Pages artifact
+        run: |
+          mkdir -p site/oleh site/viktoriia
+          cp -R Oleh-Hladyshev-Profile/dist/. site/oleh/
+          cp -R Viktoriia-Lysenko-Profile/dist/. site/viktoriia/
+          cat > site/index.html <<'EOF'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>Profile Sites</title>
+              <style>
+                :root {
+                  color-scheme: light;
+                }
+                body {
+                  margin: 0;
+                  min-height: 100vh;
+                  display: grid;
+                  place-items: center;
+                  font-family: Manrope, system-ui, sans-serif;
+                  background: #f4f2ee;
+                  color: #1f1f1f;
+                }
+                main {
+                  width: min(640px, calc(100vw - 40px));
+                  padding: 40px;
+                  border: 1px solid rgba(31, 31, 31, 0.08);
+                  border-radius: 24px;
+                  background: rgba(255, 255, 255, 0.72);
+                }
+                h1 {
+                  margin: 0 0 12px;
+                  font-size: clamp(2rem, 5vw, 3rem);
+                  font-weight: 300;
+                  letter-spacing: -0.04em;
+                }
+                p {
+                  margin: 0 0 24px;
+                  line-height: 1.7;
+                  color: #737373;
+                }
+                ul {
+                  margin: 0;
+                  padding: 0;
+                  list-style: none;
+                  display: grid;
+                  gap: 12px;
+                }
+                a {
+                  color: #1f1f1f;
+                  text-decoration: none;
+                  border-bottom: 1px solid #1f1f1f;
+                  padding-bottom: 2px;
+                }
+                a:hover {
+                  color: #737373;
+                  border-color: #737373;
+                }
+              </style>
+            </head>
+            <body>
+              <main>
+                <h1>Profile Sites</h1>
+                <p>Select the deployed profile app.</p>
+                <ul>
+                  <li><a href="./oleh/">Oleh Hladyshev</a></li>
+                  <li><a href="./viktoriia/">Viktoriia Lysenko</a></li>
+                </ul>
+              </main>
+            </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

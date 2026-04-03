@@ -1,6 +1,8 @@
-import { Box, useRecipe } from '@chakra-ui/react'
+import { chakra, useRecipe } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { linkRecipe } from '@/theme/recipes/link.recipe'
+
+const ChakraRouterLink = chakra(Link)
 
 interface NavLinkProps {
   to: string
@@ -14,8 +16,7 @@ export function NavLink({ to, children, isActive, fontSize, fontWeight }: NavLin
   const recipe = useRecipe({ recipe: linkRecipe })
   const styles = recipe({ variant: 'default' })
   return (
-    <Box
-      as={Link}
+    <ChakraRouterLink
       to={to}
       css={styles}
       fontSize={fontSize}
@@ -24,6 +25,6 @@ export function NavLink({ to, children, isActive, fontSize, fontWeight }: NavLin
       textUnderlineOffset={isActive ? '3px' : undefined}
     >
       {children}
-    </Box>
+    </ChakraRouterLink>
   )
 }

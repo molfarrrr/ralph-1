@@ -5,7 +5,10 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // https://vite.dev/config/
+const basePath = process.env.BASE_PATH ?? '/'
+
 const config: UserConfig & { test: InlineConfig } = {
+  base: basePath,
   plugins: [react()],
   resolve: {
     alias: {

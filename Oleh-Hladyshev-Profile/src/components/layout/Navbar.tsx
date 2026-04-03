@@ -51,75 +51,76 @@ export function Navbar(): React.JSX.Element {
         top={0}
         zIndex={100}
       >
-        <Container
-          as={Flex}
-          py={5}
-          align="center"
-          justify="space-between"
-          gap={{ base: 4, md: 8 }}
-        >
-          {/* Wordmark */}
-          <Link to="/" style={{ cursor: 'pointer' }}>
-            <Text
-              fontWeight="600"
-              fontSize="lg"
-              fontFamily="heading"
-              css={wordmarkStyles}
-            >
-              Oleh Hladyshev
-            </Text>
-          </Link>
-
-          {/* Desktop nav links */}
-          <HStack gap={8} display={{ base: 'none', md: 'flex' }} ml="auto">
-            {NAV_LINKS.map(({ label, href }) => (
-              <NavLink key={href} to={href} isActive={pathname === href} fontSize="sm">
-                {label}
-              </NavLink>
-            ))}
-          </HStack>
-
-          {/* Hamburger icon (mobile only) */}
-          <chakra.button
-            type="button"
-            display={{ base: 'flex', md: 'none' }}
-            alignItems="center"
-            justifyContent="center"
-            position="relative"
-            w="32px"
-            h="32px"
-            ml="auto"
-            cursor="pointer"
-            onClick={() => setDrawerOpen((open) => !open)}
-            aria-label="Open menu"
-            zIndex={201}
-            css={ghostStyles}
+        <Container>
+          <Flex
+            py={5}
+            align="center"
+            justify="space-between"
+            gap={{ base: 4, md: 8 }}
           >
-            <Box
-              position="absolute"
-              h="1.5px"
-              w="24px"
-              bg="neutral.900"
-              transition="transform 0.25s ease, opacity 0.25s ease"
-              transform={drawerOpen ? 'rotate(45deg)' : 'translateY(-6px)'}
-            />
-            <Box
-              position="absolute"
-              h="1.5px"
-              w="24px"
-              bg="neutral.900"
-              transition="opacity 0.25s ease"
-              opacity={drawerOpen ? 0 : 1}
-            />
-            <Box
-              position="absolute"
-              h="1.5px"
-              w="24px"
-              bg="neutral.900"
-              transition="transform 0.25s ease, opacity 0.25s ease"
-              transform={drawerOpen ? 'rotate(-45deg)' : 'translateY(6px)'}
-            />
-          </chakra.button>
+            {/* Wordmark */}
+            <Link to="/" style={{ cursor: 'pointer' }}>
+              <Text
+                fontWeight="600"
+                fontSize="lg"
+                fontFamily="heading"
+                css={wordmarkStyles}
+              >
+                Oleh Hladyshev
+              </Text>
+            </Link>
+
+            {/* Desktop nav links */}
+            <HStack gap={8} display={{ base: 'none', md: 'flex' }} ml="auto">
+              {NAV_LINKS.map(({ label, href }) => (
+                <NavLink key={href} to={href} isActive={pathname === href} fontSize="sm">
+                  {label}
+                </NavLink>
+              ))}
+            </HStack>
+
+            {/* Hamburger icon (mobile only) */}
+            <chakra.button
+              type="button"
+              display={{ base: 'flex', md: 'none' }}
+              alignItems="center"
+              justifyContent="center"
+              position="relative"
+              w="32px"
+              h="32px"
+              ml="auto"
+              cursor="pointer"
+              onClick={() => setDrawerOpen((open) => !open)}
+              aria-label="Open menu"
+              zIndex={201}
+              css={ghostStyles}
+            >
+              <Box
+                position="absolute"
+                h="1.5px"
+                w="24px"
+                bg="neutral.900"
+                transition="transform 0.25s ease, opacity 0.25s ease"
+                transform={drawerOpen ? 'rotate(45deg)' : 'translateY(-6px)'}
+              />
+              <Box
+                position="absolute"
+                h="1.5px"
+                w="24px"
+                bg="neutral.900"
+                transition="opacity 0.25s ease"
+                opacity={drawerOpen ? 0 : 1}
+              />
+              <Box
+                position="absolute"
+                h="1.5px"
+                w="24px"
+                bg="neutral.900"
+                transition="transform 0.25s ease, opacity 0.25s ease"
+                transform={drawerOpen ? 'rotate(-45deg)' : 'translateY(6px)'}
+              />
+            </chakra.button>
+          </Flex>
         </Container>
       </Box>
 
