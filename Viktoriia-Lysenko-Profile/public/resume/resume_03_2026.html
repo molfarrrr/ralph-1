@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./style.css"/>
+        <title>Viktoriia Lysenko Resume</title>
+    </head>
+    <body lang="en">
+        <button class="print-action" type="button" onclick="window.print()">Print</button>
+
+        <section id="main">
+            <header id="title">
+                <h1>Viktoriia Lysenko</h1>
+                <h3>Senior Software Engineer</h3>
+            </header>
+
+            <div id="caption">
+              <span>
+                Printable CV placeholder. This document keeps the final preview and print flow in place while the polished
+                printable resume is still being prepared. The web CV already reflects the current experience history.
+              </span>
+            </div>
+
+            <section class="main-block">
+                <h2>Experience</h2>
+
+                <section class="blocks">
+                    <div class="date">
+                        <span>Apr 2023</span><span>Present</span>
+                    </div>
+                    <div class="decorator">
+                    </div>
+                    <div class="details">
+                        <header>
+                            <h3>Senior Software Engineer, Front End</h3>
+                            <section class="details-caption">
+                                <span class="place">Medallia</span>
+                                <span class="location">Waterloo, Ontario, Canada · Remote</span>
+                            </section>
+                        </header>
+                        <div>
+                            <ul>
+                                <li>Improving existing and developing new features for a SaaS experience management platform.</li>
+                                <li>React, TypeScript, GraphQL, Apollo, HTML, Jest.</li>
+                                <li>Full printable resume layout to be finalized.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section class="main-block concise">
+                <h2>Education</h2>
+                <section class="blocks">
+                    <div class="date">
+                        <span>2007</span><span>2012</span>
+                    </div>
+                    <div class="decorator">
+                    </div>
+                    <div class="details">
+                        <header>
+                            <h3>Master of Computer Science</h3>
+                            <section class="details-caption">
+                                <span class="place">Sevastopol National Technical University</span>
+                                <span class="location">Sevastopol, Ukraine</span>
+                            </section>
+                        </header>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+        <aside id="sidebar">
+            <div class="side-block" id="contact">
+                <h1>Contacts</h1>
+                <ul>
+                    <li class="info"><i class="icon-linkedin2"></i><a href="https://www.linkedin.com/in/viktorylysenko/">linkedin.com/in/viktorylysenko</a></li>
+                    <li class="info"><i class="icon-mail4"></i>lysenkoviktory@gmail.com</li>
+                    <li class="info"><i class="icon-whatsapp"></i>Phone to be added</li>
+                    <li class="info">Digby, Nova Scotia, Canada</li>
+                </ul>
+            </div>
+            <div class="side-block" id="skills">
+                <h1>Tech Skills</h1>
+                <ul>
+                    <li>React</li>
+                    <li>TypeScript</li>
+                    <li>GraphQL</li>
+                    <li>Apollo</li>
+                    <li>Node.js</li>
+                    <li>PHP</li>
+                    <li>AngularJS</li>
+                    <li>Jest</li>
+                </ul>
+            </div>
+        </aside>
+
+        <script>
+          if (new URLSearchParams(window.location.search).get('print') === '1') {
+            window.addEventListener('load', function () {
+              window.print()
+            })
+          }
+        </script>
+    </body>
+</html>
