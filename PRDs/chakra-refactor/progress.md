@@ -36,7 +36,7 @@
 | TASK-032: AboutPage — replace modal close button with `iconButtonRecipe` ghostRound | done | Applied ghostRoundStyles via css prop; removed w/h/display/alignItems/justifyContent/borderRadius/cursor/_hover/transition |
 | TASK-033: ContactPage — replace H1 with `<PageHeading>` | done | Replaced Heading as="h1" with PageHeading mb={5}; removed Heading import |
 | TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; added SectionDivider to import |
-| TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | pending | |
+| TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; same pattern as TASK-034 |
 | TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | pending | |
 | TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | pending | |
 | TASK-038: WorkPage — replace H1 with `<PageHeading>` | pending | |
@@ -338,6 +338,15 @@
 - **Key decisions:** Added `SectionDivider` to import from `@/components/ui`; `flex={1}` kept on wrapping `<Box>` since SectionDivider doesn't accept flex prop; replaced `<Box flex={1} borderTop... pt={6}>` with `<Box flex={1}><SectionDivider>...</SectionDivider></Box>`
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** Same pattern needed for "Profiles" divider in TASK-035
+---
+
+---
+### [TASK-035] ContactPage — replace "Profiles" divider with `<SectionDivider>` — iteration 14
+- **Status:** done
+- **Files changed:** `src/pages/ContactPage.tsx`
+- **Key decisions:** Replaced `<Box flex={1} borderTop="1px solid" borderColor="rgba(31,31,31,0.12)" pt={6}>` with `<Box flex={1}><SectionDivider>...</SectionDivider></Box>`; kept `flex={1}` on outer Box since SectionDivider doesn't accept flex prop; `SectionDivider` already imported from TASK-034
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** Same wrapping pattern as TASK-034 "Reach out" divider
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

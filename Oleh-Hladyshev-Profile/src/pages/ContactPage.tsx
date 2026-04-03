@@ -47,34 +47,36 @@ export function ContactPage(): React.JSX.Element {
             </SectionDivider>
           </Box>
 
-          <Box flex={1} borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
-            <Text fontSize={{ base: '2xl', lg: '3xl' }} fontWeight="400" color="neutral.900" letterSpacing="-0.03em" mb={5}>
-              Profiles
-            </Text>
-            <VStack align="stretch" gap={4}>
-              <chakra.a
-                href="https://www.linkedin.com/in/oleg-gladyshev-profile/"
-                target="_blank"
-                rel="noreferrer"
-                fontSize={{ base: 'lg', lg: 'xl' }}
-                color="neutral.900"
-                _hover={{ color: 'neutral.500' }}
-                transition="0.25s ease"
-              >
-                LinkedIn
-              </chakra.a>
-              <chakra.a
-                href="https://github.com/molfarrrr/"
-                target="_blank"
-                rel="noreferrer"
-                fontSize={{ base: 'lg', lg: 'xl' }}
-                color="neutral.900"
-                _hover={{ color: 'neutral.500' }}
-                transition="0.25s ease"
-              >
-                GitHub
-              </chakra.a>
-            </VStack>
+          <Box flex={1}>
+            <SectionDivider>
+              <Text fontSize={{ base: '2xl', lg: '3xl' }} fontWeight="400" color="neutral.900" letterSpacing="-0.03em" mb={5}>
+                Profiles
+              </Text>
+              <VStack align="stretch" gap={4}>
+                <chakra.a
+                  href="https://www.linkedin.com/in/oleg-gladyshev-profile/"
+                  target="_blank"
+                  rel="noreferrer"
+                  fontSize={{ base: 'lg', lg: 'xl' }}
+                  color="neutral.900"
+                  _hover={{ color: 'neutral.500' }}
+                  transition="0.25s ease"
+                >
+                  LinkedIn
+                </chakra.a>
+                <chakra.a
+                  href="https://github.com/molfarrrr/"
+                  target="_blank"
+                  rel="noreferrer"
+                  fontSize={{ base: 'lg', lg: 'xl' }}
+                  color="neutral.900"
+                  _hover={{ color: 'neutral.500' }}
+                  transition="0.25s ease"
+                >
+                  GitHub
+                </chakra.a>
+              </VStack>
+            </SectionDivider>
           </Box>
         </Flex>
       </VStack>
