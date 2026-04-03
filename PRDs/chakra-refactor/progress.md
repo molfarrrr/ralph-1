@@ -38,7 +38,7 @@
 | TASK-034: ContactPage — replace "Reach out" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; added SectionDivider to import |
 | TASK-035: ContactPage — replace "Profiles" divider with `<SectionDivider>` | done | Wrapped Box flex={1} + SectionDivider; same pattern as TASK-034 |
 | TASK-036: ContactPage — replace email + phone link hovers with `linkRecipe` | done | Applied linkRecipe default variant via css prop; removed color/_hover/transition |
-| TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | pending | |
+| TASK-037: ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` | done | Reused defaultLinkStyles (css prop) from TASK-036; removed color/_hover/transition |
 | TASK-038: WorkPage — replace H1 with `<PageHeading>` | pending | |
 | TASK-039: Update all imports to use barrel `@/components/ui` | pending | |
 | TASK-040: Update react-developer skill with Chakra authoring rules | pending | |
@@ -356,6 +356,15 @@
 - **Key decisions:** Added `useRecipe` + `linkRecipe` imports; called `link({ variant: 'default' })` as `defaultLinkStyles`; applied via `css={defaultLinkStyles}` on email and phone `<chakra.a>`; removed `color`, `_hover`, `transition`
 - **Verification:** `npx tsc --noEmit` — zero errors
 - **Notes:** `defaultLinkStyles` will be reused for LinkedIn/GitHub links in TASK-037 (same file, same variable)
+---
+
+---
+### [TASK-037] ContactPage — replace LinkedIn + GitHub link hovers with `linkRecipe` — iteration 16
+- **Status:** done
+- **Files changed:** `src/pages/ContactPage.tsx`
+- **Key decisions:** `defaultLinkStyles` was already computed in TASK-036; reused `css={defaultLinkStyles}` on LinkedIn and GitHub `<chakra.a>`; removed `color="neutral.900"`, `_hover`, `transition` inline props
+- **Verification:** `npx tsc --noEmit` — zero errors
+- **Notes:** No new imports needed — `linkRecipe`, `useRecipe`, and `defaultLinkStyles` already present from TASK-036
 ---
 
 ### [TASK-016] Footer — replace flex container with `<Container>` — iteration 16

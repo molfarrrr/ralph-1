@@ -57,9 +57,7 @@ export function ContactPage(): React.JSX.Element {
                   target="_blank"
                   rel="noreferrer"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  color="neutral.900"
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
+                  css={defaultLinkStyles}
                 >
                   LinkedIn
                 </chakra.a>
@@ -68,9 +66,7 @@ export function ContactPage(): React.JSX.Element {
                   target="_blank"
                   rel="noreferrer"
                   fontSize={{ base: 'lg', lg: 'xl' }}
-                  color="neutral.900"
-                  _hover={{ color: 'neutral.500' }}
-                  transition="0.25s ease"
+                  css={defaultLinkStyles}
                 >
                   GitHub
                 </chakra.a>
