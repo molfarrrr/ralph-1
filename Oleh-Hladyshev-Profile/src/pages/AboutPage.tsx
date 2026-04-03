@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Box, Flex, Grid, Heading, HStack, Portal, Text, VStack, chakra } from '@chakra-ui/react'
-import { PageHeading } from '@/components/ui'
+import { PageHeading, SectionDivider } from '@/components/ui'
 
 const VIEW_RESUME_URL = '/resume/resume_03_2026.html'
 
@@ -290,7 +290,7 @@ export function AboutPage(): React.JSX.Element {
 
         <Grid templateColumns={{ base: '1fr', lg: '1.7fr 1fr' }} gap={{ base: 8, lg: 12 }}>
           <VStack align="stretch" gap={8}>
-            <Box borderTop="1px solid" borderColor="rgba(31, 31, 31, 0.12)" pt={6}>
+            <SectionDivider>
               <Text fontSize={{ base: '2xl', lg: '3xl' }} fontWeight="400" color="neutral.900" letterSpacing="-0.03em" mb={5}>
                 Experience
               </Text>
@@ -326,7 +326,7 @@ export function AboutPage(): React.JSX.Element {
                   </Box>
                 ))}
               </VStack>
-            </Box>
+            </SectionDivider>
           </VStack>
 
           <VStack align="stretch" gap={8}>
