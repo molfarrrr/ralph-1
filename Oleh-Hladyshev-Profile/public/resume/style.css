@@ -60,7 +60,6 @@ li {
     width: var(--sidebar-width);
     height: 100%;
     padding: 0.6in var(--sidebar-horizontal-padding);
-    border-left: 2px solid #f2f2f2;
     font-size: 10pt;
 }
 
@@ -168,6 +167,12 @@ li {
 
 .details-caption {
     padding: 3px 0;
+}
+
+.details-caption::after {
+    display: block;
+    clear: both;
+    content: '';
 }
 
 .details header {

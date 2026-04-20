@@ -4,6 +4,7 @@ import { PageHeading, SectionDivider, TextLink } from '@/components/ui'
 import { iconButtonRecipe } from '@/theme/recipes/iconButton.recipe'
 
 const VIEW_RESUME_URL = `${import.meta.env.BASE_URL}resume/resume_print.html`
+const EXTENDED_RESUME_URL = `${import.meta.env.BASE_URL}resume/extended_resume_print.html`
 
 type ExperienceBullet = {
   id: string
@@ -111,17 +112,28 @@ const EXPERIENCE = [
   },
   {
     company: 'EPAM Systems',
-    role: 'Senior Frontend Software Engineer',
-    period: 'Jul 2017 - Mar 2020',
-    location: 'Prague, Czech Republic',
+    role: 'Software Developer',
+    period: 'Jan 2018 - Mar 2020',
+    location: 'Prague, Czech Republic (On-site)',
     bullets: [
-      { id: 'epam-replatform', content: 'Worked on strategic re-platforming initiatives for Barclays Investment Bank.' },
-      { id: 'epam-delivery', content: 'Owned requirement analysis, proof-of-concepts, feature delivery, and cross-team collaboration.' },
+      { id: 'epam-replatform', content: 'Worked on strategic re-platforming projects for Barclays Investment Bank.' },
+      { id: 'epam-features', content: 'Developed core features for re-platforming initiatives at Barclays Investment Bank.' },
+      { id: 'epam-analysis', content: 'Conducted requirement analysis and built proof-of-concepts.' },
+      { id: 'epam-collaboration', content: 'Proactively participated in cross-team collaboration.' },
       {
         id: 'epam-teamcity',
         content: (
           <>
-            Implemented and maintained <strong>TeamCity</strong> builds and delivery support processes.
+            Implemented <strong>TeamCity</strong> builds and supported CI/CD processes.
+          </>
+        ),
+      },
+      {
+        id: 'epam-stack',
+        content: (
+          <>
+            Delivered features with <strong>TypeScript</strong>, <strong>Angular</strong>, <strong>AG Grid</strong>,{' '}
+            <strong>SCSS</strong>, and <strong>Angular Material</strong>.
           </>
         ),
       },
@@ -178,6 +190,7 @@ const SKILL_GROUPS = [
 export function AboutPage(): React.JSX.Element {
   const [isResumeOpen, setIsResumeOpen] = useState(false)
   const printFrameRef = useRef<HTMLIFrameElement | null>(null)
+  const extendedPrintFrameRef = useRef<HTMLIFrameElement | null>(null)
   const iconBtn = useRecipe({ recipe: iconButtonRecipe })
   const solidStyles = iconBtn({ variant: 'solid' })
   const outlineStyles = iconBtn({ variant: 'outline' })
@@ -203,8 +216,8 @@ export function AboutPage(): React.JSX.Element {
     }
   }, [isResumeOpen])
 
-  const handlePrint = (): void => {
-    const resumeWindow = printFrameRef.current?.contentWindow
+  const handlePrint = (frame: HTMLIFrameElement | null): void => {
+    const resumeWindow = frame?.contentWindow
 
     if (!resumeWindow) return
 
@@ -246,7 +259,7 @@ export function AboutPage(): React.JSX.Element {
               type="button"
               fontSize="sm"
               fontWeight="500"
-              onClick={handlePrint}
+              onClick={() => handlePrint(printFrameRef.current)}
               css={solidStyles}
             >
               <chakra.svg w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" mr={2}>
@@ -255,6 +268,21 @@ export function AboutPage(): React.JSX.Element {
                 <path d="M7 14h10v6H7z" />
               </chakra.svg>
               Print
+            </chakra.button>
+            <chakra.button
+              type="button"
+              fontSize="sm"
+              fontWeight="500"
+              onClick={() => handlePrint(extendedPrintFrameRef.current)}
+              css={solidStyles}
+            >
+              <chakra.svg w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" mr={2}>
+                <path d="M7 9V4h10v5" />
+                <path d="M6 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1" />
+                <path d="M7 14h10v6H7z" />
+                <path d="M10 17h4" />
+              </chakra.svg>
+              Print Extended
             </chakra.button>
             <chakra.button
               type="button"
@@ -444,6 +472,19 @@ export function AboutPage(): React.JSX.Element {
         ref={printFrameRef}
         title="Hidden print frame"
         src={VIEW_RESUME_URL}
+        style={{
+          position: 'absolute',
+          width: 0,
+          height: 0,
+          border: 0,
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      />
+      <iframe
+        ref={extendedPrintFrameRef}
+        title="Hidden extended print frame"
+        src={EXTENDED_RESUME_URL}
         style={{
           position: 'absolute',
           width: 0,
